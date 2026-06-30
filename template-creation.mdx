@@ -22,8 +22,6 @@ These two terms get used throughout this guide — they sound similar but play v
 - The **Word template** is the `.docx` file your team already uses to draft documents — the standard template you'd open to start a new CSR, IB, or protocol. It defines what the final document looks like: section headings, layout, tables, boilerplate text, and any drafting instructions written into the file. You bring it with you when setting up Artos.
 - The **Artos template** is something Artos creates on top of your Word template. It's a configuration layer that lives inside the Artos platform, generated automatically from your Word template plus your example files. It defines _how_ Artos drafts each section — which action to run, what content to pull from sources, and any instructions to follow. You review and refine it.
 
-## What You'll Need
-
 Before you begin, gather the following:
 
 | Input | What it is | Requirements |
@@ -31,42 +29,61 @@ Before you begin, gather the following:
 | **MS Word Template** | Your document with section headings and instructions | Must be .docx format (not PDF) |
 | **Example Documents** | Completed documents that show how content should look | Finished IBs, protocols, CSRs, or other regulatory documents of the same type as the template that you are creating |
 
+## What Artos Learns from Your Inputs
+
+| From your Word template | From your example documents |
+| :-- | :-- |
+| How to structure each section of your document | What type of content belongs in each section |
+| Section headings and hierarchy | Your organization's terminology |
+| Table structures and formatting | Formatting and style conventions |
+| Instructions for each section | Content patterns and writing style |
+
 ## Before You Start: Prepare Your Word Template
+
+Your Word template needs to be properly formatted for Artos to read it correctly. Complete these checks before uploading.
 
 ### 1. Verify File Format
 
-Your file must be MS Word format (.docx). You cannot use a PDF.
+**Your file must be MS Word format (.docx).** You cannot use a PDF.
+
+Why? Artos extracts complex styling, structure, and formatting information from the Word document that gets lost when you convert to PDF.
 
 ### 2. Check Section Headings
 
-All section headings must use Word styles with the word "heading" in the style name.
+All section headings must use Word styles with the word **"heading"** in the style name.
 
 | ✓ Works | ✗ Doesn't work |
-| --- | --- |
+| :-- | :-- |
 | Heading 1 | Protocol Title |
 | Heading 2 | Section Name |
-|  | Body Bold |
+| Section Heading | Body Bold |
+| Protocol Heading 2 | Chapter |
 
-**How to check:** Click on a heading in your Word document and look at the Styles pane.
+**How to check:** Click on a heading in your Word document and look at the Styles pane to see what style is applied.
 
 ### 3. Check Table Styles
 
-Tables should use styles with "table" or "caption" in the style name: Table Normal, Table Grid, Caption, or custom styles containing "table" or "caption".
+Tables should use styles with **"table"** or **"caption"** in the style name.
+
+**Supported styles:**
+
+- Table Normal
+- Table Grid
+- Caption
+- Custom styles containing "table" or "caption"
 
 ### 4. Remove Example Content
 
-Do not include example text in your Word template. Example content belongs in your example files only.
+**Do not include example text in your Word template.** Example content belongs in your example files only.
 
-<Note>
-  **Exception:** You should include template text (boilerplate with placeholders) and template tables (table structures you want Artos to fill in). Template tables should be empty or contain `XX` in places where data needs to be added.
-</Note>
+Exception: You should include template text (boilerplate with placeholders) and template tables (table structures you want Artos to fill in). Template tables should be empty or contain XX in places where data needs to be added.
 
 ### Pre-Upload Checklist
 
-- File is .docx format
-- All headings use styles with "heading" in the name
-- Tables use styles with "table" or "caption" in the name
-- No example content included
+1. File is .docx format
+2. All headings use styles with "heading" in the name
+3. Tables use styles with "table" or "caption" in the name
+4. No example content included
 
 ## Step-by-Step: Creating Your Template
 
@@ -76,9 +93,18 @@ Do not include example text in your Word template. Example content belongs in yo
 2. Go to your workspace
 3. Click **"Create Template"**
 
+<Frame>
+  ![Screenshot 2026 06 30 At 4 34 46 PM](/images/Screenshot-2026-06-30-at-4.34.46-PM.png)
+</Frame>
+
 ### Step 2: Name Your Template
 
-Enter a name that clearly identifies the document type (e.g., "Investigator's Brochure Template" or "CSR Template: Phase 2").
+1. Enter a name for your template
+2. Choose a name that clearly identifies the document type (e.g., "Investigator's Brochure Template" or "CSR Template: Phase 2")
+
+<Frame>
+  ![Screenshot 2026 06 30 At 4 35 32 PM](/images/Screenshot-2026-06-30-at-4.35.32-PM.png)
+</Frame>
 
 <Tip>
   Use a consistent naming convention across your organization so templates are easy to find.
@@ -86,11 +112,23 @@ Enter a name that clearly identifies the document type (e.g., "Investigator's Br
 
 ### Step 3: Select Document Type
 
-Select the type of document this template will generate: Investigator's Brochure (IB), Clinical Study Report (CSR), Nonclinical Overview, Protocol, or other regulatory documents.
+1. Select the type of document this template will generate
+2. Common options include:
+   - Investigator's Brochure (IB)
+   - Clinical Study Report (CSR)
+   - Nonclinical Overview
+   - Protocol
+   - Other regulatory documents
 
-<Note>
+<Tip>
   Template types vary by organization based on the document types agreed to.
-</Note>
+</Tip>
+
+<Frame>
+  ![Screenshot 2026 06 30 At 4 36 34 PM](/images/Screenshot-2026-06-30-at-4.36.34-PM.png)
+</Frame>
+
+This helps Artos apply the right baseline understanding for your document type.
 
 ### Step 4: Upload Your Word Template
 
@@ -98,56 +136,114 @@ Select the type of document this template will generate: Investigator's Brochure
 2. Select your prepared .docx file
 3. Wait for the upload to complete
 
+<Frame>
+  ![Screenshot 2026 06 30 At 4 39 23 PM](/images/Screenshot-2026-06-30-at-4.39.23-PM.png)
+</Frame>
+
+<Frame>
+  ![Frame 52](/images/Frame-52.png)
+</Frame>
+
+**What happens:** Artos reads your Word template and extracts:
+
+- All section headings (based on heading styles)
+- Table structures
+- Instructions and template text (based on tags)
+- Formatting and style information
+
 ### Step 5: Upload Example Documents
 
 1. Click **"Upload Example Documents"** or drag and drop files
 2. Select a minimum of one and a maximum of five completed documents
 3. Wait for the uploads to complete
 
+<Frame>
+  ![Screenshot 2026 06 30 At 4 42 45 PM](/images/Screenshot-2026-06-30-at-4.42.45-PM.png)
+</Frame>
+
+**What to upload:**
+
+| Document Type | Good Example Documents |
+| :-- | :-- |
+| Investigator's Brochure | Completed IBs from previous compounds |
+| Clinical Study Report | Finished CSRs from similar studies |
+| Protocol | Approved protocols from similar studies |
+
 **Tips for selecting example documents:**
 
 - Choose documents that represent your organization's best work
 - Use documents that follow your current style guidelines
 - More examples (5 max) help Artos learn better patterns
-- If documents for different phases look very different, consider creating multiple templates
+- It's better if examples follow the template closely in terms of content.
+- For example, if CSRs for different phases look very different, then maybe create multiple CSR templates with different example files
 
 ### Step 6: Generate the Template
 
-Click **"Confirm"**. Artos processes your inputs and creates an Artos template by reading headings, analyzing instructions, extracting content patterns from example files, and auto-assigning actions to each section.
+1. Review your uploads:
+   - Word template: ✓ Uploaded
+   - Example documents: ✓ Uploaded
+2. Click **"Confirm"**
+
+**What happens:** Artos processes your inputs and creates an Artos template:
+
+- Reads headings from your Word template to identify sections
+- Analyzes instructions you've included
+- Extracts content patterns from your example files
+- Maps the structure to create a trained template
+- Auto-assigns actions to each section based on what it learned
 
 ### Step 7: Wait for Processing
 
-Template generation may take several minutes.
+Template generation may take several minutes depending on:
 
-<Note>
+- Size of your Word template
+- Number and size of example documents
+- Complexity of document structure
+
+You'll see a progress indicator while Artos processes your inputs.
+
+<Tip>
   You'll receive a notification when your template is ready.
-</Note>
+</Tip>
 
 ### Step 8: Review Your Generated Template
 
 Once generation is complete, you'll see the Artos template editor with:
 
-- **Left panel:** List of all sections
+- **Left panel:** List of all sections (pulled from your Word template headings)
 - **Main panel:** Reference view of your original Word template
 - **Right panel:** Configuration for each section (actions, parameters, instructions)
 
+**What Artos has done automatically:**
+
+- Created a section for each heading in your Word template
+- Assigned actions to each section based on the content type
+- Generated initial instructions based on your template text and examples
+- Set default parameters
+
 ### Step 9: Review Auto-Generated Configuration
 
+Click through each section to review what Artos has configured:
+
+**For each section, check:**
+
 | Component | What to review |
-| --- | --- |
-| Actions | Are the right actions assigned? (Summarize, Copy/Paste, Template Table, etc.) |
-| Action Instructions | Are the instructions specific enough? |
-| Content Toggle | Should this section generate content or be left blank? |
-| Repeat Sections | Does this section need to create multiple subsections? |
+| :-- | :-- |
+| **Actions** | Are the right actions assigned? (Summarize, Copy/Paste, Template Table, etc.) |
+| **Action Instructions** | Are the instructions specific enough? |
+| **Content Toggle** | Should this section generate content or be left blank? Each level sub-heading is treated as its own section. |
+| **Repeat Sections** | Does this section need to create multiple subsections? Based on actual source data e.g., summarizing each non-clinical report as its own sub-section or each primary efficacy endpoint as its own level 4 or 5 sub-heading |
 
 <Warning>
-  **Watch out for duplicate table headings.** When a table heading and the table itself are both picked up during template generation, Artos may create a "Use Template Text" action for the heading and a "Use Template Table" action for the table — resulting in the heading appearing twice. Delete the "Use Template Text" action for the table heading and keep only the "Use Template Table" action.
+  **Watch out for duplicate table headings**
+
+  When a table heading and the table itself are both picked up during template generation, Artos may create a 'Use Template Text' action for the heading and a 'Use Template Table' action for the table — but since the 'Use Template Table' action already includes the heading, this results in the heading appearing twice in the generated document. If you notice this, delete the 'Use Template Text' action for the table heading and keep only the Use Template Table action.
 </Warning>
 
 ## Troubleshooting Common Issues
 
 | Issue | Cause | Solution |
-| --- | --- | --- |
+| :-- | :-- | :-- |
 | Sections not appearing | Heading styles don't contain "heading" | Update Word template styles and re-upload |
 | Wrong sections detected | Non-heading text using heading styles | Clean up Word template styles |
 | Tables not recognized | Table styles don't contain "table" or "caption" | Update Word template table styles |
@@ -155,11 +251,20 @@ Once generation is complete, you'll see the Artos template editor with:
 
 ## Best Practices
 
-- **Structure your Word template carefully.** A well-structured Word template leads to a better auto-generated Artos template.
-- **Use high-quality example documents.** The better your examples, the better Artos learns your organization's patterns.
-- **Start with one document type.** Master one template before creating others.
-- **Test early and often.** Don't wait until the template is "perfect" to test it.
-- **Plan for iteration.** Your first version won't be perfect, and that's okay.
+1. **Structure your Word template carefully.** A well-structured Word template leads to a better auto-generated Artos template.
+2. **Use high-quality example documents.** The better your examples, the better Artos learns your organization's patterns.
+3. **Start with one document type.** Master one template before creating others.
+4. **Test early and often.** Don't wait until the template is "perfect" to test it.
+5. **Document your decisions.** Keep notes on why you configured things a certain way.
+6. **Plan for iteration.** Your first version won't be perfect, and that's okay.
+7. **Get feedback from end users.** The people who will use the template can identify issues you might miss.
+
+## What Makes the Auto-Generated Template Better?
+
+Two inputs drive the quality of your Artos template:
+
+1. **Your Word template** provides the structural foundation. The more detail you include, clear headings, specific instructions, boilerplate text, the better Artos understands your document's structure and intent. Artos reads this and converts it into an Artos template, using the context from your instructions and formatting to make intelligent decisions about how each section should be handled.
+2. **Your example files** have strong influence on output quality. These are completed documents, finished IBs, CSRs, protocols, or other regulatory documents, that show Artos not just what the document should contain, but how it should be written. Artos learns content patterns, terminology, style conventions, and structural choices from these examples. The better your examples represent how you want your documents to look, the less configuration you'll need.
 
 ## Next Steps
 
