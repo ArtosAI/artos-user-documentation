@@ -13,7 +13,7 @@ Think about what happens every time your team writes a Clinical Study Report or 
 
 Most of this knowledge lives in people's heads, in style guides that may or may not be followed consistently, or scattered across example documents. When experienced team members leave, that knowledge often leaves with them. When new people join, they spend months learning "how we do things here."
 
-Artos solves this problem by capturing that knowledge in a structured, reusable way. You teach it once — through what we call an Artos template — and it applies those patterns consistently every time you generate a new document.
+Artos solves this problem by capturing that knowledge in a structured, reusable way. **You teach it once, through what we call an Artos template, and it applies those patterns consistently every time you generate a new document.**
 
 ## Key Terms
 
@@ -32,9 +32,17 @@ Before going further, let's define the key terms you'll encounter throughout thi
 
 Artos operates in three phases: **Create Template**, **Create Document**, and **Edit & Refine**.
 
+<Frame>
+  ![Screenshot 2026 06 30 At 4 03 39 PM](/images/Screenshot-2026-06-30-at-4.03.39-PM.png)
+</Frame>
+
 ### ✍️ Phase 1: Create Template (One-Time Setup)
 
 Templates are the foundation of the Artos system. A template is a comprehensive instruction set that teaches Artos how to understand and process your documents.
+
+While you may be familiar with the word "template" from other contexts, in Artos it means something specific: **a set of configured actions and instructions for each section of a document that Artos's AI system can follow to draft documents the way you want.**
+
+The platform works best when templates and instructions are well-configured upfront.
 
 To create a template, you provide two inputs:
 
@@ -43,9 +51,9 @@ To create a template, you provide two inputs:
 | Word template | Your MS Word document with section headings and any instructions | Document structure, section organization, formatting standards |
 | Example files | Completed documents (finished IBs, protocols, CSRs, etc.) | Content patterns, terminology, style conventions |
 
-<Tip>
-  Think of the initial Artos template as getting you 80–90% of the way there. Your job is to review what Artos created and refine the remaining 10–20%.
-</Tip>
+When you upload these inputs, Artos analyzes them and creates an Artos template. This one-time setup creates a reusable template that can generate countless documents following your exact specifications.
+
+Think of the initial Artos template as getting you 80–90% of the way there. Your job is to review what Artos created and refine the remaining 10–20%, such as adjusting actions, tuning instructions, and handling any sections where Artos's guess wasn't quite right.
 
 ### 📖 Phase 2: Create Document (Every Time You Need a Document)
 
@@ -56,6 +64,8 @@ Once you have a configured template, generating a document is straightforward:
 3. Optionally, upload a style guide and/or provide any document-specific instructions
 4. Artos reads your sources and drafts each section according to the template and document-specific instructions
 
+The system handles the heavy lifting: reading through hundreds of pages of source material, extracting relevant information, and organizing it into a properly formatted draft that follows your organization’s structure and style.
+
 ### 🛠️ Phase 3: Edit & Refine (As Needed)
 
 After Artos generates your initial draft, you have several ways to refine it:
@@ -64,20 +74,30 @@ After Artos generates your initial draft, you have several ways to refine it:
 - **Add content:** Insert additional tables or reports into specific locations
 - **Direct editing:** Make changes in the collaborative document editor
 
-Updates to one section will not affect the formatting or content of the rest of the document.
+**Updates to one section will not affect the formatting or content of the rest of the document.**
 
 ## Time Investment: Setup vs. Generation
+
+The effort in Artos is front-loaded. Understanding this helps set the right expectations.
 
 | Phase | What happens | Time investment | Frequency |
 | --- | --- | --- | --- |
 | Setup | Upload Word template and examples → Artos generates Artos template → You refine it | A couple of hours to review the first generated template; faster for subsequent versions | Once per document type |
 | Generation | Upload source files → Artos drafts document → You review and edit | Minutes to hours depending on document complexity | Every time you need a document |
 
-<Note>
+The more frequently you use a document type, the more valuable your investment in configuring that template.
+
+<Tip>
   You're not building anything from scratch. You're reviewing and refining what Artos has created. Think of it as editing rather than writing.
-</Note>
+</Tip>
 
 ## How Template Creation Works
+
+When you upload your Word template and example files, Artos doesn't just sit there waiting for instructions. It actively analyzes your inputs and makes intelligent decisions:
+
+<Frame>
+  ![Screenshot 2026 06 30 At 4 16 56 PM](/images/Screenshot-2026-06-30-at-4.16.56-PM.png)
+</Frame>
 
 **From your Word template, Artos:**
 
@@ -97,23 +117,35 @@ Updates to one section will not affect the formatting or content of the rest of 
 - Initial instructions based on your template content
 - A structure that's typically 80–90% ready to use
 
+<Frame>
+  ![Screenshot 2026 06 30 At 4 17 46 PM](/images/Screenshot-2026-06-30-at-4.17.46-PM.png)
+</Frame>
+
 ## How Document Creation Works
 
-**1. You upload source documents.** These are the inputs Artos will draw from: protocols, study reports, data tables, previous documents, whatever contains the information that should go into your new document.
+When you generate a document, here's what happens:
 
-**2. Artos reads each section of your Artos template.** For each section, Artos follows the configured actions and template-level instructions, focusing on finding the right content from your uploaded sources.
+**1. You upload source documents.**\
+These are the inputs Artos will draw from: protocols, study reports, data tables, previous documents, whatever contains the information that should go into your new document.
 
-**3. Artos executes each action.** Depending on the action, it might copy text verbatim, summarize content from a source, populate a table, or generate a narrative.
+**2. Artos reads each section of your Artos template.**\
+For each section, Artos follows the configured actions and template-level instructions, focusing on finding the right content from your uploaded sources — not reinterpreting the rules.
 
-**4. Artos produces a draft.** The output is a structured document, populated with content from your sources, organized according to your template. The system is designed to give you more content than you may need — it's easier to trim a comprehensive draft than to chase down missing information.
+**3. Artos executes each action.**\
+Depending on the action, it might copy text verbatim, summarize content from a source, populate a table, or generate a narrative. Each section is handled according to its own configuration.
+
+**4. Artos produces a draft.**\
+The output is a structured document, populated with content from your sources, organized according to your template. The system is designed to give you more content than you may need, it's easier to trim a comprehensive draft than to chase down missing information. You then review, refine, and finalize.
 
 ## Template-Level vs. Document-Level Changes
 
-|  | Artos Template-Level Changes | Document-Level Changes |
-| --- | --- | --- |
-| **What it is** | Changes to your Artos template configuration | Changes made to a specific document |
+When something isn't quite right in a generated document, you have a choice: fix it in the Artos template so the change applies to all future documents, or fix it in this specific document only.
+
+|  | **Artos Template-Level Changes** | **Document-Level Changes** |
+| :-- | :-- | :-- |
+| **What it is** | Changes to your Artos template configuration | Changes made to a specific document — either during generation or after the draft is created |
 | **What it affects** | Every document generated from that template going forward | Only that document |
-| **When to use it** | A structural improvement, a regulatory requirement, a consistent formatting standard | A compound-specific concern, a reviewer's one-time request, data that's unusual for this study |
+| **When to use it** | When you've identified something that should always be done a certain way: a structural improvement, a regulatory requirement, a consistent formatting standard | When something is unique to this document: a compound-specific concern, a reviewer's one-time request, data that's unusual for this study |
 
 <Tip>
   When something needs fixing, ask: "Will I want this same change in the next document?" If yes, update the template. If no, fix it in the document.
