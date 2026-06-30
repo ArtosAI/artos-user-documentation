@@ -18,20 +18,49 @@
         ]
       }
     ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": [
+          "index",
+          "overview"
+        ]
+      },
+      {
+        "group": "Templates",
+        "pages": [
+          "template-creation",
+          "template-configuration"
+        ]
+      },
+      {
+        "group": "Document Generation",
+        "pages": [
+          "context-files",
+          "document-generation",
+          "post-draft-review-and-editing"
+        ]
+      },
+      {
+        "group": "Integrations",
+        "pages": [
+          "word-add-in"
+        ]
+      },
+      {
+        "group": "Platform",
+        "pages": [
+          "user-roles-and-permissions"
+        ]
+      },
+      {
+        "group": "Help",
+        "pages": [
+          "training-and-support",
+          "contact"
+        ]
+      }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",

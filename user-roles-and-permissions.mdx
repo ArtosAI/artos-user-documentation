@@ -1,0 +1,79 @@
+---
+title: "User Roles and Permissions"
+description: "Understand how roles and access control work across the Artos platform."
+---
+
+## How Roles Work
+
+Every user in Artos is assigned a global role that applies consistently across all templates, workspaces, documents, and source files. There are no role variations at the resource level.
+
+When a user is given access to a resource, they interact with it at their global permission level. There are 4 roles: **Member**, **Admin**, **Owner**, and **Internal**. Internal is reserved for Artos staff and has the same permissions as Owner.
+
+## Permissions by Role
+
+### Member
+
+|  | Templates | Workspaces | Documents | Source Files |
+| --- | --- | --- | --- | --- |
+| **Access** | Shared templates only | Shared workspaces only | Documents within shared workspaces | Uploaded or shared files |
+| **New Creation** | Cannot create | Cannot create | Cannot create | Can upload |
+| **Edit/Comment** | Cannot edit | N/A | Can edit or comment | N/A |
+| **Deletion** | Cannot delete | No one can delete workspaces | Cannot delete | Cannot delete |
+| **Sharing** | With Members only | With Members only | Not allowed at document level | With Members only |
+| **Remove user access** | Cannot remove | Cannot remove | Inherited from workspace | Cannot remove |
+
+### Admin
+
+|  | Templates | Workspaces | Documents | Source Files |
+| --- | --- | --- | --- | --- |
+| **Access** | Created or shared templates | Created or shared workspaces | Documents within accessible workspaces | Uploaded or shared files |
+| **New Creation** | Can create | Can create | Can create | Can upload |
+| **Edit/Comment** | Can edit accessible templates | N/A | Can edit or comment | N/A |
+| **Deletion** | Can delete accessible templates | No one can delete workspaces | Can delete accessible documents | Can delete accessible files |
+| **Sharing** | With Admins and Members | With Admins and Members | Not allowed at document level | With Admins and Members |
+| **Remove user access** | Can remove Admins and Members | Can remove Admins and Members | Inherited from workspace | Can remove Admins and Members |
+
+### Owner
+
+|  | Templates | Workspaces | Documents | Source Files |
+| --- | --- | --- | --- | --- |
+| **Access** | All templates | All workspaces | All documents | All source files |
+| **New Creation** | Can create | Can create | Can create | Can upload |
+| **Edit/Comment** | Can edit all templates | N/A | Can edit or comment on all documents | N/A |
+| **Deletion** | Can delete all templates | No one can delete workspaces | Can delete all documents | Can delete all files |
+| **Sharing** | With any Admin or Member | With any Admin or Member | Not allowed at document level | With any Admin or Member |
+| **Remove user access** | Can remove Admins and Members | Can remove Admins and Members | Inherited from workspace | Can remove Admins and Members |
+
+<Note>
+  Owners can also change permissions for other users.
+</Note>
+
+### Internal
+
+Same permissions as Owner across all resource types.
+
+<Warning>
+  The Internal role cannot be assigned by Owners through the platform UI. It can only be assigned by another Internal user or from the Artos backend.
+</Warning>
+
+## Sharing
+
+When a template or workspace is created, it is only accessible to its creator and users with the Owner or Internal role. Access for others must be explicitly granted.
+
+Source files uploaded by one user are not automatically visible to others, except to Owners and Internal users.
+
+<Note>
+  **Sharing a document doesn't share its source files.** If a user needs access to a source file outside of viewing it within the generated document, it must be explicitly shared with them.
+
+  If your team is collaborating, make sure the template, workspace, and any relevant source files have been shared with all users who need them.
+</Note>
+
+**Who appears in share lists:** Only Admins and Members appear in share lists. Owners and Internal users have access to every resource by default, so they are omitted from share lists.
+
+## Change of Role
+
+Owners can change a user's role at any time via **Settings \> Users & Permissions**. Owners can move users between Member, Admin, and Owner. The Internal role cannot be assigned by Owners through the UI.
+
+<Warning>
+  A role change requires a page refresh to take effect on the platform.
+</Warning>

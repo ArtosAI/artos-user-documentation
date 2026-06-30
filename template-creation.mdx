@@ -1,0 +1,169 @@
+---
+title: "Template Creation"
+description: "Create an Artos template from your Word document and example files."
+---
+
+## What is an Artos Template?
+
+Templates are the foundation of the Artos system. A template is a comprehensive instruction set that teaches Artos how to understand and process your documents.
+
+Think of template creation as a one-time setup that creates a reusable instruction set. Once created, this template can generate countless documents following your exact specifications.
+
+## Word Template vs. Artos Template
+
+The **Word template** is the .docx file your team already uses to draft documents. It defines what the final document looks like: section headings, layout, tables, boilerplate text, and any drafting instructions written into the file. You bring it with you when setting up Artos.
+
+The **Artos template** is something Artos creates on top of your Word template. It's a configuration layer that lives inside the Artos platform, generated automatically from your Word template plus your example files. It defines how Artos drafts each section. You review and refine it.
+
+## What You'll Need
+
+| Input | What it is | Requirements |
+| --- | --- | --- |
+| MS Word Template | Your document with section headings and instructions | Must be .docx format (not PDF) |
+| Example Documents | Completed documents that show how content should look | Finished IBs, protocols, CSRs, or other regulatory documents of the same type |
+
+## Before You Start: Prepare Your Word Template
+
+### 1. Verify File Format
+
+Your file must be MS Word format (.docx). You cannot use a PDF.
+
+### 2. Check Section Headings
+
+All section headings must use Word styles with the word "heading" in the style name.
+
+| ✓ Works | ✗ Doesn't work |
+| --- | --- |
+| Heading 1 | Protocol Title |
+| Heading 2 | Section Name |
+|  | Body Bold |
+
+**How to check:** Click on a heading in your Word document and look at the Styles pane.
+
+### 3. Check Table Styles
+
+Tables should use styles with "table" or "caption" in the style name: Table Normal, Table Grid, Caption, or custom styles containing "table" or "caption".
+
+### 4. Remove Example Content
+
+Do not include example text in your Word template. Example content belongs in your example files only.
+
+<Note>
+  **Exception:** You should include template text (boilerplate with placeholders) and template tables (table structures you want Artos to fill in). Template tables should be empty or contain `XX` in places where data needs to be added.
+</Note>
+
+### Pre-Upload Checklist
+
+- File is .docx format
+- All headings use styles with "heading" in the name
+- Tables use styles with "table" or "caption" in the name
+- No example content included
+
+## Step-by-Step: Creating Your Template
+
+### Step 1: Navigate to Template Creation
+
+1. Log in to the Artos platform
+2. Go to your workspace
+3. Click **"Create Template"**
+
+### Step 2: Name Your Template
+
+Enter a name that clearly identifies the document type (e.g., "Investigator's Brochure Template" or "CSR Template: Phase 2").
+
+<Tip>
+  Use a consistent naming convention across your organization so templates are easy to find.
+</Tip>
+
+### Step 3: Select Document Type
+
+Select the type of document this template will generate: Investigator's Brochure (IB), Clinical Study Report (CSR), Nonclinical Overview, Protocol, or other regulatory documents.
+
+<Note>
+  Template types vary by organization based on the document types agreed to.
+</Note>
+
+### Step 4: Upload Your Word Template
+
+1. Click **"Upload Word Template"** or drag and drop your file
+2. Select your prepared .docx file
+3. Wait for the upload to complete
+
+### Step 5: Upload Example Documents
+
+1. Click **"Upload Example Documents"** or drag and drop files
+2. Select a minimum of one and a maximum of five completed documents
+3. Wait for the uploads to complete
+
+**Tips for selecting example documents:**
+
+- Choose documents that represent your organization's best work
+- Use documents that follow your current style guidelines
+- More examples (5 max) help Artos learn better patterns
+- If documents for different phases look very different, consider creating multiple templates
+
+### Step 6: Generate the Template
+
+Click **"Confirm"**. Artos processes your inputs and creates an Artos template by reading headings, analyzing instructions, extracting content patterns from example files, and auto-assigning actions to each section.
+
+### Step 7: Wait for Processing
+
+Template generation may take several minutes.
+
+<Note>
+  You'll receive a notification when your template is ready.
+</Note>
+
+### Step 8: Review Your Generated Template
+
+Once generation is complete, you'll see the Artos template editor with:
+
+- **Left panel:** List of all sections
+- **Main panel:** Reference view of your original Word template
+- **Right panel:** Configuration for each section (actions, parameters, instructions)
+
+### Step 9: Review Auto-Generated Configuration
+
+| Component | What to review |
+| --- | --- |
+| Actions | Are the right actions assigned? (Summarize, Copy/Paste, Template Table, etc.) |
+| Action Instructions | Are the instructions specific enough? |
+| Content Toggle | Should this section generate content or be left blank? |
+| Repeat Sections | Does this section need to create multiple subsections? |
+
+<Warning>
+  **Watch out for duplicate table headings.** When a table heading and the table itself are both picked up during template generation, Artos may create a "Use Template Text" action for the heading and a "Use Template Table" action for the table — resulting in the heading appearing twice. Delete the "Use Template Text" action for the table heading and keep only the "Use Template Table" action.
+</Warning>
+
+## Troubleshooting Common Issues
+
+| Issue | Cause | Solution |
+| --- | --- | --- |
+| Sections not appearing | Heading styles don't contain "heading" | Update Word template styles and re-upload |
+| Wrong sections detected | Non-heading text using heading styles | Clean up Word template styles |
+| Tables not recognized | Table styles don't contain "table" or "caption" | Update Word template table styles |
+| Poor action assignments | Example documents don't match template structure | Use example documents that closely match your template |
+
+## Best Practices
+
+- **Structure your Word template carefully.** A well-structured Word template leads to a better auto-generated Artos template.
+- **Use high-quality example documents.** The better your examples, the better Artos learns your organization's patterns.
+- **Start with one document type.** Master one template before creating others.
+- **Test early and often.** Don't wait until the template is "perfect" to test it.
+- **Plan for iteration.** Your first version won't be perfect, and that's okay.
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Template Configuration" icon="sliders" href="/template-configuration">
+    Learn to configure your Artos template
+  </Card>
+
+  <Card title="Document Generation" icon="bolt" href="/document-generation">
+    Generate your first document
+  </Card>
+
+  <Card title="Post-Draft Editing" icon="pen-to-square" href="/post-draft-review-and-editing">
+    Refine your output
+  </Card>
+</CardGroup>
