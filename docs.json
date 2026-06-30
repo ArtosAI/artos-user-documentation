@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "Artos User Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#1F477D",
+    "light": "#4085F5",
+    "dark": "#1A3A6B"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -18,37 +18,56 @@
         ]
       }
     ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": [
+          "index",
+          "overview"
+        ]
+      },
+      {
+        "group": "Templates",
+        "pages": [
+          "template-creation",
+          "template-configuration"
+        ]
+      },
+      {
+        "group": "Document Generation",
+        "pages": [
+          "context-files",
+          "document-generation",
+          "post-draft-review-and-editing"
+        ]
+      },
+      {
+        "group": "Integrations",
+        "pages": [
+          "word-add-in"
+        ]
+      },
+      {
+        "group": "Platform",
+        "pages": [
+          "user-roles-and-permissions"
+        ]
+      },
+      {
+        "group": "Help",
+        "pages": [
+          "training-and-support",
+          "contact"
+        ]
+      }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
-    }
+    "links": []
   },
   "contextual": {
     "options": [
@@ -64,9 +83,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://www.linkedin.com/company/artosai",
+      "website": "https://www.artosai.com/"
     }
   }
 }
