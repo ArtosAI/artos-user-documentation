@@ -1,0 +1,92 @@
+---
+title: "Table and Summary Placeholder"
+description: "Inserts a table from exported TFL documents along with corresponding summary text"
+---
+
+## What It Does
+
+Inserts a table from exported table documents (Tables, Figures, and Listings) along with corresponding summary text. This action produces both a data table and a narrative explanation of that data, giving you the table itself plus written commentary in a single operation.
+
+## How It Works
+
+This action reads TFL documents from your source files, identifies the relevant table, inserts it into the section, and then generates narrative text that summarizes and interprets the data in the table.
+
+**Requires a List of Tables context file.** This action must be used with a List of Tables context file. The List of Tables tells Artos which tables exist, what they contain, and where they should go. Without it, the action can't identify which TFL to use.
+
+**Two outputs in one.** Unlike other actions that produce either text or a table, Summarize TFLs produces both. The table is inserted as-is from the TFL document, and the narrative is generated to describe and interpret it.
+
+**Table comes from the TFL source, not the Word template.** This is different from Use Template Table, where the table structure comes from your .docx file. Here, the table comes directly from an exported TFL document. The table structure is whatever the TFL contains.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Summarize the table" | "Insert Table 14.2.1 (Demographics and Baseline Characteristics) and provide a narrative summary. Highlight any notable imbalances between treatment groups." |
+| "Add the efficacy table" | "Insert the primary efficacy analysis table. In the narrative, describe the primary endpoint result, statistical significance, and clinical relevance. Include the confidence interval." |
+| "Include the AE table" | "Insert the Treatment-Emergent Adverse Events summary table. Summarize key findings in the narrative: most common AEs, SAEs, and AEs leading to discontinuation. Compare across treatment groups." |
+
+**What makes the strong instructions better:** They specify which table to insert and what the narrative should cover. Since the action produces both elements, the instruction needs to address both, which table to pull and what the accompanying text should emphasize.
+
+## Configuration Pattern: Efficacy Results with TFL Data
+
+An Efficacy Results section that relies on TFL data for its tables and narratives.
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Summarize from Source |
+| **Action 1 Instructions** | "Draft a brief opening paragraph summarizing the overall efficacy findings and the primary endpoint." |
+| **Action 2** | Summarize TFLs |
+| **Action 2 Instructions** | "Insert the primary efficacy analysis table (Table 14.2.1). Provide a narrative describing the result, statistical significance, confidence intervals, and clinical interpretation." |
+| **Action 3** | Summarize TFLs |
+| **Action 3 Instructions** | "Insert the secondary endpoint analysis table (Table 14.2.2). Provide a narrative describing results for each secondary endpoint." |
+| **Custom Instructions** | "Present primary endpoint findings before secondary. Include confidence intervals in all results narratives." |
+
+## Document-Specific Examples
+
+### Clinical Study Report (CSR)
+
+This is the primary document type for Summarize TFLs — CSRs frequently pair data tables with interpretive narrative.
+
+| Section | Instruction |
+| --- | --- |
+| Primary Efficacy Results | "Insert the primary endpoint analysis table and summarize the results. Include endpoint definition, analysis population, treatment effect with 95% CI, p-value, and interpretation. State whether the primary endpoint was met." |
+| Secondary Efficacy Results | "Insert the secondary endpoint analysis table and summarize each secondary endpoint result. Include point estimate, 95% CI, p-value, and clinical relevance. Present in the order specified by the statistical hierarchy." |
+| Demographics & Baseline | "Insert the demographics and baseline characteristics table. Summarize the key baseline characteristics across treatment groups, noting any imbalances that could affect interpretation of results." |
+| Adverse Events | "Insert the adverse events summary table (events ≥5% in any group) and summarize the overall AE profile. Highlight treatment-emergent AEs, compare incidence across treatment arms, and note any dose-response patterns." |
+| Laboratory Results | "Insert the laboratory results summary table and summarize clinically notable findings. Highlight any shifts from normal to abnormal, mean changes from baseline, and any findings that led to dose modifications or discontinuations." |
+| Vital Signs | "Insert the vital signs summary table and summarize changes from baseline in blood pressure, pulse, and weight. Note any clinically significant outliers." |
+
+---
+
+## Configuration Pattern: Efficacy Results Section (CSR)
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Summarize from Source |
+| **Action 1 Instructions** | "Draft a brief opening paragraph for the Efficacy Results chapter summarizing the overall efficacy findings." |
+| **Action 2** | Summarize TFLs |
+| **Action 2 Instructions** | "Insert the primary endpoint analysis table and summarize the primary efficacy result. Include treatment effect, 95% CI, p-value, and clinical interpretation." |
+| **Action 3** | Summarize TFLs |
+| **Action 3 Instructions** | "Insert the secondary endpoints analysis table and summarize each secondary endpoint result in order of the statistical testing hierarchy." |
+| **Custom Instructions** | "Present primary endpoint results before secondary. Include quantitative results with confidence intervals throughout. Note any multiplicity adjustments." |
+
+## When to Use This Action
+
+**Use Summarize TFLs when:**
+
+- You have exported TFL documents and need both the table and narrative interpretation
+- The section's data presentation should come from formal statistical outputs, not raw source text
+- You're writing efficacy, safety, or PK results sections where TFL data is the primary content
+
+**Use a different action when:**
+
+- You need to fill a table defined in your Word template with source data → use **Use Template Table**
+- You only need a narrative summary without the table itself → use **Summarize from Source**
+- You need a table from within the document, not from a TFL source → use **Create Intra-Document Table**
+
+## Tips
+
+- Always include a List of Tables context file. Without it, the action can't identify which TFL to use and will not produce useful output.
+- Be specific about which table to insert. Reference the table number (ex. "Table 14.2.1") when possible, this removes ambiguity.
+- If you need the narrative to focus on specific aspects of the data (ex. treatment differences, subgroup effects, clinically meaningful thresholds), say so in the instruction. The default narrative will be general.
+- This action works well with Repeat Sections when you have multiple endpoints, each with its own TFL, that should be presented in separate subsections.

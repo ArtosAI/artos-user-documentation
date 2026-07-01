@@ -1,0 +1,92 @@
+---
+title: "Summarize from Nonclinical Report"
+description: "Inserts a subsection containing a short description of a nonclinical report"
+---
+
+## What It Does
+
+Inserts a subsection containing a short description of a nonclinical report. This action is designed specifically for documents that need to summarize individual nonclinical reports, typically Investigator's Brochures (IBs), Nonclinical Overviews (NCOs), and other documents generated from individual nonclinical study reports.
+
+## How It Works
+
+This action reads nonclinical reports from your source files and generates a subsection summarizing each one. It's built for situations where the same instructions apply across multiple nonclinical reports that all need to be summarized together in a structured way.
+
+**Requires a Content Plan context file.** This action must be used with a Content Plan. The Content Plan tells Artos which nonclinical reports to include and how to organize them. Specific endpoints or finding types you want to focus on can be noted in the Content Plan.
+
+**Designed for multiple reports.** Unlike Summarize from Source (which summarizes one chunk of text from one source), Summarize NCR is designed to handle multiple nonclinical reports, applying the same summarization approach across all of them. This is the key behavioral difference, it processes multiple reports under consistent instructions.
+
+**Section-level configuration, not document-level.** The system can be configured to use Summarize NCR at the section level rather than the document level, which gives more control over which sections use this action versus other summarization approaches.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Summarize the nonclinical reports" | "For each nonclinical report, provide a summary including: study type, species, dose levels and duration, key findings (including test article-related findings), and NOAEL. Organize by study type." |
+| "Describe the tox studies" | "Summarize each toxicology report: include species, route of administration, dose groups, treatment duration, major findings by organ system, and NOAEL. Focus on test article-related findings." |
+
+**What makes the strong instructions better:** They define what elements to include in each report summary and how to organize them. Since this action applies the same instructions across multiple reports, the instruction needs to be comprehensive enough to work for all of them.
+
+## Configuration Pattern: IB Nonclinical Section
+
+An IB nonclinical section that summarizes individual nonclinical study reports.
+
+| Component | Configuration |
+| --- | --- |
+| **Repeat Sections** | Enabled |
+| **Data Instructions** | "Create a sub-section for each nonclinical study type: single-dose toxicity, repeat-dose toxicity, genotoxicity, carcinogenicity, reproductive toxicity." |
+| **Action** | Summarize NCR |
+| **Action Instructions** | "For each nonclinical report in this category, summarize: study design, species and strain, dose levels, treatment duration, key findings (focus on test article-related findings), and NOAEL. Present findings by organ system where applicable." |
+| **Custom Instructions** | "Include all studies in the Content Plan. Do not omit studies even if findings are minimal. Present studies in chronological order within each category." |
+
+## Document-Specific Examples
+
+### Investigator's Brochure (IB)
+
+This is the primary use case for the NCR action — IBs contain extensive nonclinical sections that summarize individual study reports.
+
+| Section | Instruction |
+| --- | --- |
+| Single-Dose Toxicology | "Summarize each single-dose toxicity study. Include species, route, dose levels, approximate lethal dose or maximum tolerated dose, clinical signs, and mortality findings." |
+| Repeat-Dose Toxicology | "Summarize each repeat-dose toxicity study. Include species, route, dose levels, duration, major findings by organ system, reversibility of findings, NOAEL, and conclusions. Focus on test article-related findings." |
+| Genotoxicity | "Summarize each genotoxicity study. Include assay type (Ames, in vitro chromosomal aberration, in vivo micronucleus), test system, dose levels/concentrations, and results (positive/negative/equivocal). State the overall genotoxicity conclusion." |
+| Reproductive & Developmental Toxicology | "Summarize each reproductive toxicity study. Include study type (fertility, embryo-fetal development, pre/postnatal development), species, dose levels, maternal findings, developmental findings, NOAEL for maternal and developmental toxicity." |
+| Carcinogenicity | "Summarize each carcinogenicity study. Include species, route, dose levels, duration, tumor findings (type, incidence, statistical significance), and NOAEL. Note any preneoplastic findings." |
+| Safety Pharmacology | "Summarize each safety pharmacology study. Include organ system assessed (CNS, cardiovascular, respiratory), species, dose levels, key findings, and NOAEL." |
+| Nonclinical Pharmacokinetics | "Summarize each nonclinical PK study. Include species, route, dose levels, and key PK parameters (Cmax, AUC, t½, bioavailability, protein binding). Note any species-specific differences relevant to human projections." |
+
+### Nonclinical Overview (NCO)
+
+| Section | Instruction |
+| --- | --- |
+| Pharmacology Studies | "Summarize each pharmacology study. Include study type (primary PD, secondary PD, safety pharmacology), species/model, doses tested, and key findings related to mechanism of action and therapeutic effect." |
+| Toxicology Program Summary | "Summarize each pivotal toxicology study. Include species, route, dose levels, duration, principal findings, target organs, reversibility, NOAEL, and safety margin relative to the proposed clinical dose." |
+| ADME Studies | "Summarize each absorption, distribution, metabolism, and excretion study. Include species, route, key findings (e.g., oral bioavailability, tissue distribution, metabolic pathways, excretion routes), and relevance to clinical pharmacology." |
+
+### Other Nonclinical Summaries
+
+| Section | Instruction |
+| --- | --- |
+| Nonclinical Written Summary — Pharmacology | "Summarize each pharmacology study per the Content Plan. Include study design, objectives, key findings, and relevance to the clinical program." |
+| Nonclinical Written Summary — Toxicology | "Summarize each toxicology study per the Content Plan. Include study design, species, doses, findings, NOAELs, and safety margins. Organize by study type." |
+
+## When to Use This Action
+
+**Use Summarize NCR when:**
+
+- You're summarizing individual nonclinical reports (toxicology, pharmacology, PK) for IBs, NCOs, or similar documents
+- The same summarization instructions should apply across multiple nonclinical reports
+- You need structured, consistent summaries of each report rather than a single narrative that combines them all
+- You're working with a Content Plan that defines which reports to include
+
+**Use a different action when:**
+
+- You need a single summary that synthesizes findings across multiple sources → use **Summarize from Source** with AI action Use enabled
+- You need to copy a report summary verbatim → use **Copy from Source** or **Copy & Modify from Source**
+- You're summarizing clinical (not nonclinical) data → use **Summarize from Source** or **Summarize TFLs**
+
+## Tips
+
+- Always include a Content Plan context file. The Content Plan defines which reports to summarize and can include specific endpoints or finding types to focus on.
+- If NCR summaries are coming out too short, check whether the template instructions (the instructional text in your Word template) are being applied. The system can be configured to apply these instructions even when using the NCR rule.
+- For tox summaries specifically, the recommendation from Q&A is to use a modified copy-paste approach (copy content, apply style guide, improve grammar) as the baseline rather than building prescriptive checklists. Overly complex checklist-style instructions can confuse the system.
+- The Content Plan only works in conjunction with the NCR action. It does not apply to other summarization actions.
