@@ -4,136 +4,105 @@ description: "Walk through a few essential actions used to configure a sample CS
 hidden: true
 ---
 
-This page walks through how a few essential actions are applied to real sections of a Clinical Study Report (CSR). These examples show what complete, production-ready configurations look like — the kind of specificity that produces consistent, high-quality output.
+Each example below demonstrates how a specific action is applied to a real section of the CSR template, including the configuration and reasoning behind the choice.
 
-The examples below use a fictional compound (Compound X) and a standard Phase 3 CSR structure. The same configuration principles apply across document types.
+## Copy from Source
 
----
+**What it does:** Extracts content directly from a source and places it in the section with no modification.
 
-## Copy from Source — Study Objectives
+**How it was configured:**
 
-The Study Objectives section in a CSR should reflect the protocol language exactly. This is a verbatim lift, so Copy from Source is the right action.
+- **Rule:** Copy from Source
+- **Instructions:** "Extract the complete protocol-defined Inclusion Criteria list from the final approved protocol (and incorporate any relevant protocol amendment updates). Reproduce verbatim in the CSR, preserving the original numbering/bullets and any footnotes/definitions tied to eligibility."
 
-| Component | Configuration |
-| --- | --- |
-| **Action** | Copy from Source |
-| **Action Instructions** | "Copy the study objectives verbatim from the protocol. Include the primary objective and all secondary objectives as written. Do not paraphrase." |
-| **Custom Instructions** | _(none — the section is entirely verbatim)_ |
+**Why this action for this section:** The inclusion criteria need to match the protocol word-for-word. This action copies the text exactly as-is, keeping the original numbering and footnotes. The instructions also tell it to check for any protocol amendments so the CSR stays up to date.
 
-**Why this works:** The protocol language is final and legally significant. There's no reason to rewrite it. Copy from Source preserves it exactly.
+## Copy & Modify from Source
 
----
+**What it does:** Extracts content from a source with specific modifications (e.g., verb tense changes, conditional logic).
 
-## Copy & Modify from Source — Study Design
+**How it was configured:**
 
-The Study Design section comes from the protocol, but needs to be converted from future tense ("patients will be randomized") to past tense ("patients were randomized") since the study is complete.
+- **Rule:** Copy & Modify from Source
+- **Instructions:** "If the primary endpoint definition/success criteria/estimand is not fully captured in the objective statement, copy the authoritative primary endpoint definition block verbatim from the protocol and/or SAP section defining endpoints/estimands (including time frame, units/scale, and responder/censoring rules if applicable) and include it here as 'Primary endpoint(s)' under the primary objective(s)."
 
-| Component | Configuration |
-| --- | --- |
-| **Action** | Copy & Modify from Source |
-| **Action Instructions** | "Copy the study design section from the protocol. Change all verbs to past tense to reflect that the study has been completed. Replace \[drug code\] with \[INN\] throughout." |
-| **Custom Instructions** | _(none)_ |
+**Why this action for this section:** The primary objective can be copied straight from the protocol, but the endpoint definition might live somewhere else, like the SAP. The instructions tell the AI to check if the objective is complete on its own, and if not, pull the missing endpoint details from the right source. That conditional logic is what makes this a Copy & Modify rather than a simple copy.
 
-**Why this works:** The structure and content of the protocol's study design section are correct — it just needs tense and terminology corrections. Copy & Modify makes those targeted changes without rewriting the section.
+## Summarize from Source
 
----
+**What it does:** Summarizes information from a source into a concise summary appropriate for the section.
 
-## Summarize from Source — Safety Results: Adverse Events
+**How it was configured:**
 
-The Safety Results section requires synthesis, not verbatim copying. The source (the clinical database or listings) contains more detail than the CSR needs, so Summarize from Source is appropriate.
+- **Rule:** Summarize from Source
+- **Instructions:** "Summarize investigational product background and mechanism of action from the Investigator's Brochure and/or protocol background. Include product class, target/pathway, proposed mechanism, and rationale for use in this disease. Link scientific rationale to study objectives/endpoints. Include only key supporting evidence at a high level (nonclinical/early clinical signals) and defer detailed methods/results to referenced source documents."
 
-| Component | Configuration |
-| --- | --- |
-| **Action 1** | Summarize from Source |
-| **Action 1 Instructions** | "Summarize adverse events from the clinical study report. Focus on events occurring in ≥5% of patients in any treatment group. Present serious adverse events before common adverse events. Include comparison to placebo where available." |
-| **Action 2** | Use Template Table |
-| **Action 2 Instructions** | "Populate the adverse events summary table. Include all events with ≥5% incidence in any treatment group. Sort by system organ class, then by descending frequency within each class." |
-| **Custom Instructions** | "Present SAEs before common AEs. Limit the narrative to 2 pages. Do not repeat data from the table in the narrative." |
+**Why this action for this section:** The Introduction pulls from long source documents like the Investigator's Brochure. Copying all of that verbatim would be way too much. The Summarize action condenses it down, and the details in the instructions keeps the AI focused on the right level of detail for this section.
 
-**Why this works:** The narrative and table serve different purposes. The Summarize action produces the interpretive text; the Template Table action populates the structured data. Custom Instructions ensure they work together without redundancy.
+## Use Template Text
 
----
+**What it does:** Inserts predefined template text from the MS Word template directly into the section.
 
-## Use Template Text — Regulatory Statements
+**How it was configured:**
 
-Some sections contain standard regulatory language that doesn't change between studies — disclaimer language, reference to ICH guidelines, standard methodology statements.
+- **Rule:** Use template text
+- **Instructions:** "Insert this standard ethics compliance statement for the study. Edit only if the protocol/CSR specifies additional/alternative governing ethics frameworks or jurisdictional requirements that must be named explicitly."
+- **Template Text:** "This study was conducted in compliance with the ethical principles originating in or derived from the Declaration of Helsinki and in compliance with all International Council for Harmonisation (ICH) Good Clinical Practice (GCP) Guidelines. In addition, all local regulatory requirements were followed, in particular, those affording greater protection to the safety of trial subjects."
 
-| Component | Configuration |
-| --- | --- |
-| **Action** | Use Template Text |
-| **Action Instructions** | "Use the standard regulatory statement as written in the template. Do not modify." |
-| **Custom Instructions** | _(none)_ |
+**Why this action for this section:** This is standard boilerplate, the same ethics language goes in every CSR. There's nothing to pull from sources or summarize. The action inserts the pre-approved text directly, and the instructions say to only edit it if the study has additional regulatory requirements that need to be named.
 
-**Why this works:** When the content is identical across every document generated from this template, Use Template Text is the right action. There's nothing to look up, summarize, or extract.
+## Use Template Table
 
----
+**What it does:** Populates a table whose structure is defined in the MS Word template. Searches sources as needed to complete the table.
 
-## Use Template Table — Demographics
+**How it was configured:**
 
-The Demographics section uses a table defined in the Word template. The structure (columns, headers) is fixed; only the data changes between studies.
+- **Rule:** Use template table
+- **Instructions:** "Populate this template table exactly as defined in the template document. Use study-specific data to fill every cell while preserving the table layout. Follow the template guidance provided for this table."
 
-| Component | Configuration |
-| --- | --- |
-| **Action** | Use Template Table |
-| **Action Instructions** | "Populate the demographics and baseline characteristics table for the ITT population. Include: age (mean, SD, range), sex (n, %), race (n, %), weight (mean, SD), height (mean, SD), BMI (mean, SD). Present for each treatment group and overall." |
-| **Custom Instructions** | "Present continuous variables as mean ± SD. Present categorical variables as n (%). Round percentages to one decimal place." |
+**Why this action for this section:** The title page table is just an example here, but any table in the template that has a fixed layout can be inserted into the final document - only the content in each cell changes. This action keeps the table structure from the Word template and fills it in with study-specific data from sources. It's different from Fill in the Blank because the whole table needs to be built, not just a few placeholders in running text.
 
-**Why this works:** The table structure lives in the Word template and won't change. The action instruction specifies exactly which population, which variables, and how to format the values.
+## Create Intra-Document Summary
 
----
+**What it does:** Summarizes content from other sections within the same document being drafted. Different from Summarize from Source, this action pulls from within the document being written. Designed for introductions, conclusions, and executive summaries.
 
-## Create Intra-Document Summary — Synopsis
+**How it was configured:**
 
-The Synopsis summarizes the entire CSR into a standalone section. It draws from content already generated elsewhere in the document.
+- **Rule:** Create Intra-Document Summary
+- **Instructions:** "Draft the Discussion narrative by synthesizing the finalized CSR results sections (efficacy, safety, and study subjects/disposition) into a cohesive interpretation. Cover: (1) key efficacy findings vs objectives/endpoints, (2) key safety/tolerability findings in context of exposure, (3) benefit–risk and clinical relevance, and (4) consistency with/substantiation by supporting analyses; avoid reprinting full numeric tables and instead cite/point to the authoritative results sections."
 
-| Component | Configuration |
-| --- | --- |
-| **Action** | Create Intra-Document Summary |
-| **Action Instructions** | "Create a comprehensive standalone synopsis covering: study design and objectives, patient population and disposition, primary and secondary efficacy results (with p-values and confidence intervals), safety overview (SAEs, deaths, discontinuations due to AEs), and conclusions. Limit to 1–1.5 pages." |
-| **Custom Instructions** | "The synopsis should stand alone. A reader should be able to understand the study without reading the full report. Use quantitative data throughout. Present efficacy before safety." |
+**Why this action for this section:** The Discussion doesn't pull from external sources, it synthesizes what's already written in different sections of the CSR. The instructions give the AI a four-part structure and tell it not to reprint data tables, just interpret the findings and point readers back to the results sections. That's the key difference between this and Summarize from Source: this one works within the document, not from outside it.
 
-**Why this works:** The Synopsis needs to reflect the rest of the document, not the raw source files. Create Intra-Document Summary reads what Artos has already drafted and produces a coherent summary from it.
+## Create Intra-Document Table
 
----
+**What it does:** Creates a table based on data from other sections within the same document. Same concept as Create Intra-Document Summary, but outputs content in a tabular format.
 
-## Fill in the Blank — Cover Page
+**How it was configured:**
 
-The cover page contains fixed text with specific placeholders: study title, compound name, protocol number, dates, sponsor name.
+- **Rule:** Create Intra-Document Table
+- **Instructions:** "Include a table that summarizes the number of participants in each analysis set/population (e.g., ITT/FAS, PP, Safety, and any PK/PD/biomarker sets as defined) and show counts overall and by treatment group if applicable. Add a brief narrative confirming which analysis sets were used for efficacy and safety and reconcile to disposition where relevant."
 
-| Component | Configuration |
-| --- | --- |
-| **Action** | Fill in the Blank |
-| **Action Instructions** | "Fill in all placeholders on the cover page. Use the protocol for \[study title\], \[compound name\] (use INN), \[protocol number\], \[sponsor name and address\], and \[phase\]. Use the CSR for \[data cut-off date\] and \[total number of patients enrolled\]." |
-| **Custom Instructions** | _(none)_ |
+**Why this action for this section:** The analysis set counts come from subject disposition data already in a section in the CSR, not from an external source. This action builds a table from that internal data and adds a short narrative. The instructions also ask the AI to tie the numbers back to disposition, which reinforces that everything is coming from within the same report.
 
-**Why this works:** The cover page structure never changes. Only the study-specific values need to be populated. Fill in the Blank handles exactly this — filling fixed slots from source data without touching the surrounding text.
+## Fill in the Blank
 
----
+**What it does:** Identifies bracketed placeholders and fills them with appropriate information from sources.
 
-## Summarize TFLs — Primary Efficacy Results
+**How it was configured:**
 
-When the primary efficacy analysis table comes from a formal TFL output (Tables, Figures, and Listings), use Summarize TFLs to insert the table and generate the accompanying narrative.
+- **Rule:** Fill-in-the-blank
+- **Instructions:** "Fill in the CSR type (Final/Interim/Abbreviated/Amended) and the synopsis date exactly as per document control/title page metadata; do not add any additional synopsis content."
+- **Template Text:** "The synopsis to «Final or Interim or Abbreviated or Amended» Clinical Study Report, dated «DD Month YYYY» is provided as a separate document."
 
-| Component | Configuration |
-| --- | --- |
-| **Action 1** | Summarize TFLs |
-| **Action 1 Instructions** | "Insert the primary efficacy analysis table (Table 14.2.1). Provide a narrative describing the primary endpoint result: include the endpoint definition, analysis population, treatment effect with 95% CI, p-value, and clinical interpretation. State whether the primary endpoint was met." |
-| **Action 2** | Summarize TFLs |
-| **Action 2 Instructions** | "Insert the key secondary endpoint table (Table 14.2.2). Summarize each secondary endpoint result in order of the statistical testing hierarchy. Include point estimate, 95% CI, and p-value for each." |
-| **Custom Instructions** | "Present primary endpoint results before secondary. Include confidence intervals in all results narratives. Note any multiplicity adjustments applied." |
+**Why this action for this section:** The sentence is already written, the only job is replacing two placeholders with the right values from study metadata. The instructions also tell the AI not to add any extra content, keeping it tightly scoped to just filling in the blanks.
 
-**Why this works:** TFL documents are the authoritative statistical outputs. Summarize TFLs inserts the table as-is and generates interpretive text that explains what the numbers mean — combining data fidelity with narrative clarity.
+## Summarize TFLs
 
----
+**What it does:** Inserts a table from exported table documents along with corresponding summary text. Use this when you need both a data table and narrative explanation. Must be used with a List of Tables context file.
 
-## Generate from Listings — Patient Narratives
+**How it was configured:**
 
-Patient Narratives require one writeup per subject who experienced a serious adverse event. Generate from Listings handles this automatically.
+- **Rule:** Summarize TFLs
+- **Instructions:** "Insert the primary AE-incidence outputs (typically TEAE incidence by treatment group, presented by system organ class and preferred term with counts and percentages). Include the main incidence table(s) that are authoritative for this section; do not recreate calculations in text. Write a brief narrative interpreting the AE incidence tables: overall AE incidence per treatment group, most frequent SOC/PTs, and any notable imbalances. If available in the same outputs, also summarize breakdowns by severity/grade and by treatment-related and/or treatment-emergent status; avoid exhaustive PT-by-PT repetition."
 
-| Component | Configuration |
-| --- | --- |
-| **Action** | Generate from Listings |
-| **Action Instructions** | "Generate a narrative for each subject who experienced a serious adverse event. For each subject include: demographics (age, sex, race), relevant medical history, study treatment (dose, duration, any modifications), SAE details (term, onset date/study day, severity, seriousness criteria, relationship to study drug, actions taken, outcome, resolution date). Present events in chronological order." |
-| **Custom Instructions** | "Each narrative should be a standalone paragraph. Use past tense throughout. Refer to subjects by subject number only, not by name. Include all events for the subject even if multiple SAEs occurred." |
-
-**Why this works:** The listings document contains one row per subject event. Generate from Listings reads those rows and produces a structured narrative per subject, applying the same instruction to each one. The Custom Instructions ensure consistent formatting across all narratives.
+**Why this action for this section:** This section needs both the actual data tables and a narrative that explains them. The Summarize TFLs action does both in one step, it pulls the tables from the statistical output files and writes the summary text alongside them. The instructions tell the AI to insert the tables as-is (no recalculating numbers in prose) and to interpret the big picture without listing every single preferred term.
