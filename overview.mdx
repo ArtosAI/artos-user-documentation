@@ -32,11 +32,25 @@ Before going further, let's define the key terms you'll encounter throughout thi
 
 Artos operates in three phases: **Create Template**, **Create Document**, and **Edit & Refine**.
 
+<CardGroup cols={3}>
+  <Card title="Phase 1: Create Template" icon="file-pen" href="#phase-1-create-template-one-time-setup">
+    A one-time setup that teaches Artos how your organization writes. Upload your Word template and example files — Artos generates a reusable template.
+  </Card>
+
+  <Card title="Phase 2: Create Document" icon="bolt" href="#phase-2-create-document-every-time-you-need-a-document">
+    Select a template, upload your source files, and Artos drafts each section — pulling the right content from hundreds of pages of source material.
+  </Card>
+
+  <Card title="Phase 3: Edit & Refine" icon="pen-to-square" href="#phase-3-edit-refine-as-needed">
+    Review the draft, highlight and regenerate sections, insert additional content, or edit directly in the collaborative document editor.
+  </Card>
+</CardGroup>
+
 <Frame>
   ![Screenshot 2026 06 30 At 4 03 39 PM](/images/Screenshot-2026-06-30-at-4.03.39-PM.png)
 </Frame>
 
-### ✍️ Phase 1: Create Template (One-Time Setup)
+### Phase 1: Create Template (One-Time Setup)
 
 Templates are the foundation of the Artos system. A template is a comprehensive instruction set that teaches Artos how to understand and process your documents.
 
@@ -55,18 +69,26 @@ When you upload these inputs, Artos analyzes them and creates an Artos template.
 
 Think of the initial Artos template as getting you 80–90% of the way there. Your job is to review what Artos created and refine the remaining 10–20%, such as adjusting actions, tuning instructions, and handling any sections where Artos's guess wasn't quite right.
 
-### 📖 Phase 2: Create Document (Every Time You Need a Document)
+### Phase 2: Create Document (Every Time You Need a Document)
 
 Once you have a configured template, generating a document is straightforward:
 
-1. Select your template
-2. Upload source files (clinical study reports, nonclinical data, protocols, TFLs, etc.)
-3. Optionally, upload a style guide and/or provide any document-specific instructions
-4. Artos reads your sources and drafts each section according to the template and document-specific instructions
+<Steps>
+  <Step title="Select your template">
+  </Step>
+  <Step title="Upload source files">
+    Clinical study reports, nonclinical data, protocols, TFLs, etc.
+  </Step>
+  <Step title="Upload a style guide and/or provide any document-specific instructions (optional)">
+  </Step>
+  <Step title="Artos drafts the document">
+    Artos reads your sources and drafts each section according to the template and document-specific instructions.
+  </Step>
+</Steps>
 
-The system handles the heavy lifting: reading through hundreds of pages of source material, extracting relevant information, and organizing it into a properly formatted draft that follows your organization’s structure and style.
+The system handles the heavy lifting: reading through hundreds of pages of source material, extracting relevant information, and organizing it into a properly formatted draft that follows your organization's structure and style.
 
-### 🛠️ Phase 3: Edit & Refine (As Needed)
+### Phase 3: Edit & Refine (As Needed)
 
 After Artos generates your initial draft, you have several ways to refine it:
 
@@ -99,23 +121,23 @@ When you upload your Word template and example files, Artos doesn't just sit the
   ![Screenshot 2026 06 30 At 4 16 56 PM](/images/Screenshot-2026-06-30-at-4.16.56-PM.png)
 </Frame>
 
-**From your Word template, Artos:**
-
-- Reads heading styles to identify sections
-- Analyzes any instructions you've included
-- Extracts table structures and formatting
-
-**From your example files, Artos:**
-
-- Learns content patterns for each section
-- Understands your organization's terminology
-- Captures style conventions and preferences
-
-**The result:**
-
-- An auto-generated Artos template with actions assigned to each section
-- Initial instructions based on your template content
-- A structure that's typically 80–90% ready to use
+<Tabs>
+  <Tab title="From your Word template">
+    - Reads heading styles to identify sections
+    - Analyzes any instructions you've included
+    - Extracts table structures and formatting
+  </Tab>
+  <Tab title="From your example files">
+    - Learns content patterns for each section
+    - Understands your organization's terminology
+    - Captures style conventions and preferences
+  </Tab>
+  <Tab title="The result">
+    - An auto-generated Artos template with actions assigned to each section
+    - Initial instructions based on your template content
+    - A structure that's typically 80–90% ready to use
+  </Tab>
+</Tabs>
 
 <Frame>
   ![Screenshot 2026 06 30 At 4 17 46 PM](/images/Screenshot-2026-06-30-at-4.17.46-PM.png)
@@ -125,17 +147,20 @@ When you upload your Word template and example files, Artos doesn't just sit the
 
 When you generate a document, here's what happens:
 
-**1. You upload source documents.**\
-These are the inputs Artos will draw from: protocols, study reports, data tables, previous documents, whatever contains the information that should go into your new document.
-
-**2. Artos reads each section of your Artos template.**\
-For each section, Artos follows the configured actions and template-level instructions, focusing on finding the right content from your uploaded sources — not reinterpreting the rules.
-
-**3. Artos executes each action.**\
-Depending on the action, it might copy text verbatim, summarize content from a source, populate a table, or generate a narrative. Each section is handled according to its own configuration.
-
-**4. Artos produces a draft.**\
-The output is a structured document, populated with content from your sources, organized according to your template. The system is designed to give you more content than you may need, it's easier to trim a comprehensive draft than to chase down missing information. You then review, refine, and finalize.
+<Steps>
+  <Step title="You upload source documents">
+    These are the inputs Artos will draw from: protocols, study reports, data tables, previous documents, whatever contains the information that should go into your new document.
+  </Step>
+  <Step title="Artos reads each section of your Artos template">
+    For each section, Artos follows the configured actions and template-level instructions, focusing on finding the right content from your uploaded sources — not reinterpreting the rules.
+  </Step>
+  <Step title="Artos executes each action">
+    Depending on the action, it might copy text verbatim, summarize content from a source, populate a table, or generate a narrative. Each section is handled according to its own configuration.
+  </Step>
+  <Step title="Artos produces a draft">
+    The output is a structured document, populated with content from your sources, organized according to your template. The system is designed to give you more content than you may need, it's easier to trim a comprehensive draft than to chase down missing information. You then review, refine, and finalize.
+  </Step>
+</Steps>
 
 ## Template-Level vs. Document-Level Changes
 
