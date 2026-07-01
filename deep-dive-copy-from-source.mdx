@@ -2,3 +2,117 @@
 title: "Copy from Source"
 hidden: true
 ---
+
+## What It Does
+
+Extracts content directly from a source document and places it in the section with no modification. The text is copied verbatim, Artos does not rewrite, summarize, or restructure it.
+
+## How It Works
+
+When Artos executes this action, it searches your source files for the content that matches your instruction, then copies it directly into the section.
+
+**Chunk behavior:** Copy from Source copies one "chunk" of text at a time. A chunk is the text that falls between two headings in a source document. For example, if your source has Section 4 and Section 4.1, the chunk is the text under the Section 4 heading but before the Section 4.1 heading.
+
+**What this means in practice:**
+
+- If you need content from a single section of your source, one Copy from Source action is usually sufficient.
+- If you need content from multiple sections of a source, you may need multiple Copy from Source actions (one per chunk), or you can toggle "Expandable" on to to let Artos pull additional chunks as needed.
+- The action does not combine or merge content from different parts of a source. Each execution copies one chunk.
+
+**No modifications:** The content is inserted exactly as it appears in the source. If the source uses present tense and your document needs past tense, this action will not make that change. Use Copy & Modify from Source instead if you need any alterations.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Copy the study design" | "Copy the study design from the protocol, including randomization scheme, blinding procedures, and treatment duration." |
+| "Copy the objectives" | "Copy the primary and secondary objectives from the protocol. Include both the objective statement and the corresponding endpoint for each." |
+| "Copy the inclusion criteria" | "Copy the inclusion and exclusion criteria from Section 5.1 of the protocol." |
+
+**What makes the strong instructions better:** They specify _what_ content to look for, _where_ to find it (which source, which section), and _what elements_ to include. The action already knows how to copy, your instruction just needs to point it to the right content.
+
+**When instructions matter less:** If a section in your source maps cleanly to a section in your document (ex. "Study Design" in the protocol → "Study Design" in the CSR), the action will often find the right content even with a minimal instruction. Instructions become more important when the mapping isn't obvious, or when you only want part of a source section.
+
+## Configuration Pattern: Methods Section
+
+A Methods section in a CSR often pulls directly from the protocol. Here's how you might configure it:
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Copy from Source |
+| **Action 1 Instructions** | "Copy the study design, objectives, and endpoints from the protocol." |
+| **Action 2** | Copy & Modify from Source |
+| **Action 2 Instructions** | "Copy the inclusion/exclusion criteria from the protocol. Convert future tense to past tense." |
+| **Custom Instructions** | "This section should reflect the protocol as written. Do not summarize or condense." |
+
+Notice that action 1 uses Copy from Source (verbatim) while action 2 uses Copy & Modify (because the tense needs to change). The Custom Instructions reinforce that this section should preserve the original language rather than summarizing.
+
+## Document-Specific Examples
+
+### Clinical Study Report (CSR)
+
+| Section | Instruction |
+| --- | --- |
+| Study Design | "Copy the study design from the protocol, including randomization scheme, blinding procedures, treatment duration, and study phases." |
+| Primary Endpoints | "Copy the primary endpoint definition and associated statistical hypothesis from the protocol." |
+| Ethical Conduct | "Copy the statement of regulatory compliance and ethics committee approval from the protocol." |
+| Disposition of Patients | "Copy the patient disposition summary from the clinical study report tables." |
+
+### Investigator's Brochure (IB)
+
+| Section | Instruction |
+| --- | --- |
+| Product Description | "Copy the drug substance description including chemical name, molecular formula, molecular weight, and structural formula from the CMC documentation." |
+| Formulation | "Copy the formulation composition and description of dosage form from the CMC documentation." |
+| Prior IB Text (Version Update) | "Copy the existing nonclinical pharmacology text from the previous IB version. This section has not changed." |
+
+### Informed Consent Form (ICF)
+
+| Section | Instruction |
+| --- | --- |
+| Purpose of the Study | "Copy the study purpose and background from the protocol synopsis." |
+| Study Procedures | "Copy the schedule of assessments and visit procedures from the protocol." |
+| Contact Information | "Copy the investigator and IRB contact information block from the Word template." |
+
+### Nonclinical Overview (NCO)
+
+| Section | Instruction |
+| --- | --- |
+| Pharmacology Summary | "Copy the pharmacology summary from the individual nonclinical study report, including the primary pharmacodynamic findings and mechanism of action." |
+| Study Conclusions | "Copy the conclusions section from the toxicology study report verbatim." |
+
+---
+
+## Configuration Pattern: Methods Section
+
+A Methods section in a CSR often pulls directly from the protocol. Here's how you might configure it:
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Copy from Source |
+| **Action 1 Instructions** | "Copy the study design, objectives, and endpoints from the protocol." |
+| **Action 2** | Copy & Modify from Source |
+| **Action 2 Instructions** | "Copy the inclusion/exclusion criteria from the protocol. Convert future tense to past tense." |
+| **Custom Instructions** | "This section should reflect the protocol as written. Do not summarize or condense." |
+
+## When to Use This Action
+
+**Use Copy from Source when:**
+
+- The content should appear exactly as it does in the source
+- The source language is already appropriate for the target document
+- Verbatim accuracy matters (regulatory language, protocol-defined endpoints, legal statements)
+- You want to preserve the original author's phrasing
+
+**Use a different action when:**
+
+- The content needs modifications (even minor ones like tense changes) → use **Copy & Modify from Source**
+- The content needs to be condensed or restructured → use **Summarize from Source**
+- The content already exists in your Word template → use **Use Template Text**
+- You need content from within the document itself → use **Create Intra-Document Summary**
+
+## Tips
+
+- If the system isn't copying the right content, make your instruction more specific about _where_ in the source to look. Adding the source document type ("from the protocol") or section reference ("from the Birth Control and Pregnancy section of the protocol") helps the system find the right chunk.
+- For sections where verbatim reproduction is essential, signature blocks, optional agreement text, regulatory statements, it is better to use the Use Template Text action instead.
+- If you need multiple chunks copied into one section, add multiple Copy from Source actions (one per chunk) or enable the "Expandable" toggle.
