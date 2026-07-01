@@ -30,7 +30,8 @@
         "group": "Templates",
         "pages": [
           "template-creation",
-          "template-configuration"
+          "template-configuration",
+          "sample-template-configuration"
         ]
       },
       {
