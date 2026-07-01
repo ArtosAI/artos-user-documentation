@@ -2,3 +2,130 @@
 title: "Copy and Modify from Source"
 hidden: true
 ---
+
+## What It Does
+
+Extracts content from a source document and places it in the section with specific modifications applied. The content stays close to the original, but Artos makes the changes you specify: verb tense, terminology, formatting adjustments, or other targeted edits.
+
+## How It Works
+
+This action behaves the same as Copy from Source in terms of how it finds content. It searches your source files, identifies the matching chunk, and copies it into the section. The difference is that it applies modifications to the copied content before inserting it.
+
+**Chunk behavior:** Same as Copy from Source, one chunk of text at a time, where a chunk is the text between two headings in a source document. If you need multiple chunks copied and modified, use multiple actions.
+
+**What kinds of modifications?** The action handles targeted, rule-based changes to the copied content. Common modifications include:
+
+- **Tense changes:** Converting future tense ("patients will receive") to past tense ("patients received"), common when pulling protocol language into a CSR
+- **Terminology swaps:** Replacing internal terms with regulatory-appropriate terms, or brand names with generic names
+- **Grammar and style cleanup:** Applying your style guide conventions to copied content
+- **Perspective shifts:** Converting first person to third person, or active to passive voice
+- **Minor structural adjustments:** Reordering elements within the copied content, or removing specific sub-sections that don't apply
+
+**What it won't do:** This action is not designed for major restructuring or condensing. If you need the content significantly shortened, reorganized, or reinterpreted, use Summarize from Source instead. Copy & Modify keeps the content recognizably close to the original, it's editing, not rewriting.
+
+<Tip>
+  We recommend using Copy and Modify to lift a specific table out of a source document - protocol, SAP, IB, and the like, and place it into a section, optionally applying the same rule-based modifications.
+
+  **Please note however, that Copy and Modify will not be able to lift tables from TFL sources**
+</Tip>
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Copy and modify the study design" | "Copy the study design from the protocol. Convert future tense to past tense and replace 'subjects' with 'participants' throughout." |
+| "Copy the criteria with changes" | "Copy the inclusion/exclusion criteria from the protocol. Convert future tense to past tense. Remove any references to screening procedures." |
+| "Modify the endpoints section" | "Copy the primary and secondary endpoints from the protocol. Convert planned language ('will be assessed') to completed language ('was assessed'). Keep endpoint definitions verbatim." |
+
+**What makes the strong instructions better:** They tell the system both _what to copy_ and _what to change_. The modification should be explicit, don't assume the system will know what kind of change you want. "Modify" alone is too vague; "convert future tense to past tense" is specific.
+
+**A useful pattern:** Structure your instruction as "Copy \[what\] from \[where\]. \[Modification 1\]. \[Modification 2\]." This separates the content-finding step from the modification step and makes both clear.
+
+## Configuration Pattern: Methods Section (Protocol → CSR)
+
+When building a CSR Methods section from a protocol, most content can be copied with tense changes. Here's how you might configure it:
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Copy & Modify from Source |
+| **Action 1 Instructions** | "Copy the study design from the protocol, including randomization scheme, blinding procedures, and treatment duration. Convert future tense to past tense." |
+| **Action 2** | Copy & Modify from Source |
+| **Action 2 Instructions** | "Copy the inclusion and exclusion criteria from the protocol. Convert future tense to past tense. Remove references to screening visit windows." |
+| **Action 3** | Copy & Modify from Source |
+| **Action 3 Instructions** | "Copy the statistical analysis methods from the SAP. Convert planned language to completed language. Keep all formulas and statistical test descriptions verbatim." |
+| **Custom Instructions** | "Maintain the structure and detail of the protocol. This section should read as a record of what was done, not a plan for what will be done." |
+
+Notice that each action targets a different chunk of content with its own specific modifications. The Custom Instructions set the overall tone, past tense, reporting style, so you don't have to repeat that guidance in every action instruction.
+
+## Document-Specific Examples
+
+### Clinical Study Report (CSR)
+
+The most common use case, pulling protocol language into the CSR with tense conversion.
+
+| Section | Instruction |
+| --- | --- |
+| Study Design & Plan | "Copy the study design from the protocol. Convert future tense to past tense. Remove references to planned activities that were not conducted per the protocol amendments." |
+| Inclusion/Exclusion Criteria | "Copy the inclusion and exclusion criteria from the protocol. Convert future tense to past tense." |
+| Statistical Methods | "Copy the statistical analysis methods from the SAP. Convert future tense to past tense. Remove any references to planned sensitivity analyses that were not performed." |
+| Dosing & Administration | "Copy the dosing regimen and administration procedures from the protocol. Convert 'will be administered' to 'was administered' and 'patients will receive' to 'patients received.'" |
+| Study Assessments | "Copy the schedule of assessments from the protocol. Convert to past tense. Remove any procedural instructions directed at site staff (e.g., 'ensure the patient has fasted')." |
+
+### Investigator's Brochure (IB)
+
+| Section | Instruction |
+| --- | --- |
+| Nonclinical Summary (Version Update) | "Copy the nonclinical pharmacology section from the previous IB version. Update the date references and version numbers. Apply the current style guide." |
+| Clinical Experience Update | "Copy the clinical experience section from the previous IB. Add the new study data as an addendum paragraph at the end. Do not modify the existing text." |
+
+### Informed Consent Form (ICF)
+
+| Section | Instruction |
+| --- | --- |
+| Study Procedures | "Copy the study procedures from the protocol. Convert clinical/technical language to patient-friendly language at an 8th grade reading level." |
+| Risks & Side Effects | "Copy the adverse event summary from the Investigator's Brochure. Reframe in patient-facing language. Replace medical terminology with plain language equivalents (e.g., 'nasopharyngitis' → 'common cold symptoms')." |
+| Alternatives to Participation | "Copy the alternatives section from the previous ICF version. Update the standard-of-care treatment options to reflect current clinical practice." |
+
+### Nonclinical Overview (NCO)
+
+| Section | Instruction |
+| --- | --- |
+| Toxicology Findings | "Copy the toxicology findings from the individual study report. Convert the detailed study report language to summary-level language appropriate for the NCO. Retain all quantitative findings and NOAELs." |
+
+---
+
+## Configuration Pattern: Methods Section (Protocol → CSR)
+
+The most common use case for this action is pulling protocol content into a CSR, where the only real change needed is tense.
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Copy from Source |
+| **Action 1 Instructions** | "Copy the study design, objectives, and endpoints from the protocol." |
+| **Action 2** | Copy & Modify from Source |
+| **Action 2 Instructions** | "Copy the inclusion/exclusion criteria from the protocol. Convert future tense to past tense." |
+| **Action 3** | Copy & Modify from Source |
+| **Action 3 Instructions** | "Copy the statistical methods from the SAP. Convert future tense to past tense. Remove any references to planned analyses that were not conducted." |
+| **Custom Instructions** | "This section should closely reflect the protocol and SAP. Preserve original language where possible. Do not summarize." |
+
+## When to Use This Action
+
+**Use Copy & Modify from Source when:**
+
+- The content should stay close to the original, but with specific changes
+- You're converting a protocol (future tense) into a report (past tense)
+- You need terminology standardized across copied content
+- The source language is mostly appropriate but needs minor adjustments
+
+**Use a different action when:**
+
+- The content should be copied exactly as-is, with zero changes → use **Copy from Source**
+- The content needs to be significantly shortened or restructured → use **Summarize from Source**
+- The content needs grammar and style improvements applied broadly → this action can work, but be specific about what "style improvements" means in your instruction
+
+## Tips
+
+- Be explicit about your modifications. "Convert future tense to past tense" is clear. "Clean it up" is not, the system won't know what you consider clean.
+- If you're applying the same modification across multiple actions in a section (ex. tense changes), consider putting it in Custom Instructions instead so you don't have to repeat it in every action instruction.
+- For complex tox summaries, the Q&A recommendation is to use modified copy-paste (copy content, apply style guide, improve grammar) as the baseline approach rather than building prescriptive checklists. This action handles that workflow well.
+- If the output is too far from the original, your modifications might be too aggressive for this action. Consider whether you actually need Summarize from Source instead.
