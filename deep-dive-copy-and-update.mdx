@@ -2,3 +2,80 @@
 title: "Copy and Update"
 hidden: true
 ---
+
+## What It Does
+
+Takes a prior version of a document section as the base and produces an updated version for the current reporting period. The prior text is preserved as closely as possible — structure, wording, and formatting are carried forward — and only the elements that have materially changed are rewritten, based on what current source documents confirm.
+
+## How It Works
+
+Copy and Update treats the prior document section as the starting point, not the source files. Source files are used to check whether specific values — dates, versions, statuses, registration counts, study findings — have changed. If they have, only those elements are updated. If they haven't, the prior text is carried forward unchanged.
+
+**The default is preservation.** The action rewrites only what the sources confirm has changed. If no source document indicates a change to a given element, that element is kept exactly as it appeared in the prior version. This makes the action well-suited to sections that evolve incrementally across reporting periods rather than being rewritten from scratch each cycle.
+
+**Conditional logic.** Many sections have content that appears only under certain conditions — a no-change statement when nothing occurred during the interval, a standard closing when no qualifying data was found, a pending version note when regulatory assessment is ongoing. Copy and Update handles this branching: the instruction defines what to include or omit depending on what the current sources show. The Template Text field can be used to supply the conditional chunks themselves — paste the relevant standard statements or fallback text there, and instruct the action to insert them when the condition is met.
+
+**Formatting fidelity.** The action inherits the formatting of the prior version. If the prior section used bullet points, the updated section uses bullet points. If it contained a table, the table structure is carried forward and updated in place. New formatting elements not present in the prior version are not introduced.
+
+**Complex authoring instructions.** For sections that require structured compliance output — such as sections governed by regulatory templates or fixed output formats — the system instructions can encode detailed authoring rules. The action applies those rules to produce a compliant section, still using the prior version as the structural base where one exists.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Update this section" | "Start with the prior PBRER section as the base. Update the reporting period dates from the planning document. Carry forward all other content unchanged if no source documents indicate a change." |
+| "Rewrite for the new period" | "Keep wording very close to the prior text; update values only. If no changes occurred during the interval, carry forward the standard no-change statement unchanged. Do not rewrite or expand." |
+| "Copy the prior section and update it" | "Start with the prior section as the base. Update study status and subject counts from the CLS. Add rows for new studies and remove rows for studies no longer in scope. Carry forward surrounding narrative unchanged." |
+
+**What makes the strong instructions better:** They establish the prior version as the base explicitly, define which source to use for each updatable element, and state the carry-forward rule clearly. The action needs to know both what to update and what to leave alone.
+
+**A useful pattern:** Structure your instruction as "Start with \[prior section\] as the base. Update \[element\] from \[source\]. If \[condition\], \[do this\]. Carry forward all other content unchanged." This separates the base, the update logic, and the fallback behavior.
+
+## Configuration Pattern: Periodic Safety Report Section
+
+Sections in periodic safety reports (such as PBRERs) are a typical use case for this action. Most sections follow the same update logic: carry forward the prior text, update interval-specific values, apply a standard statement if nothing changed.
+
+| Component | Configuration |
+| --- | --- |
+| **Action** | Copy and Update |
+| **Action System Instructions** | "Start with the prior PBRER section as the base. Keep wording very close to prior text; update values only. Review the planning document to determine whether any changes occurred during the reporting interval. If no changes occurred, carry forward the prior standard statement unchanged; do not rewrite or expand. If changes are identified, update only the affected elements using the relevant source document. Carry forward all other content unchanged." |
+
+## Document-Specific Examples
+
+### Periodic Benefit-Risk Evaluation Report (PBRER)
+
+Most PBRER sections update incrementally across reporting cycles rather than being rewritten from scratch.
+
+| Section | System Instructions |
+| --- | --- |
+| Executive Summary | "Start with the prior PBRER Executive Summary as the base; keep wording very close to prior text, updating values only. Update reporting period dates from the planning document. For interval-specific bullets, reflect only what occurred in the current reporting period; do not carry forward content from prior intervals. If no activity occurred for a given bullet, replace it with the standard no-action statement. Preserve the bullet-point format of the prior PBRER exactly." |
+| Worldwide Marketing Authorisation Status | "Start with the prior section as the base. Update first approval date, country, and indication from the WWMA report only; do not pull these from any other source. Update the list of approved countries and active registrations; remove any no longer active and add any new ones. Do not rewrite unless the approval status has materially changed." |
+| Findings from Non-Interventional Studies | "Start with the prior section as the base. Review the planning document and study listing to determine whether any studies were active, completed, or generated significant safety findings during the interval. If no studies were in scope and the prior section confirmed the same, carry forward the prior statement unchanged. If a study was active or completed, update only the study status, any new results with safety relevance, and any amendments made for safety reasons; keep all other wording close to the prior text." |
+| Other Periodic Reports | "Start with the prior section as the base. If nothing has changed, carry the statement forward without modification. If the planning document indicates that additional periodic reports were submitted during the current interval, update the statement to reflect them and flag for human review before finalisation." |
+| Lack of Efficacy in Controlled Clinical Trials | "Start with the prior section as the base. If no lack-of-efficacy findings were identified during the interval, carry forward the prior standard statement unchanged; do not rewrite or expand. If new findings are identified, rewrite only the relevant paragraphs while keeping methods wording close to prior text. This section does not contain tables; do not introduce table formatting not present in the prior section." |
+| Conclusions and Actions | "Start with the prior section as the base. Review the current report body to determine whether any signals were validated or closed, any RSI changes were made, or any benefit-risk profile changes occurred during the interval. Rewrite only those elements using current report sources. If none of these changed, carry forward the prior text unchanged. Remove any signal or action descriptions from prior reporting periods not relevant to the current interval." |
+
+---
+
+## When to Use This Action
+
+**Use Copy and Update when:**
+
+- A prior version of the section exists and should serve as the base
+- The section evolves incrementally across reporting cycles
+- Most content is stable and only specific values need updating
+- Formatting and structure needs to be preserved from the prior version
+
+**Use a different action when:**
+
+- No prior version exists and the section needs to be generated from scratch → use **Summarize from Source** or the appropriate generation action
+- The content should be copied verbatim from a source file with no prior-version logic → use **Copy from Source**
+- The section needs to be substantially rewritten based on new source data → use **Summarize from Source** or **Copy & Modify from Source**
+- The section contains only static boilerplate with no interval-specific updates → use **Use Template Text**
+
+## Tips
+
+- Always specify which source document to use for each updatable element. "Update from the planning document" and "update from the WWMA report" produce more reliable results than "update from sources."
+- State the carry-forward rule explicitly in your instruction. "Carry forward all other content unchanged if no source documents indicate a change" removes ambiguity about what the action should do when a source is silent on a given element.
+- For interval-specific content — actions taken, signal outcomes, RSI changes — instruct the action to reflect only the current reporting period. Without this, the action may carry forward prior-interval content that is no longer relevant.
+- If a section has two distinct parts (stable boilerplate and interval-specific content), consider splitting them across two actions: Copy and Update for the interval-specific part and Use Template Text for the stable part.
