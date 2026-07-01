@@ -2,3 +2,101 @@
 title: "Use Template Text"
 hidden: true
 ---
+
+## What It Does
+
+Inserts predefined text directly from your MS Word template into the section. This action does not search source files, it pulls content that already exists in your .docx file and places it in the generated document.
+
+## How It Works
+
+When Artos executes this action, it looks at the corresponding section in your Word template and inserts the text it finds there into the generated document.
+
+**No source file involvement:** This action ignores source files entirely. It only reads from your Word template. If a section contains boilerplate text, regulatory language, standard disclaimers, or any pre-written content in the Word template, this action inserts it as-is.
+
+**When to pair with other actions:** Use Template Text is often used as one action among several in a section. For example, a section might use Use Template Text for a standard introductory paragraph, followed by Summarize from Source for the study-specific content.
+
+**Relationship to the Word template:** The content this action inserts comes directly from what you've written in your .docx file. If you need to change the template text, you edit the Word template and re-upload it, you can't edit the template text from within the Artos template interface.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Use template text" | "Insert the regulatory compliance statement from the Word template." |
+| "Copy the boilerplate" | "Insert the standard study conduct language from the Word template. This text should appear before any source-derived content." |
+| "Add the intro text" | "Insert the introductory paragraph from the Word template that describes the purpose of this section." |
+
+**When instructions matter less:** If the Word template section contains only one block of text and this is the only action assigned to the section, the instruction doesn't need to be highly specific, the action will insert what's there. Instructions become more important when the section has multiple actions and you need to control where the template text appears relative to other content.
+
+## Configuration Pattern: Regulatory Statements and Boilerplate
+
+Sections that contain standard language, ethics statements, regulatory compliance, study conduct, often use this action exclusively or as the lead action.
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Use Template Text |
+| **Action 1 Instructions** | "Insert the standard ethics and regulatory compliance language from the Word template." |
+| **Content Toggle** | On |
+| **Template Text (the actual text to be inserted from the template)** | "The final protocol, any amendments (Appendix 16.1.1), and informed consent documentation (Appendix 16.1.3.2) were reviewed and approved by the Institutional Review Board(s) (IRB) and/or Independent Ethics Committee(s) (IEC)." |
+
+For a section that mixes boilerplate with study-specific content:
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Use Template Text |
+| **Action 1 Instructions** | "Insert the standard introductory paragraph from the Word template." |
+| **Action 2** | Summarize from Source |
+| **Action 2 Instructions** | "Summarize the study-specific ethics and regulatory information from the protocol, including IRB/IEC approvals and informed consent procedures." |
+| **Custom Instructions** | "Template text should appear first, followed by study-specific content." |
+
+## Document-Specific Examples
+
+### Clinical Study Report (CSR)
+
+| Section | Instruction |
+| --- | --- |
+| Ethics & Regulatory Compliance | "Insert the standard regulatory compliance statement listing applicable regulations (ICH E6, 21 CFR Parts 50, 56, and 312) from the Word template." |
+| Data Handling | "Insert the data handling, data management, and quality assurance boilerplate from the Word template." |
+| Signature Page | "Insert the signature block from the Word template. This section requires manual completion." |
+
+### Investigator's Brochure (IB)
+
+| Section | Instruction |
+| --- | --- |
+| Preface | "Insert the standard IB preface text including the confidentiality statement and intended audience from the Word template." |
+| Guidance for the Investigator — Standard Warnings | "Insert the standard safety monitoring and reporting obligations text from the Word template." |
+
+### Informed Consent Form (ICF)
+
+| Section | Instruction |
+| --- | --- |
+| Confidentiality Statement | "Insert the standard HIPAA/data privacy boilerplate from the Word template." |
+| Voluntary Participation | "Insert the standard voluntary participation and right-to-withdraw statement from the Word template." |
+| Signature Block | "Insert the participant and investigator signature blocks from the Word template. This content requires manual completion." |
+| Optional Provisions | "Insert the optional biobanking/future research consent provisions from the Word template. Mark as removable — not all studies include this." |
+
+### Nonclinical Overview (NCO)
+
+| Section | Instruction |
+| --- | --- |
+| Introduction — Regulatory Context | "Insert the standard regulatory context paragraph referencing ICH M4S and the overall nonclinical development strategy from the Word template." |
+
+## When to Use This Action
+
+**Use Use Template Text when:**
+
+- The content already exists in your Word template and should be inserted as-is
+- The section contains boilerplate, standard language, or pre-written regulatory text
+- You want verbatim reproduction of template content (signature blocks, optional agreement text, Y/N selections)
+- The section includes instructional text or placeholders for manual completion
+
+**Use a different action when:**
+
+- You need content extracted from a source file → use **Copy from Source** or **Summarize from Source**
+- You have template text with bracketed placeholders that need to be filled with source data → use **Fill in the Blank**
+- The section needs content generated from the document itself → use **Create Intra-Document Summary**
+
+## Tips
+
+- For sections that can't be reliably generated by the system (signature blocks, optional agreement text, Y/N selections), you can add template text with an instruction like "Copy from Word template" and toggle the section to manual if needed.
+- If you want the system to flag a section for manual entry rather than leaving it blank, include text in the Word template like "\[To be completed manually\]" and use this action to insert it. This way the writer knows the section is intentionally empty.
+- Remember: to change what this action inserts, you edit the Word template and re-upload. Changes to template text can't be made from the Artos template interface.
