@@ -14,6 +14,10 @@ The add-in is best used for post-draft tasks: refining content, updating tables 
 
 The Artos Word Add-In is available through Microsoft AppSource or via a direct installation link provided by your organization. Once installed, you'll find it in the Word ribbon under the **Home** or **Insert** tab, depending on your setup.
 
+<Frame>
+  ![Image](/images/image-57.png)
+</Frame>
+
 ### Logging In
 
 How you log in depends on how your organisation has set up the Artos Word Add-In.
@@ -23,6 +27,10 @@ How you log in depends on how your organisation has set up the Artos Word Add-In
 1. Open the add-in panel in Word.
 2. You'll be prompted to generate an API key from your Artos account. Follow the on screen instructions to create a new API key, and copy it.
 3. Paste the API key into the add-in and confirm. You are now logged in and ready to use the add-in.
+
+<Frame>
+  ![Image](/images/image-58.png)
+</Frame>
 
 **SSO (Single Sign-On)**
 
@@ -36,19 +44,35 @@ If your organisation has SSO configured, you will see a **Sign In with SSO** opt
 
 If you ever need to switch accounts, click **Log Out** in the add-in panel and log back in with the new account.
 
+<Frame caption="Logout button">
+  ![Image](/images/image-59.png)
+</Frame>
+
+<Frame caption="Logout button when you hover your cursor over it">
+  ![Image](/images/image-60.png)
+</Frame>
+
 ### Loading a Document
 
 After logging in, the first thing you need to do is load a document. This gives the add-in the context it needs to assist you.
 
 On the Artos add-in panel, you'll be prompted to choose between two modes:
 
-**Platform Documents** Browse and open a document that was generated on the Artos platform.
+**Platform Documents** 
+
+Browse and open a document that was generated on the Artos platform.
 
 <Tip>
   Please note that a platform document can only be opened on top of a new Word document. If a document is already open in Word, you will be prompted to open a new document and try again.
+
+  <Frame>
+    ![Image](/images/image-61.png)
+  </Frame>
 </Tip>
 
-**Use Current Document** Load the Word document you currently have open.
+**Use Current Document** 
+
+Load the Word document you currently have open.
 
 Once your document loads, a new chat session begins and the add-in is ready to use.
 
@@ -58,6 +82,10 @@ Platform Documents can only be edited in the word add-in if they are not being e
 
 If you attempt to open a locked document, the add-in will show you which user currently has it open and where. Wait for them to finish editing, then try again.
 
+<Frame>
+  ![Image](/images/image-62.png)
+</Frame>
+
 ### Choosing a Conversation Mode
 
 Once your document is loaded, you'll see the chat interface. Before sending a message, make sure you're in the right mode for your task. You can switch between modes using the button in the bottom left of the chat input.
@@ -66,9 +94,21 @@ Once your document is loaded, you'll see the chat interface. Before sending a me
 
 **Edit mode** is for making changes to your document, such as inserting or updating content and tables. Edit mode will always look to propose an edit, regardless of how the request is phrased.
 
+<Frame caption="Chat Mode">
+  ![Image](/images/image-63.png)
+</Frame>
+
+<Frame caption="Edit Mode">
+  ![Image](/images/image-64.png)
+</Frame>
+
 ### Syncing Platform Document Changes to Artos
 
 When you're working on a **Platform Document** in the add-in, any edits you make in Word need to be synced back to Artos so your changes are reflected on the platform. The add-in provides a dedicated **Save** button for this.
+
+<Frame>
+  ![Image](/images/image-65.png)
+</Frame>
 
 **Suggested Workflow:**
 
@@ -77,6 +117,10 @@ When you're working on a **Platform Document** in the add-in, any edits you make
 3. Your changes will sync back to Artos and be reflected on the platform.
 
 If you click the **Back** button in the add-in to leave the document before saving, you'll be prompted with a **Save Changes?** dialog so you don't lose work. Choose **Save** to sync your edits back to Artos, or **Discard** to leave without saving.
+
+<Frame>
+  ![Image](/images/image-66.png)
+</Frame>
 
 <Warning>
   **Microsoft Word's native save and close flows are not hooked into the add-in's save.** The add-in cannot tie into Word's own Save action (Ctrl\+S / Cmd\+S, or the Save button on Word's ribbon) or Word's close-and-save flow. Saving or closing the document directly through Word — without first using the add-in's **Save** button or responding to the **Save Changes?** prompt — will NOT sync your changes back to Artos. This is a known limitation; see **Known Limitations** below.
@@ -89,6 +133,10 @@ This applies only to Platform Documents. Documents loaded via **Use Current Docu
 Chat history is only saved when working with **Platform Documents** — documents generated and stored on the Artos platform. If you loaded a document through **Use Current Document** (a file stored on your personal computer rather than on Artos), your chat history will not be saved after you close the document.
 
 To access your chat history, click the menu icon (☰) in the top right of the chat panel.
+
+<Frame>
+  ![Image](/images/image-67.png)
+</Frame>
 
 ## What You Can Do
 
@@ -103,6 +151,10 @@ The add-in can automatically generate a List of Abbreviations (LOA) table by sca
 3. The add-in will begin processing — first reading the document structure, then generating the table.
 4. Once complete, click **Review suggestion** to inspect the table before inserting it.
 5. Click **Accept** to insert the table into your document or **Discard** to reject the changes.
+
+<Frame>
+  ![Image](/images/image-68.png)
+</Frame>
 
 **A few things to know:**
 
@@ -123,6 +175,10 @@ If you've made edits to your document after generating the LOA — for example, 
 5. Click **Review suggestion** to inspect the changes — new abbreviations will appear added in alphabetical order within the existing table.
 6. Click **Accept** to apply the update or **Discard** to reject it.
 
+<Frame>
+  ![Image](/images/image-69.png)
+</Frame>
+
 The add-in will only modify entries that are new or have changed; it will not regenerate the entire table.
 
 ### Edit Selected Content
@@ -138,12 +194,20 @@ You can select any portion of your document to load it into the add-in as focuse
 5. The add-in will generate a revised version of your selection.
 6. Click **Review Suggestion**, then **Accept** to apply the edit or **Discard** to reject it.
 
+<Frame>
+  ![Image](/images/image-70.png)
+</Frame>
+
 You can select across multiple paragraphs within a section — all selected content will be updated in a single operation. For tables, the add-in understands the table structure and will preserve formatting when making modifications.
 
 <Tip>
   **Selecting a table**
 
   For the most reliable results, click the **table move handle** — the small ⊕ (plus-arrow) icon that appears at the top-left corner of the table when you hover over it. This selects the entire table cleanly and signals to the add-in that you intend to operate on the whole table. Highlighting the table with your cursor can pick up partial rows, extra whitespace, or miss cells, which may lead to incomplete or unexpected edits. If you do use cursor highlighting, make sure to highlight the **entire** table from the first cell to the last — not just a portion of it.
+
+  <Frame>
+    ![Image](/images/image-71.png)
+  </Frame>
 </Tip>
 
 ### Chat and Summarize
@@ -174,6 +238,10 @@ If your editing task requires reference to an external source — for example, a
 2. Select the file you want to upload from your computer.
 3. Once uploaded, the add-in can reference both your current document and the uploaded file when processing your requests.
 
+<Frame>
+  ![Image](/images/image-72.png)
+</Frame>
+
 Some examples of what you can do:
 
 - "Update this section based on the new protocol I've uploaded."
@@ -194,6 +262,10 @@ Supported file formats for table attachments: HTML, RTF, PDF, JPEG, and PNG.
 4. Attach the file containing the table.
 5. Send the message. The add-in will process the attachment and insert the result at the cursor location.
 6. Click **Review Suggestion**, then **Accept** to apply the edit or **Discard** to reject it.
+
+<Frame>
+  ![Image](/images/image-73.png)
+</Frame>
 
 **What you can ask the add-in to do:**
 
