@@ -2,19 +2,19 @@
 title: "User Roles and Permissions"
 ---
 
-# Roles
+## Roles
 
-## How Roles Work
+### How Roles Work
 
 Every user in Artos is assigned a **global role**. This role applies consistently across all templates, workspaces, documents, and source files — there are no role variations at the template, workspace, document, or source file level.
 
 When a user is invited to a workspace or template, or when a source file is shared with them, they get access to that resource at their **global permission level**. For example, sharing a template with an Admin gives that user Admin-level rights on the template; sharing the same template with a Member gives them Member-level rights on the template instead. A user's role determines what they can do with every resource they're given access to.
 
-## Permissions by Role
+### Permissions by Role
 
 There are 4 user roles - Member, Admin, Owner, and Internal. Internal is a restricted role reserved for Artos staff; its permissions match Owner (see the note below the role tables for assignment rules).
 
-### Member
+#### Member
 
 |  | Templates | Workspaces | Documents | Source Files |
 | --- | --- | --- | --- | --- |
@@ -25,7 +25,7 @@ There are 4 user roles - Member, Admin, Owner, and Internal. Internal is a restr
 | **Sharing** | Can share a template with Members only | Can share a workspace with Members only | Sharing is not allowed at document level | Can share a source file with Members only |
 | **Removing user access** | Cannot remove any users | Cannot remove any users | Inherited from workspace | Cannot remove any users |
 
-### Admin
+#### Admin
 
 |  | Templates | Workspaces | Documents | Source Files |
 | --- | --- | --- | --- | --- |
@@ -36,7 +36,7 @@ There are 4 user roles - Member, Admin, Owner, and Internal. Internal is a restr
 | **Sharing** | Can share a template with Admins and Members | Can share a workspace with Admins and Members | Sharing is not allowed at document level | Can share a source file with Admins and Members |
 | **Removing user access** | Can remove Admins and Members | Can remove Admins and Members | Inherited from workspace | Can remove Admins and Members |
 
-### Owner
+#### Owner
 
 |  | Templates | Workspaces | Documents | Source Files |
 | --- | --- | --- | --- | --- |
@@ -51,7 +51,7 @@ There are 4 user roles - Member, Admin, Owner, and Internal. Internal is a restr
   NOTE: Owners can also change permissions for other users.
 </Tip>
 
-### Internal
+#### Internal
 
 |  | Templates | Workspaces | Documents | Source Files |
 | --- | --- | --- | --- | --- |
@@ -62,32 +62,36 @@ There are 4 user roles - Member, Admin, Owner, and Internal. Internal is a restr
 | **Sharing** | Can share a template with any Admin or Member | Can share a workspace with any Admin or Member | Sharing is not allowed at document level | Can share a source file with any Admin or Member |
 | **Removing user access** | Can remove Admins and Members | Can remove Admins and Members | Inherited from workspace | Can remove Admins and Members |
 
-<Note>
+<Tip>
   The **Internal** role cannot be assigned by Owners through the platform UI. Owners can change users between Member, Admin, and Owner roles, but cannot promote a user to Internal. The Internal role can only be assigned by another Internal user or from the Artos backend.
-</Note>
+</Tip>
 
-# Sharing
+## Sharing
 
-## How sharing works
+### How sharing works
 
 - When a template or workspace is created, it is only accessible to its creator and users with the role - Owner or Internal. Access for others must be explicitly granted by sharing it with them.
 - Source files uploaded by one user are not automatically visible to others, except to users with the role - Owner or Internal. They must be explicitly shared with any user who requires access.
 - When you share a template or workspace with someone, you invite them at their global access level. For example - If a Member shares a template with an Admin, the resource would be shared with Admin permissions.
 
-<Note>
+<Tip>
   **Sharing a document doesn't share its source files.** Granting a user access to a generated document does not grant them access to the source files used to create it. If a user needs access to a source file, outside of viewing it from within the generated document, it must be explicitly shared with them.
-</Note>
+</Tip>
 
 > **In practice:** If your team is collaborating on a template or document, make sure the template, workspace, and any relevant source files have been shared with all users who need them, regardless of their role.
 
-## Who appears in share lists
+### Who appears in share lists
 
 Share lists only show Admins and Members. Owners and Internal Artos users have access to every template, workspace, document, and source file by default, so sharing with them isn't applicable — they're omitted from share lists to keep the list focused on the users whose access is actually being controlled. The same applies to share counts: only Admins and Members are counted.
 
-# Change of Role
+## Change of Role
 
 Owners can change a user's role at any time. Role management lives in **Settings \> Users & Permissions** — open that page, find the user, and select the desired role from the dropdown next to their name. Owners can move users between **Member**, **Admin**, and **Owner** only — the **Internal** role cannot be assigned by Owners through the UI (see the note in the Roles section above). Admins and Members cannot change anyone's role.
 
 <Warning>
   A role change requires a page refresh to take effect on the platform.
 </Warning>
+
+<Frame>
+  ![Image](/images/image-57.png)
+</Frame>
