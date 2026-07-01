@@ -3,23 +3,38 @@ title: "Document Generation"
 description: "Generate documents from your Artos template with source files and optional context files."
 ---
 
-# Generating Documents
-
 ## Overview
 
 Once your Artos template is configured, you use it to generate documents. This is the payoff for your setup work - what might take days to draft manually can be generated in hours.
 
+<Frame>
+  ![Image](/images/image-33.png)
+</Frame>
+
 ## Document Generation Workflow
 
-**Step 1: Name Document & Select Template**
+### **<u>Step 1: Name Document & Select Template</u>**
 
 1. Create a new document in your workspace
 2. Give it a descriptive name
-3. Select the Artos template you want to use
 
-**Step 2: Upload Source Files**
+Select the Artos template you want to use
+
+<Frame>
+  ![Image](/images/image-34.png)
+</Frame>
+
+<Frame>
+  ![Image](/images/image-35.png)
+</Frame>
+
+### **<u>Step 2: Upload Source Files</u>**
 
 Source files are the raw data and documents Artos will draw from to populate your document. These might include protocols, clinical study reports, nonclinical data, TFLs, statistical analysis plans, or other relevant materials.
+
+<Frame>
+  ![Image](/images/image-36.png)
+</Frame>
 
 **Supported file formats:** .docx, .pdf, .rtf, .xlsx, .csv
 
@@ -31,7 +46,11 @@ Source files are the raw data and documents Artos will draw from to populate you
 | **Clinical Study Report** | TFLs (Tables, Figures, Listings), SAPs, Protocols and amendments |
 | **Nonclinical Overview** | Individual nonclinical study reports, toxicology data |
 
-### Best Practices for Source Files
+<Frame>
+  ![Frame 53](/images/Frame-53.png)
+</Frame>
+
+#### Best Practices for Source Files
 
 **Make your files self-explanatory.** Artos automatically classifies documents according to their type when it processes them. The key principle: **make it clear what each file is and what it contains within the file itself.**
 
@@ -39,17 +58,17 @@ This might be obvious for standard documents like protocols or clinical study re
 
 **The Junior Person Test:** Before uploading a file, ask yourself: "If I handed this file to a junior person on my team with no other context, would they understand what it is and what it contains?" If the answer is no, consider adding clearer labeling or documentation within the file.
 
-**Step 3: Add Context Files (Optional)**
+### **<u>Step 3: Add Context Files (Optional)</u>**
 
 Context files are a special type of input that provide **document-specific information** about what content should go where. Think of context files as instructions that supplement or override the template's default behavior for this particular document.
 
-**When to use context files:**
+#### **When to use context files:**
 
 - The document has unique requirements that differ from the template's typical approach
 - You want to specify particular source sections to use for particular document sections
 - You need to provide additional clarification on how to interpret ambiguous source data
 
-**Context file types by document:**
+#### **Context file types by document:**
 
 | **Document Type** | **Context File** |
 | --- | --- |
@@ -60,31 +79,43 @@ Context files are a special type of input that provide **document-specific infor
 
 **Key distinction:** Context files apply only to the current document generation. If you find yourself using the same context repeatedly, consider adding those instructions directly to your template instead.
 
-**Step 4: Add Document-Level Instructions (Optional)**
+### **<u>Step 4: Add Document-Level Instructions (Optional)</u>**
 
 You can add instructions that apply to the entire document or to specific sections. These are useful when study-specific information isn't readily available in the source data, or when you need to guide how Artos interprets the sources for this particular document.
 
-**Document-wide instructions:**
+<Frame>
+  ![Image](/images/image-37.png)
+</Frame>
+
+#### **Document-wide instructions:**
 
 - "Write text at an 8th grade reading level"
 - "Focus only on the 100mg dose formulation throughout"
 
-**Section-level instructions:**
+#### **Section-level instructions:**
 
 - "Focus only on specific subgroups for this table"
 - "Emphasize pediatric data in this section"
 
-**Step 5: Kick Off the Generation Job**
+### **<u>Step 5: Kick Off the Generation Job</u>**
+
+<Frame>
+  ![Image](/images/image-38.png)
+</Frame>
 
 1. Review your selections (template, source files, context files)
 2. Click to start the generation job
 3. Artos begins processing your sources
 
-### What Happens During Generation
+<Frame>
+  ![Image](/images/image-39.png)
+</Frame>
+
+#### What Happens During Generation
 
 When you start a generation job, Artos reads through all your source files and applies the template's actions and instructions to each section. It extracts relevant information, organizes it according to your template structure, and generates formatted content - including tables, summaries, and other structured elements you've specified. After applying any data rules and custom instructions, Artos produces a complete draft document ready for your review.
 
-### Generation Time
+#### Generation Time
 
 Generation time varies based on:
 
@@ -95,6 +126,6 @@ Generation time varies based on:
 
 Plain text processes fastest, followed by tables, then figures and images.
 
-**Step 6: Review Your Draft**
+### **<u>Step 6: Review Your Draft</u>**
 
 Once generation is complete, you'll receive an email notification. Your draft document is ready for review in your workspace.
