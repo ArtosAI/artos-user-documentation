@@ -2,3 +2,120 @@
 title: "Fill in the Blank"
 hidden: true
 ---
+
+## What It Does
+
+Identifies bracketed placeholders in your Word template text and fills them with appropriate information from your source files. This action is designed for sections where the structure and language are already written, but specific data points need to be inserted.
+
+## How It Works
+
+This action looks for placeholders in your Word template, typically indicated by brackets like \[compound name\], \[study number\], \[indication\], or \[sponsor\], and replaces them with the correct information by searching your source files.
+
+**Template text stays intact.** The surrounding text from your Word template is preserved exactly. Only the bracketed placeholders are replaced. This makes it ideal for sections where the phrasing is standardized but the specifics change with each document.
+
+**Source files provide the data.** The action searches your uploaded source files to find the information that matches each placeholder. It uses context clues, both from the placeholder label and the surrounding text, to identify the right value.
+
+**Multiple placeholders in one section.** The action can fill multiple placeholders in a single pass. If a section has \[compound name\], \[study number\], and \[indication\] all in the same paragraph, the action handles all of them.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Fill in the blanks" | "Fill all bracketed placeholders with information from the protocol. Use the compound's generic name for \[compound name\]." |
+| "Complete the template" | "Replace all placeholders with study-specific information. For \[dose levels\], include all dose arms including placebo. For \[study duration\], use the total duration including follow-up." |
+
+**When instructions matter less:** If the placeholders are clearly labeled and the source files contain obvious matches (ex. \[sponsor\] when the protocol clearly states the sponsor), the action will fill them correctly with minimal instruction. Instructions become more important when a placeholder could be filled with different levels of specificity, or when the label is ambiguous.
+
+## Configuration Pattern: Informed Consent Form Sections
+
+ICFs and similar documents often have standardized language with study-specific details that change each time.
+
+| Component | Configuration |
+| --- | --- |
+| **Action** | Fill in the Blank |
+| **Action Instructions** | "Fill all bracketed placeholders with study-specific information from the protocol. For \[compound name\], use the generic name followed by the brand name in parentheses. For \[study procedures\], list all procedures from the Schedule of Activities." |
+| **Custom Instructions** | "Preserve all template language exactly as written. Only replace bracketed placeholders." |
+
+For a section that combines Fill in the Blank with another action:
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Fill in the Blank |
+| **Action 1 Instructions** | "Fill all placeholders in the introductory paragraph with information from the protocol." |
+| **Action 2** | Summarize from Source |
+| **Action 2 Instructions** | "After the introductory paragraph, summarize the study's risk-benefit information from the Investigator's Brochure." |
+
+## Document-Specific Examples
+
+### Clinical Study Report (CSR)
+
+**Example template text with placeholders:** "This was a Phase \[study phase\], \[study design\] study to evaluate the \[primary objective\] of \[compound name\] in \[patient population\]. The study was conducted at \[number of sites\] sites across \[number of countries\] countries."
+
+| Section | Instruction |
+| --- | --- |
+| Study Description | "Fill in study-specific placeholders from the protocol: study phase, study design, primary objective, compound name, patient population, number of sites, and number of countries." |
+| Regulatory Statement | "Fill in the IRB/IEC name, approval date, and protocol number from the protocol and regulatory documents." |
+| Statistical Methods | "Fill in placeholders for significance level, analysis population definitions (ITT, mITT, per-protocol), and primary statistical test from the SAP." |
+| Disposition | "Fill in the number of patients screened, randomized, completed, and discontinued from the clinical study report tables." |
+
+### Investigator's Brochure (IB)
+
+**Example template text with placeholders:** "\[Compound name\] is a \[mechanism of action\] that has been shown to \[key pharmacodynamic effect\] in \[preclinical models/species\]."
+
+| Section | Instruction |
+| --- | --- |
+| Compound Description | "Fill in compound name, mechanism of action, pharmacodynamic effect, and preclinical species from the nonclinical study reports." |
+| Physical & Chemical Properties | "Fill in molecular weight, molecular formula, solubility, pKa, and formulation details from the CMC documentation." |
+| Clinical Dose Information | "Fill in the current proposed dose range, route of administration, and dosing frequency from the most recent protocol or clinical development plan." |
+
+### Informed Consent Form (ICF)
+
+**Example template text with placeholders:** "You are being asked to participate in a research study of \[compound name/description\] for the treatment of \[indication\]. About \[number of participants\] people will take part in this study at approximately \[number of sites\] locations."
+
+| Section | Instruction |
+| --- | --- |
+| Study Overview | "Fill in compound name, indication, number of participants, number of sites, and study duration from the protocol." |
+| Study Procedures | "Fill in the number of visits, visit frequency, total study duration, and key procedures at each visit from the protocol schedule of assessments." |
+| Compensation | "Fill in the compensation amount, payment schedule, and reimbursement details from the site-specific budget or protocol." |
+| Contact Information | "Fill in the principal investigator name, phone number, 24-hour emergency contact, and IRB contact information." |
+
+### Nonclinical Overview (NCO)
+
+| Section | Instruction |
+| --- | --- |
+| Introduction | "Fill in the compound name, INN, pharmacological class, proposed indication, and proposed clinical dose range from the clinical development plan." |
+| Regulatory References | "Fill in the IND/CTA number, submission date, and regulatory authority from the regulatory documents." |
+
+---
+
+## Configuration Pattern: Study Description Section (CSR)
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Use Template Text |
+| **Action 1 Instructions** | "Insert the standard study description boilerplate from the Word template." |
+| **Action 2** | Fill in the Blank |
+| **Action 2 Instructions** | "Fill in all study-specific placeholders from the protocol: study number, phase, design, compound, indication, population, number of sites, and countries." |
+| **Custom Instructions** | "The template text provides the structural language. The Fill in the Blank action provides the study-specific details. Ensure all placeholders are filled — flag any that cannot be resolved from the sources." |
+
+## When to Use This Action
+
+**Use Fill in the Blank when:**
+
+- Your Word template has pre-written text with bracketed placeholders
+- The section structure and language are fixed, but specific data points need to be inserted
+- You want precise control over the output, the template text is the output, with blanks filled in
+- Sections like ICFs, cover pages, and regulatory statements that follow a standard format
+
+**Use a different action when:**
+
+- The section doesn't have placeholders and needs content generated from source data → use **Summarize from Source** or **Copy from Source**
+- The template text should be inserted as-is with no placeholders to fill → use **Use Template Text**
+- The section needs entirely new content, not template text with blanks → use **Summarize from Source**
+
+## Tips
+
+- Use clear, descriptive placeholder labels: \[compound name\] is better than \[X\]. The label helps the action understand what information to look for.
+- If a placeholder could be filled at different levels of specificity (ex. \[study duration\] could mean treatment period only or total including follow-up), specify which in your instruction.
+- Use instructions on which placeholders to fill in or how to handle template text. If there are no system instructions provided, the system may modify the content outside of the placeholders
+- This action works well in combination with Use Template Text for sections that are partly boilerplate and partly data-driven. Use Template Text inserts the fixed portions, Fill in the Blank handles the variable portions.
