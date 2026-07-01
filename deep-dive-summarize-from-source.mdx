@@ -1,6 +1,7 @@
 ---
 title: "Summarize from Source"
 description: "Summarizes information from a source document into a concise narrative appropriate for the section"
+hidden: true
 ---
 
 ## What It Does
@@ -41,8 +42,6 @@ A Safety section in a CSR typically needs both narrative summaries and data tabl
 | **Action 2 Instructions** | "Populate AE table with events ≥5% in any group. Sort by system organ class, then frequency." |
 | **Custom Instructions** | "Present SAEs before common AEs. Include narratives for deaths and drug-related SAEs. Limit this section to 3 pages." |
 
-The Summarize action produces the narrative, the Template Table action populates the data table, and the Custom Instructions set section-wide constraints that both actions follow.
-
 ## Document-Specific Examples
 
 ### Clinical Study Report (CSR)
@@ -79,18 +78,6 @@ The Summarize action produces the narrative, the Template Table action populates
 | Purpose of the Study | "Summarize the study purpose, background, and rationale in patient-friendly language at an 8th grade reading level. Explain why the study is being done and what the researchers hope to learn." |
 | What Will Happen During the Study | "Summarize the study procedures, visit schedule, and duration of participation in clear, non-technical language. Include what happens at each visit type (screening, treatment, follow-up)." |
 | Possible Risks | "Summarize the known and anticipated risks based on the Investigator's Brochure safety data. Present in plain language. Group by frequency (common, less common, rare). Include what the study team will do to monitor for these risks." |
-
----
-
-## Configuration Pattern: Safety Section (CSR)
-
-| Component | Configuration |
-| --- | --- |
-| **Action 1** | Summarize from Source |
-| **Action 1 Instructions** | "Summarize safety findings: overall AE profile, SAEs, AEs leading to discontinuation, deaths. Compare treatment groups." |
-| **Action 2** | Use Template Table |
-| **Action 2 Instructions** | "Populate the adverse events summary table. Include all events with ≥5% incidence in any group. Sort by system organ class, then frequency." |
-| **Custom Instructions** | "Present SAEs before common AEs. Include narratives for deaths and drug-related SAEs. Limit the narrative summary to 3 pages." |
 
 ## When to Use This Action
 
