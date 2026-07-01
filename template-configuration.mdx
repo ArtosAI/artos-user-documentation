@@ -3,8 +3,6 @@ title: "Template Configuration"
 description: "Configure actions, parameters, and instructions to fine-tune how Artos drafts each section."
 ---
 
-## Configuring Your Artos Template
-
 ### Why Configure Your Artos template?
 
 When you upload a Word template and example files, Artos analyzes them and automatically generates an Artos template. The auto-generated template is designed to produce a strong first draft with minimal configuration needed. In most cases, the system reliably selects the right actions, writes sensible instructions, and structures each section based on your inputs.
@@ -12,6 +10,10 @@ When you upload a Word template and example files, Artos analyzes them and autom
 **That said, you may want to adjust instructions, swap actions, add constraints, or fine-tune how a specific section is generated. That's what template configuration is for. When you configure your template, you're reviewing and refining — not building from scratch.**
 
 ## Template Components
+
+<Frame>
+  ![Screenshot 2026 06 30 At 5 01 32 PM](/images/Screenshot-2026-06-30-at-5.01.32-PM.png)
+</Frame>
 
 Your Artos template has four key components that you can edit and customize during configuration - Sections, Actions, Parameters and Custom Instructions.
 
@@ -33,6 +35,10 @@ When you open an Artos template, you'll see your document sections listed in the
 
 In the Artos template interface, you can configure **how each section is populated (actions, parameters, custom instructions)**.
 
+<Frame>
+  ![Image](/images/image.png)
+</Frame>
+
 ## Sections
 
 Sections are simply the headings in your document - the structural backbone that organizes content. These correspond directly to the heading styles from your MS Word template.
@@ -45,10 +51,18 @@ If sections need to be further modified:
 - Click on the edit button beside the Section name to rename the selected section
 - Click on the delete button beside the section name to delete the selected section
 
+<Frame>
+  ![Image](/images/image-1.png)
+</Frame>
+
 ## Section-level Configurations
 
 - The content toggle controls whether content is to be generated for this section or if it is to be left empty.
 - Everything configured under Section Instructions applies to the entire section — including all actions within it.
+
+<Frame>
+  ![Image](/images/image-2.png)
+</Frame>
 
 | **Component** | **What it does** | **Where to find it** |
 | --- | --- | --- |
@@ -58,9 +72,9 @@ If sections need to be further modified:
 | **Styles** | Style formatting overrides for the entire section content | Top of section configuration panel, under 'Section Instructions' |
 | **Section Heading Overrides** | Style formatting overrides for the section heading | Top of section configuration panel, under 'Section Instructions' |
 
-<Note>
+<Tip>
   **Note that each sub-section will have its own configuration panel.** Changes made to a section are not replicated for all sub-sections below it.
-</Note>
+</Tip>
 
 ### Content Toggle
 
@@ -78,12 +92,20 @@ If sections need to be further modified:
 
 ### Repeat Section
 
-Repeat section automatically generates additional subsections based on patterns in your source data. Artos analyzes your source documents and creates the appropriate number of subsections, applying the section's actions to each one. This is particularly useful for sections that need to be replicated for multiple items.
+Repeat section automatically generates additional subsections based on patterns in your source data. Artos analyzes your source documents and creates the appropriate number of subsections, applying the section's actions to each one. This is particularly useful for sections that need to be replicated for multiple items
 
 - Multiple secondary endpoints, each getting its own subsection
 - Multiple pharmacokinetic studies that should be described separately
 - Different animal species (rat, dog, primate) each with their own findings
 - Different patient populations or treatment arms
+
+<Frame caption="Repeat section toggled off">
+  ![Image](/images/image-3.png)
+</Frame>
+
+<Frame caption="Repeat section toggled on">
+  ![Image](/images/image-4.png)
+</Frame>
 
 **How to configure Repeat Section:**
 
@@ -103,6 +125,10 @@ Repeat section automatically generates additional subsections based on patterns 
 ### Custom Instructions
 
 Custom Instructions is a free-text field where you can add section-level guidance that applies across all actions in that section. Use this for requirements that don't belong to any single action: presentation standards, length constraints, terminology rules, or regulatory preferences.
+
+<Frame>
+  ![Image](/images/image-5.png)
+</Frame>
 
 ### What to Put in Custom Instructions
 
@@ -136,6 +162,10 @@ Actions are the specific operations Artos performs to populate a section, execut
 
 Actions are automatically configured when the Artos template is generated, based on what Artos finds in your Word template and example files. From there, you can add, remove, and fine-tune actions directly from the 'Actions' part of the section configuration panel.
 
+<Frame>
+  ![Image](/images/image-6.png)
+</Frame>
+
 ### Available Actions
 
 | **Action** | **What it does** | **Notes** |
@@ -157,6 +187,10 @@ Actions are automatically configured when the Artos template is generated, based
 
 **The order of actions matters** as Artos executes actions in sequence from top to bottom. You can add, reorder and delete actions from the section configuration panel.
 
+<Frame>
+  ![Image](/images/image-7.png)
+</Frame>
+
 | **To...** | **Do this...** |
 | --- | --- |
 | **Add an action** | Click "\+ New action" button at the bottom of the actions list, then select the action type from the dropdown and configure it. To insert an action at a specific position, hover between action cards so that a "\+" button appears and click it to add the action. |
@@ -167,27 +201,27 @@ Actions are automatically configured when the Artos template is generated, based
 
 ### Action Parameters
 
-<Note>
+<Info>
   **Removable (TOGGLE)**
 
   When an action is marked as removable, Artos can skip it during generation if the content isn't applicable for this particular document. This is especially useful for Fill in the Blank actions in sections with conditional content, where some placeholders may be relevant for one study but not another.
 
   For example, if your template has three Fill in the Blank actions for optional protocol elements (ex.  an adaptive design clause, a sentinel dosing clause, and a data monitoring committee clause), marking each as removable lets Artos omit the ones that don't apply based on the source data. Without the removable toggle, Artos would attempt to fill every placeholder even when the content doesn't exist in the sources.
-</Note>
+</Info>
 
-<Note>
+<Info>
   **Expandable (TOGGLE)**
 
   When an action is marked as expandable, the system can add additional instances of that action type as needed during generation. This is useful when the number of content items isn't known in advance, for example, when a section might need one summary paragraph or five depending on the source data.
 
   The user can prompt the system to expand the action, and Artos will generate additional action executions to cover the content. This gives you a baseline configuration that can scale up when the sources demand it.
-</Note>
+</Info>
 
-<Note>
+<Info>
   **Action Styles**
 
   Action Styles let you set style formatting overrides for the content generated by a specific action — including text style, text colour, and background colour.
-</Note>
+</Info>
 
 <Tip>
   **Expandable v/s Repeat Section**
@@ -208,6 +242,10 @@ The action itself captures the complex operations the system needs to perform an
 > **Example:** **Action:** Summarize from Source **Instruction:** "Focus on adverse events occurring in \>5% of patients"
 >
 > The action knows how to summarize; the instruction specifies what to emphasize.
+
+<Frame>
+  ![Image](/images/image-8.png)
+</Frame>
 
 **In order to write strong Action Instructions, be sure to include:**
 
@@ -276,7 +314,7 @@ The Artos template will respect the new table structure for all future documents
 
 ### Something you should know:
 
-If a table in your Word template wasn't picked up by Artos during template generation, check that the table style name in your Word file contains the word "table" or "caption" — this is the most common reason tables go unrecognised. Update the style name and re-upload the file to try again. If the table is still not being picked up, reach out to the Artos team and we'll help you get it sorted.
+If a table in your Word template wasn't picked up by Artos during template generation, check that the table style name in your Word file contains the word "table" or "caption" — this is the most common reason tables go unrecognized. Update the style name and re-upload the file to try again. If the table is still not being picked up, reach out to the Artos team and we'll help you get it sorted.
 
 ## Configuration Workflow
 
@@ -313,8 +351,17 @@ Before you begin, have your source documents ready — these are the files Artos
 
 - Open your template and begin setting up each section as usual. All changes are saved automatically as you go.
 - When you are ready to see how a section looks, click **Generate Output**. This will generate a draft of that section only, and save your current settings as a new version. You will be asked to confirm a name for the output document and choose a workspace to save it to. The document name is pre-filled but you can edit it. Once done, click **Next** to proceed.
+
+<Frame caption="When on the Current Version, click on Generate Output to generate a preview of the current section configurations.">
+  ![Image](/images/image-9.png)
+</Frame>
+
 - Source documents are required for generating previews with 'Faster Template Configuration'. Either choose from existing uploaded source documents or upload new documents as a next step.
 - Once the draft has been generated, click on **View Output** to open the generated draft alongside your template so you can review both at the same time.
+
+<Frame>
+  ![Image](/images/image-10.png)
+</Frame>
 
 **Reviewing your output**
 
@@ -324,12 +371,33 @@ Before you begin, have your source documents ready — these are the files Artos
   - **Generating** — Artos is drafting the section
   - **Ready** — your draft is ready to review
 - Once ready, review the draft and decide whether to continue refining the section or move on. You can always go back to any previously saved version using the dropdown.
+
+<Frame>
+  ![Image](/images/image-11.png)
+</Frame>
+
 - To understand how Artos constructed the draft — which sources were used and why — click the **View Decision Trail** button below the document. That would lead you to the Artos Document Review Page, where you can make reviews and edits on your document. From there, click the ← **Back** button at any time to return to the template configuration.
+
+<Frame>
+  ![Image](/images/image-12.png)
+</Frame>
 
 **Building your final template**
 
 1. Work through each section at your own pace. Once you are happy with a version for each section, select your preferred version per section and save the template version.
 2. Use your saved template version to generate a full document as usual.
+
+<Frame caption="Click on Save a Template Version, on the header, when you wish to save a version for the entire template">
+  ![Image](/images/image-13.png)
+</Frame>
+
+<Frame caption="You can select between existing versions for each section before you save a version for the entire template.">
+  <img
+    src="/images/image-14.png"
+    alt="Image"
+    title="Image"
+  />
+</Frame>
 
 ## Best Practices
 
