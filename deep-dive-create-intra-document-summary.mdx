@@ -1,6 +1,7 @@
 ---
 title: "Create Intra-Document Summary"
 description: "Summarizes content from other sections within the same document being drafted"
+hidden: true
 ---
 
 ## What It Does
@@ -25,11 +26,7 @@ This action runs after other sections of the document have been generated. It lo
 | "Write an introduction" | "Summarize the key content from the efficacy and safety sections to create an introduction that orients the reader. Include the study objective, primary endpoint result, and overall safety conclusion." |
 | "Create a conclusion" | "Synthesize the efficacy results, safety findings, and overall benefit-risk assessment from the relevant sections of this document. Present conclusions with supporting quantitative data." |
 
-**What makes the strong instructions better:** They specify which sections to draw from, what elements to include, and how the summary should be structured. Since this action is reading from the document itself, being clear about _which_ parts of the document to reference is especially important.
-
-## Configuration Pattern: Executive Summary / Synopsis
-
-The Synopsis section of a CSR is the most common use case for this action. It summarizes the entire document into a standalone section.
+## Configuration Pattern: Synopsis (CSR)
 
 | Component | Configuration |
 | --- | --- |
@@ -61,16 +58,6 @@ The Synopsis section of a CSR is the most common use case for this action. It su
 | --- | --- |
 | Overall Nonclinical Summary | "Synthesize the pharmacology, pharmacokinetic, and toxicology findings from this document into an integrated nonclinical summary. Highlight the key findings that support the proposed clinical program, note any safety signals, and discuss the adequacy of the nonclinical package." |
 | Conclusions | "Summarize the overall nonclinical findings and their implications for clinical development. State the safety margins, identify any risks that require clinical monitoring, and confirm that the nonclinical program supports the proposed indication and dosing regimen." |
-
----
-
-## Configuration Pattern: Synopsis (CSR)
-
-| Component | Configuration |
-| --- | --- |
-| **Action 1** | Create Intra-Document Summary |
-| **Action 1 Instructions** | "Create comprehensive summary including: study design and objectives, patient population, key efficacy findings (primary and secondary endpoints), safety overview, conclusions. Limit to 1–1.5 pages." |
-| **Custom Instructions** | "Section should stand alone. Reader should understand study without full document. Use quantitative data where available." |
 
 ## When to Use This Action
 

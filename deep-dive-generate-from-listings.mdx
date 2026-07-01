@@ -1,6 +1,7 @@
 ---
 title: "Generate from Listings"
 description: "Inserts a patient narrative for an individual subject from a listings document"
+hidden: true
 ---
 
 ## What It Does
@@ -23,8 +24,6 @@ This action reads a listings document (typically a subject-level data listing), 
 | --- | --- |
 | "Write patient narratives" | "For each subject, write a narrative including: demographics, medical history, treatment received, event description with onset and resolution dates, concomitant medications, outcome, and investigator's assessment of causality." |
 | "Describe each patient" | "Generate a narrative for each subject. Include: reason for inclusion (SAE type), demographics (age, sex, race), relevant medical history, study treatment and dose, detailed event description with timeline, actions taken, outcome, and causality assessment. Present events chronologically." |
-
-**What makes the strong instructions better:** They define the structure and content elements for each narrative. Since the action generates many narratives from the same instructions, the instruction acts as a template for what each narrative should cover.
 
 ## Configuration Pattern: Patient Narratives Section
 

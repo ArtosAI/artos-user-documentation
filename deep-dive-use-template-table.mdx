@@ -1,6 +1,7 @@
 ---
 title: "Use Template Table"
 description: "Populates a table whose structure is defined in your MS Word template"
+hidden: true
 ---
 
 ## What It Does
@@ -24,8 +25,6 @@ This action operates in two steps. First, it reads the table structure from your
 | "Fill in the table" | "Populate with all Phase 1 studies. Include study number, design, population, dose levels, and key PK parameters. Order by study number." |
 | "Complete the demographics table" | "Populate the demographics table with baseline characteristics for the ITT population. Include age, sex, race, weight, and BMI. Present means with standard deviations for continuous variables and counts with percentages for categorical variables." |
 | "Add the AE data" | "Populate the adverse events summary table. Include all events with ≥2% incidence in any treatment group. Sort by system organ class, then by frequency within each class." |
-
-**What makes the strong instructions better:** They specify what data to include, how to organize it (sort order), what population to use, and how to present the values. The action knows how to populate a table, your instruction defines what goes in it.
 
 ## Configuration Pattern: Safety Section with Narrative and Table
 
@@ -68,18 +67,6 @@ Safety sections commonly pair a Summarize action for the narrative with a Templa
 | Toxicology Studies Table | "Populate with all toxicology studies. Include study type, species, route, dose levels, duration, GLP status, major findings, and NOAEL. Order by study type (single-dose, repeat-dose, genotoxicity, reproductive, carcinogenicity)." |
 | Safety Pharmacology Table | "Populate with all safety pharmacology studies. Include study type (CNS, CV, respiratory), species, dose levels, key findings, and NOAEL. Order by organ system." |
 | Safety Margins Table | "Populate with safety margins for each species. Include NOAEL, human equivalent dose, proposed clinical dose, and safety margin multiple. Calculate margins based on body surface area." |
-
----
-
-## Configuration Pattern: Safety Section (CSR)
-
-| Component | Configuration |
-| --- | --- |
-| **action 1** | Summarize from Source |
-| **action 1 Instructions** | "Summarize safety findings: overall AE profile, SAEs, AEs leading to discontinuation, deaths. Compare treatment groups." |
-| **action 2** | Use Template Table |
-| **action 2 Instructions** | "Populate the adverse events summary table. Include all events with ≥5% incidence in any group. Sort by system organ class, then frequency." |
-| **Custom Instructions** | "Present SAEs before common AEs. Include narratives for deaths and drug-related SAEs." |
 
 ## When to Use This Action
 

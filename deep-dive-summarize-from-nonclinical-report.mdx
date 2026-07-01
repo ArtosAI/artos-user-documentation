@@ -1,6 +1,7 @@
 ---
 title: "Summarize from Nonclinical Report"
 description: "Inserts a subsection containing a short description of a nonclinical report"
+hidden: true
 ---
 
 ## What It Does
@@ -24,11 +25,7 @@ This action reads nonclinical reports from your source files and generates a sub
 | "Summarize the nonclinical reports" | "For each nonclinical report, provide a summary including: study type, species, dose levels and duration, key findings (including test article-related findings), and NOAEL. Organize by study type." |
 | "Describe the tox studies" | "Summarize each toxicology report: include species, route of administration, dose groups, treatment duration, major findings by organ system, and NOAEL. Focus on test article-related findings." |
 
-**What makes the strong instructions better:** They define what elements to include in each report summary and how to organize them. Since this action applies the same instructions across multiple reports, the instruction needs to be comprehensive enough to work for all of them.
-
 ## Configuration Pattern: IB Nonclinical Section
-
-An IB nonclinical section that summarizes individual nonclinical study reports.
 
 | Component | Configuration |
 | --- | --- |
@@ -41,8 +38,6 @@ An IB nonclinical section that summarizes individual nonclinical study reports.
 ## Document-Specific Examples
 
 ### Investigator's Brochure (IB)
-
-This is the primary use case for the NCR action — IBs contain extensive nonclinical sections that summarize individual study reports.
 
 | Section | Instruction |
 | --- | --- |
@@ -61,13 +56,6 @@ This is the primary use case for the NCR action — IBs contain extensive noncli
 | Pharmacology Studies | "Summarize each pharmacology study. Include study type (primary PD, secondary PD, safety pharmacology), species/model, doses tested, and key findings related to mechanism of action and therapeutic effect." |
 | Toxicology Program Summary | "Summarize each pivotal toxicology study. Include species, route, dose levels, duration, principal findings, target organs, reversibility, NOAEL, and safety margin relative to the proposed clinical dose." |
 | ADME Studies | "Summarize each absorption, distribution, metabolism, and excretion study. Include species, route, key findings (e.g., oral bioavailability, tissue distribution, metabolic pathways, excretion routes), and relevance to clinical pharmacology." |
-
-### Other Nonclinical Summaries
-
-| Section | Instruction |
-| --- | --- |
-| Nonclinical Written Summary — Pharmacology | "Summarize each pharmacology study per the Content Plan. Include study design, objectives, key findings, and relevance to the clinical program." |
-| Nonclinical Written Summary — Toxicology | "Summarize each toxicology study per the Content Plan. Include study design, species, doses, findings, NOAELs, and safety margins. Organize by study type." |
 
 ## When to Use This Action
 

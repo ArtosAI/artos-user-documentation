@@ -1,6 +1,7 @@
 ---
 title: "Table and Summary Placeholder"
 description: "Inserts a table from exported TFL documents along with corresponding summary text"
+hidden: true
 ---
 
 ## What It Does
@@ -25,11 +26,7 @@ This action reads TFL documents from your source files, identifies the relevant 
 | "Add the efficacy table" | "Insert the primary efficacy analysis table. In the narrative, describe the primary endpoint result, statistical significance, and clinical relevance. Include the confidence interval." |
 | "Include the AE table" | "Insert the Treatment-Emergent Adverse Events summary table. Summarize key findings in the narrative: most common AEs, SAEs, and AEs leading to discontinuation. Compare across treatment groups." |
 
-**What makes the strong instructions better:** They specify which table to insert and what the narrative should cover. Since the action produces both elements, the instruction needs to address both, which table to pull and what the accompanying text should emphasize.
-
 ## Configuration Pattern: Efficacy Results with TFL Data
-
-An Efficacy Results section that relies on TFL data for its tables and narratives.
 
 | Component | Configuration |
 | --- | --- |
@@ -45,8 +42,6 @@ An Efficacy Results section that relies on TFL data for its tables and narrative
 
 ### Clinical Study Report (CSR)
 
-This is the primary document type for Summarize TFLs — CSRs frequently pair data tables with interpretive narrative.
-
 | Section | Instruction |
 | --- | --- |
 | Primary Efficacy Results | "Insert the primary endpoint analysis table and summarize the results. Include endpoint definition, analysis population, treatment effect with 95% CI, p-value, and interpretation. State whether the primary endpoint was met." |
@@ -55,20 +50,6 @@ This is the primary document type for Summarize TFLs — CSRs frequently pair da
 | Adverse Events | "Insert the adverse events summary table (events ≥5% in any group) and summarize the overall AE profile. Highlight treatment-emergent AEs, compare incidence across treatment arms, and note any dose-response patterns." |
 | Laboratory Results | "Insert the laboratory results summary table and summarize clinically notable findings. Highlight any shifts from normal to abnormal, mean changes from baseline, and any findings that led to dose modifications or discontinuations." |
 | Vital Signs | "Insert the vital signs summary table and summarize changes from baseline in blood pressure, pulse, and weight. Note any clinically significant outliers." |
-
----
-
-## Configuration Pattern: Efficacy Results Section (CSR)
-
-| Component | Configuration |
-| --- | --- |
-| **Action 1** | Summarize from Source |
-| **Action 1 Instructions** | "Draft a brief opening paragraph for the Efficacy Results chapter summarizing the overall efficacy findings." |
-| **Action 2** | Summarize TFLs |
-| **Action 2 Instructions** | "Insert the primary endpoint analysis table and summarize the primary efficacy result. Include treatment effect, 95% CI, p-value, and clinical interpretation." |
-| **Action 3** | Summarize TFLs |
-| **Action 3 Instructions** | "Insert the secondary endpoints analysis table and summarize each secondary endpoint result in order of the statistical testing hierarchy." |
-| **Custom Instructions** | "Present primary endpoint results before secondary. Include quantitative results with confidence intervals throughout. Note any multiplicity adjustments." |
 
 ## When to Use This Action
 

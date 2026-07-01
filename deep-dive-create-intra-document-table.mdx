@@ -1,6 +1,7 @@
 ---
 title: "Create Intra-Document Table"
 description: "Creates a table based on data from other sections within the same document being drafted"
+hidden: true
 ---
 
 ## What It Does
@@ -25,20 +26,6 @@ Like Create Intra-Document Summary, this action reads from the document Artos is
 | --- | --- |
 | "Create a summary table" | "Create a table summarizing key efficacy results across all endpoints discussed in the Efficacy Results section. Include columns for: endpoint, analysis population, treatment group, result, p-value, and clinical significance." |
 | "Make a table of findings" | "Create a table of nonclinical findings from the sections above. Include columns for: study type, species, dose levels, duration, key findings, and NOAEL. Order by study type." |
-
-**What makes the strong instructions better:** They specify which sections to draw from, what columns the table should include, and how to organize the data. Since the action is creating a table structure (not filling a pre-existing one), your instruction needs to define the layout.
-
-## Configuration Pattern: Summary Table in Discussion Section
-
-A Discussion section might include a summary table that pulls together key results from earlier sections of the document.
-
-| Component | Configuration |
-| --- | --- |
-| **Action 1** | Create Intra-Document Summary |
-| **Action 1 Instructions** | "Synthesize the efficacy and safety findings into a discussion of the overall benefit-risk profile." |
-| **Action 2** | Create Intra-Document Table |
-| **Action 2 Instructions** | "Create a summary table of primary and secondary endpoint results. Include columns for: endpoint, result, 95% CI, p-value, and clinical interpretation. Pull data from the Efficacy Results section." |
-| **Custom Instructions** | "Present the narrative discussion first, followed by the summary table." |
 
 ## Document-Specific Examples
 
