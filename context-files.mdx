@@ -3,84 +3,228 @@ title: "Context Files"
 description: "Use List of Tables and Content Plans to guide where content lands in your generated document."
 ---
 
-## What are Context Files?
+# What are Context Files
 
 Context files are supplementary inputs you upload alongside source files when generating a document. They guide how specific Artos actions consume source data — which source files to pull from, and where the resulting content should land in the generated document.
 
-There are two context files:
+There are two context files at the moment:
 
-- **List of Tables (LoT)** — used with clinical documents that need tables inserted from TFL sources (CSRs, 2.5s, 2.7s). Pairs with the Table and Summary Placeholder action.
-- **Content Plan** — used with documents that need nonclinical study reports summarized into specific sections. Pairs with the Summarize from Nonclinical Report action.
+- **List of Tables (LoT)** — used with clinical documents that need tables inserted from TFL sources (CSRs, 2.5s, 2.7s). Pairs with the **Table and Summary Placeholder** action.
+- **Content Plan** — used with documents that need nonclinical study reports summarized into specific sections (IBs, Module 2 nonclinical documents). Pairs with the **Summarize from Nonclinical Report** action.
 
 <Warning>
-  Keep all required columns in place. Removing any required column from either context file will break matching.
+  **Keep all required columns in place.** Removing any required column from either context file will break matching.
 </Warning>
 
-## List of Tables (LoT)
+---
 
-The LoT is used exclusively for clinical documents: CSRs, 2.5s, and 2.7s. Attach one when generating a clinical document that needs at least one table inserted from a TFL source.
+# List of Tables (LoT)
+
+The List of Tables (LoT) is a context file you upload alongside your source files when generating a clinical document. It pairs with the **Table and Summary Placeholder** action to tell Artos which TFL to reference for each table insertion and where the inserted table — along with its accompanying summary — should land in the generated document.
+
+The LoT is used exclusively for clinical documents that need to insert tables from TFL sources — specifically CSRs (Clinical Study Reports), 2.5s (Clinical Overview), and 2.7s (Clinical Summary).
+
+## When to use an LoT context file
+
+Attach an LoT to a document generation run when:
+
+- You're generating a clinical document, specifically the CSR, 2.5, or 2.7.
+- The document needs at least one table inserted from a TFL source.
+
+If these don't apply, you don't need an LoT.
+
+## How tables get used
+
+The LoT supports one pathway for consuming a source table at the moment. The pathway is set by the value in the **Location** column.
+
+| Location | Action that consumes it | What happens to the table |
+| --- | --- | --- |
+| In Text | **Table and Summary Placeholder** | The table is inserted directly into the document along with a brief summary that precedes it. |
 
 <Tip>
-  RTF is the preferred format for TFLs — the table is inserted exactly as it appears in the source. PDF and DOCX go through the LLM, so the output may not match the source exactly.
+  **RTF is the preferred format for TFLs.** With RTF, the table is inserted into the generated document exactly as it appears in the source — no edits, no rewrites. PDF and DOCX work too, but those go through the LLM, which means the output may not match the source exactly.
 </Tip>
 
 <Warning>
-  One table per file. Each TFL must be its own individual file. A single file containing multiple tables won't work.
+  **One table per file.** Each TFL must be supplied as its own individual file, regardless of format. A single file containing multiple tables won't work. Artos needs to be able to identify each table cleanly.
 </Warning>
 
-### Building an LoT
+## Building an LoT
 
-The LoT is an Excel file where each row represents one table. Required columns in order:
+### File format
 
-| Column | Required | What it holds |
+The LoT is an Excel file, where each row uniquely represents one table from your TFL source documents.
+
+### What to include — and what to leave out
+
+Include only tables you intend to use during generation.
+
+- **A table that isn't on the LoT will not be picked up by Artos for insertion in any form**, even if it exists in a source file. The LoT is the only entry point.
+- **Each In-Text table must be unique.** A given In-Text table can only be inserted once per document.
+
+### Column headers
+
+The LoT must use these five columns. List them in the order shown below:
+
+| Column Header | Required | What it Holds |
 | --- | --- | --- |
-| Table Number | Yes | Unique row identifier |
-| Table Title | Yes | Source table number, optionally followed by the table name |
+| Table Number | Yes | A unique identifier for the row. |
+| Table Title | Yes | The source table number, optionally followed by the table name. |
 | Location | Yes | `In Text` |
-| Section | Yes | Section number followed by section name |
-| Notes | No | Additional per-row guidance |
+| Section | Yes | The section number followed by the section name. |
+| Notes | Optional | Any additional guidance for the row (e.g. "Include all data"). |
 
-Artos matches tables by the **table number** and places them by the **section name** — not the section number. This ensures correct placement even when numbering shifts in the generated document.
+## Column-by-column guidance
 
-### Sample LoT
+### Table Title
+
+Start every Table Title with the source table number (for example `15.8.3.1`). You can optionally append the table name after a space — for example `15.8.3.1 Demographic and Other Baseline Characteristics`.
+
+<Tip>
+  Artos uses only the table number to find and pick up the right table from the source. The name, when included, is for your reference and does not affect how tables are matched. We recommend including the name anyway — it makes the LoT easier to read and review.
+</Tip>
+
+If the name is included, it should match the table name in the source file.
+
+### Location
+
+Use `In Text` for tables that need to appear directly in the generated document. That is the only supported parameter at the moment.
+
+### Section
+
+The Section column must contain the section number followed by the section name, separated by a space — for example `8.4 Demographic and Other Baseline Characteristics`.
+
+The section name should map to a section in the configured template. Artos finds the right section by name and places the In-Text table there.
+
+How matching works:
+
+- The section **number** sets the rough position in the document where Artos starts looking.
+- The section **name** is what determines final placement. Artos matches the name in your LoT against the section name in the document to be generated.
+
+This is intentional. The final section numbering in the document to be generated may differ from the template — for example, due to dynamically generated sections or sections added manually after template generation. Matching on name keeps placement correct even when the numbering shifts.
+
+### Notes
+
+Optional. Use this column to give per-row guidance — for example, `Include all data`, or `Summarize Grade 3+ events only`.
+
+## Sample List of Tables
 
 | Table Number | Table Title | Location | Section | Notes |
 | --- | --- | --- | --- | --- |
 | Table 1 | 15.8.1.3 | In Text | 8.1 Disposition of Study Participants | Include all data |
-| Table 2 | 15.8.3.1 Demographic Baseline Characteristics | In Text | 8.4 Demographic and Other Baseline Characteristics | Include all data |
-| Table 3 | 15.11.2.1.1 Adverse Events | In Text | 11.3 Adverse Events | Include all data |
+| Table 2 | 15.8.3.1 Demographic and Other Baseline Characteristics | In Text | 8.4 Demographic and Other Baseline Characteristics | Include all data |
+| Table 3 | 15.8.3.2 | In Text | 8.4.1 Demographic Baseline Characteristics | Include all data |
+| Table 4 | 15.8.5 Analysis Sets | In Text | 8.6 Analysis Sets | Include all data |
+| Table 5 | 15.11.1.2.1 | In Text | 11.2 Extent of Exposure | Include all data |
+| Table 6 | 15.11.2.1.1 Adverse Events | In Text | 11.3 Adverse Events | Include all data |
+| Table 7 | 15.11.6.4.2 | In Text | 11.7.1 Grade 3 or 4 Treatment-Emergent Laboratory Abnormalities | Include all data |
 
-### Common Pitfalls
-
-## Content Plan
-
-The Content Plan pairs with the **Summarize from Nonclinical Report** action. Used for IBs and Module 2 nonclinical documents. Attach one when at least one section needs to be populated from a nonclinical study report.
+## Common pitfalls
 
 <Warning>
-  One study per file. Each nonclinical study report must be its own individual source file. Concatenated files won't work.
+  **Missing rows.** A table that isn't listed on the LoT is not available for insertion via the Table and Summary Placeholder action. If a table you expected in the output is missing, check the LoT first.
 </Warning>
 
-### Building a Content Plan
+<Warning>
+  **Section name mismatch.** If the section name in your LoT does not have a clear match in the document to be generated, the action will not be able to place the table. Ensure the section name reflects what will appear in the document to be generated, not just what's in the template.
+</Warning>
 
-The Content Plan is an Excel file where each row maps one study to one section. Required columns in order:
+<Warning>
+  **Duplicate In-Text rows.** Listing the same In-Text table twice will not insert it twice — a given In-Text table can only be inserted once per document.
+</Warning>
 
-| Column | Required | What it holds |
+---
+
+# Content Plan
+
+The Content Plan is a context file you upload alongside your source files when generating a document that needs nonclinical study reports summarized into specific sections. It pairs with the **Summarize from Nonclinical Report** action to tell Artos which study report to summarize and which section of the generated document the summary should land in.
+
+The Content Plan is used for documents that pull narrative content out of individual nonclinical study reports — primarily Investigator's Brochures (IBs) and Module 2 nonclinical documents (Nonclinical Overview, Nonclinical Written Summaries).
+
+## When to use a Content Plan context file
+
+Attach a Content Plan to a document generation run when:
+
+- You're generating a document that summarizes nonclinical study reports — typically an IB, Nonclinical Overview (Module 2.6), or Nonclinical Written Summary.
+- At least one section of the document needs to be populated from a nonclinical study report.
+
+If these don't apply, you don't need a Content Plan.
+
+## How reports get used
+
+The Content Plan supports one pathway for consuming a nonclinical study report at the moment. The **Summarize from Nonclinical Report** action, when used in the template configuration, maps to a row of the Content Plan: it picks up the study report identified by the row, generates a summary of it, and inserts the summary into the section the row specifies.
+
+<Warning>
+  **One study per file.** Each nonclinical study report must be supplied as its own individual source file. A single file containing multiple concatenated studies will NOT work — Artos needs to be able to identify each study cleanly to match it against the Content Plan.
+</Warning>
+
+## Building a Content Plan
+
+### File format
+
+The Content Plan is an Excel file, where each row represents one nonclinical study report mapped to one section of the generated document.
+
+### What to include — and what to leave out
+
+Include only studies you intend to summarize during generation.
+
+- **A study that isn't on the Content Plan will not be picked up by Artos**, even if its report exists as a source file. The Content Plan is the only entry point for the Summarize from Nonclinical Report action.
+- **The same study can appear on multiple rows.** Map a study to more than one section by listing it on multiple rows — one row per (study, section) pairing.
+- **Multiple studies can map to the same section.** This is the common pattern — for example, several single-dose tox studies all flowing into the same single-dose tox section.
+
+### Column headers
+
+The Content Plan must use these four columns. List them in the order shown below:
+
+| Column Header | Required | What it Holds |
 | --- | --- | --- |
-| Study Name | Yes | Name of the study, as it appears in the source file |
-| Study Number | Yes | Unique study identifier |
-| Study Type | Yes | Type of study (e.g., Single-dose toxicity, Genotoxicity) |
-| Section | Yes | Section number where the summary should be inserted |
+| Study Name | Yes | The name of the nonclinical study, as it appears in the source file. Used for matching. |
+| Study Number | Yes | The unique study identifier. Used for matching. |
+| Study Type | Yes | The kind of study (e.g., `Single-dose toxicity`, `Repeat-dose toxicity`, `Genotoxicity`). Used for matching. |
+| Section | Yes | The section number in the generated document where the summary should be inserted. |
+
+## Column-by-column guidance
+
+### Study Name
+
+The Study Name should match how the study is identified in the source report. Artos uses Study Name as one of three signals (alongside Study Number and Study Type) to find the correct source file when generating each section.
+
+### Study Number
+
+The Study Number is the unique identifier for the study (for example, `Study-001`). Make sure it appears in the source report itself the same way you've written it on the Content Plan — Study Number is used in matching alongside Study Name and Study Type.
+
+### Study Type
+
+The Study Type describes the kind of nonclinical study — for example, `Single-dose toxicity`, `Repeat-dose toxicity`, `Genotoxicity`, `Reproductive toxicity`, `Carcinogenicity`, `Safety pharmacology`, `Pharmacokinetics`. This column is also used in matching.
 
 <Tip>
-  Artos uses all three of Study Name, Study Number, and Study Type when matching against source files. Inconsistencies with what appears in the source report can prevent matching.
+  Artos uses **all three** of Study Name, Study Number, and Study Type when matching a row against your uploaded source files. Inconsistencies between any of these and what appears in the source report can prevent the row from matching.
 </Tip>
 
-### Sample Content Plan
+### Section
+
+The Section column holds the section number of the location in the generated document where the summary should be inserted — for example, `5.3`.
+
+## Sample Content Plan
 
 | Study Name | Study Number | Study Type | Section |
 | --- | --- | --- | --- |
 | 4-Week Oral Toxicity Study in Rats | Study-001 | Repeat-dose toxicity | 5.3 |
+| 13-Week Oral Toxicity Study in Rats | Study-002 | Repeat-dose toxicity | 5.3 |
 | Single-Dose Toxicity Study in Mice | Study-003 | Single-dose toxicity | 5.2 |
 | In Vitro Bacterial Reverse Mutation Assay | Study-004 | Genotoxicity | 5.4 |
+| 26-Week Carcinogenicity Study in Rats | Study-005 | Carcinogenicity | 5.5 |
 
-### Common Pitfalls
+## Common pitfalls
+
+<Warning>
+  **Missing rows.** A study that isn't listed on the Content Plan will not be picked up by the Summarize from Nonclinical Report action. If a study you expected to see in the output is missing, check the Content Plan first.
+</Warning>
+
+<Warning>
+  **Concatenated source files.** Each nonclinical study report must be supplied as its own individual file. If multiple studies are concatenated into a single file, Artos cannot match individual rows in the Content Plan against the source — even if every other field is correct.
+</Warning>
+
+<Warning>
+  **Section number mismatch.** If the section number in your Content Plan doesn't match the section number it ends up at in the generated document, the summary won't have a place to land. Section numbers can shift between the template and the generated document — for example, due to dynamically generated subsections — so make sure the numbers in your Content Plan reflect where the sections actually end up.
+</Warning>
