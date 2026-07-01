@@ -2,3 +2,114 @@
 title: "Summarize from Source"
 hidden: true
 ---
+
+## What It Does
+
+Summarizes information from a source document into a concise narrative appropriate for the section. Unlike the Copy actions, this action reads the source content and produces a condensed, restructured version, extracting key points and presenting them in a way that fits the target section.
+
+## How It Works
+
+When Artos executes this action, it reads the relevant content from your source files, identifies the most important information based on your instructions, and writes a summary that fits the context of the section.
+
+**Chunk behavior:** Like the Copy actions, Summarize from Source summarizes one chunk of text at a time (text between two headings in a source document).
+
+**What the action decides:** The action makes judgment calls about what to include, what to exclude, how to organize the information, and how much detail to provide. Your instructions guide these decisions, the more specific you are about what matters, the better the summary.
+
+**Output length:** By default, the action produces a summary that's appropriate for the section. If you need a specific length, say so in the instruction ("Limit to 2 paragraphs" or "Keep to half a page"). Without length guidance, Artos will use its judgment based on the complexity of the source content and the context of the section.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Summarize the safety data" | "Summarize safety data focusing on adverse events occurring in ≥5% of patients. Present serious adverse events before common adverse events. Limit to 2 paragraphs." |
+| "Summarize the nonclinical findings" | "Summarize key nonclinical findings including: species tested, dose levels, duration, major findings, and NOAELs. Organize by study type (single-dose, repeat-dose, genotoxicity)." |
+| "Summarize the efficacy results" | "Summarize efficacy findings for the primary endpoint: endpoint definition, analysis population, statistical methods, results with confidence intervals, and clinical interpretation." |
+
+**What makes the strong instructions better:** They tell the action what to prioritize, what structure to follow, and what level of detail to include. The action knows _how_ to summarize, your instruction defines _what matters_ in this summary.
+
+**A note on comprehensiveness:** The system is designed to give you more content than you may need. If you're unsure whether to ask for a detailed or concise summary, lean toward detailed. It's easier to trim a thorough summary than to chase missing information. You can always instruct the action to be comprehensive: "Provide a thorough summary, include all relevant findings rather than only highlights."
+
+## Configuration Pattern: Safety Section
+
+A Safety section in a CSR typically needs both narrative summaries and data tables. Here's how Summarize from Source fits alongside other actions:
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Summarize from Source |
+| **Action 1 Instructions** | "Summarize safety findings: overall AE profile, SAEs, AEs leading to discontinuation, deaths. Compare treatment groups." |
+| **Action 2** | Use Template Table |
+| **Action 2 Instructions** | "Populate AE table with events ≥5% in any group. Sort by system organ class, then frequency." |
+| **Custom Instructions** | "Present SAEs before common AEs. Include narratives for deaths and drug-related SAEs. Limit this section to 3 pages." |
+
+The Summarize action produces the narrative, the Template Table action populates the data table, and the Custom Instructions set section-wide constraints that both actions follow.
+
+## Document-Specific Examples
+
+### Clinical Study Report (CSR)
+
+| Section | Instruction |
+| --- | --- |
+| Synopsis | "Summarize the study in a standalone synopsis covering: study design and objectives, patient population and disposition, primary and secondary efficacy results (with p-values and confidence intervals), safety overview (SAEs, discontinuations, deaths), and conclusions. Limit to 1–1.5 pages." |
+| Safety Results — Adverse Events | "Summarize adverse events from the clinical study report. Focus on events occurring in ≥5% of patients in any treatment group. Present serious adverse events before common adverse events. Include comparison to placebo where available. Compare treatment groups." |
+| Safety Results — Deaths & SAEs | "Summarize all deaths and serious adverse events. Include subject identifiers, event terms, onset timing, relationship to study drug, and outcome. Present deaths first, then SAEs by system organ class." |
+| Efficacy Results — Primary Endpoint | "Summarize the primary efficacy analysis including: endpoint definition, analysis population (ITT/mITT), statistical method, point estimate with confidence interval, p-value, and clinical interpretation. Note any sensitivity analyses that support or contradict the primary result." |
+| Discussion & Conclusions | "Summarize the overall study findings. Discuss efficacy results in the context of the study objectives, highlight clinically meaningful safety signals, and present the overall benefit-risk assessment." |
+
+### Investigator's Brochure (IB)
+
+| Section | Instruction |
+| --- | --- |
+| Nonclinical Pharmacology | "Summarize the nonclinical pharmacology findings. Include mechanism of action, primary pharmacodynamic models, key findings by species, and relevance to the proposed clinical use. Organize by study type." |
+| Toxicology — Repeat-Dose Studies | "Summarize repeat-dose toxicology findings across all species tested. For each study, include: species, dose levels, duration, target organs, major findings, reversibility, and NOAEL. Organize by species, then by study duration." |
+| Clinical Experience | "Summarize the clinical experience to date. Include number of subjects exposed, dose range studied, key efficacy signals, and overall safety profile. Present by study phase (Phase 1, Phase 2, Phase 3)." |
+| Summary of Data & Guidance for the Investigator | "Summarize the nonclinical and clinical data that are relevant to the investigator's understanding of the compound. Highlight key safety findings that require monitoring, dosing rationale, and any precautions." |
+
+### Nonclinical Overview (NCO)
+
+| Section | Instruction |
+| --- | --- |
+| Pharmacology Overview | "Summarize the primary and secondary pharmacodynamic studies. Include models used, doses tested, key findings, and relevance to clinical mechanism of action. Limit to 2–3 paragraphs." |
+| Pharmacokinetics Overview | "Summarize absorption, distribution, metabolism, and excretion across species. Include key PK parameters (Cmax, AUC, t½, bioavailability) and note any species-specific differences relevant to human dose projections." |
+| Toxicology Overview | "Summarize the toxicology program including single-dose, repeat-dose, genotoxicity, carcinogenicity, and reproductive toxicology studies. For each category, include species, dose levels, key findings, NOAELs, and safety margins relative to the proposed clinical dose." |
+
+### Informed Consent Form (ICF)
+
+| Section | Instruction |
+| --- | --- |
+| Purpose of the Study | "Summarize the study purpose, background, and rationale in patient-friendly language at an 8th grade reading level. Explain why the study is being done and what the researchers hope to learn." |
+| What Will Happen During the Study | "Summarize the study procedures, visit schedule, and duration of participation in clear, non-technical language. Include what happens at each visit type (screening, treatment, follow-up)." |
+| Possible Risks | "Summarize the known and anticipated risks based on the Investigator's Brochure safety data. Present in plain language. Group by frequency (common, less common, rare). Include what the study team will do to monitor for these risks." |
+
+---
+
+## Configuration Pattern: Safety Section (CSR)
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Summarize from Source |
+| **Action 1 Instructions** | "Summarize safety findings: overall AE profile, SAEs, AEs leading to discontinuation, deaths. Compare treatment groups." |
+| **Action 2** | Use Template Table |
+| **Action 2 Instructions** | "Populate the adverse events summary table. Include all events with ≥5% incidence in any group. Sort by system organ class, then frequency." |
+| **Custom Instructions** | "Present SAEs before common AEs. Include narratives for deaths and drug-related SAEs. Limit the narrative summary to 3 pages." |
+
+## When to Use This Action
+
+**Use Summarize from Source when:**
+
+- The source content is longer or more detailed than what's needed in the target section
+- You need information extracted, condensed, and reorganized
+- The section calls for a narrative interpretation of data or findings
+- You want to combine key points from a source into a coherent summary
+
+**Use a different action when:**
+
+- The content should appear exactly as-is or with minor changes → use **Copy from Source** or **Copy & Modify from Source**
+- You need to summarize content from _within the document being drafted_ (not from a source file) → use **Create Intra-Document Summary**
+- You need to summarize TFL data with both a table and narrative → use **Summarize TFLs**
+- You need to summarize individual nonclinical reports → use **Summarize NCR**
+
+## Tips
+
+- If the system is picking up high-level information but missing granular details, be more explicit in your instructions. Specify "include quantitative results for each parameter" or "list all endpoints, including any not explicitly listed here."
+- Specifying the type of findings you want to focus on (ex. "test article-related findings") helps the action prioritize the right content.
+- If you're getting summaries that are too short or too surface-level, add "Be comprehensive" or "Include all relevant findings" to your instruction. The system responds well to explicit guidance on depth.
