@@ -1,0 +1,107 @@
+---
+title: "Sample Template Configuration"
+description: "Walk through a few essential actions used to configure a sample CSR"
+---
+
+Each example below demonstrates how a specific action is applied to a real section of the CSR template, including the configuration and reasoning behind the choice.
+
+## Copy from Source
+
+**What it does:** Extracts content directly from a source and places it in the section with no modification.
+
+**How it was configured:**
+
+- **Rule:** Copy from Source
+- **Instructions:** "Extract the complete protocol-defined Inclusion Criteria list from the final approved protocol (and incorporate any relevant protocol amendment updates). Reproduce verbatim in the CSR, preserving the original numbering/bullets and any footnotes/definitions tied to eligibility."
+
+**Why this action for this section:** The inclusion criteria need to match the protocol word-for-word. This action copies the text exactly as-is, keeping the original numbering and footnotes. The instructions also tell it to check for any protocol amendments so the CSR stays up to date.
+
+## Copy & Modify from Source
+
+**What it does:** Extracts content from a source with specific modifications (e.g., verb tense changes, conditional logic).
+
+**How it was configured:**
+
+- **Rule:** Copy & Modify from Source
+- **Instructions:** "If the primary endpoint definition/success criteria/estimand is not fully captured in the objective statement, copy the authoritative primary endpoint definition block verbatim from the protocol and/or SAP section defining endpoints/estimands (including time frame, units/scale, and responder/censoring rules if applicable) and include it here as 'Primary endpoint(s)' under the primary objective(s)."
+
+**Why this action for this section:** The primary objective can be copied straight from the protocol, but the endpoint definition might live somewhere else, like the SAP. The instructions tell the AI to check if the objective is complete on its own, and if not, pull the missing endpoint details from the right source. That conditional logic is what makes this a Copy & Modify rather than a simple copy.
+
+## Summarize from Source
+
+**What it does:** Summarizes information from a source into a concise summary appropriate for the section.
+
+**How it was configured:**
+
+- **Rule:** Summarize from Source
+- **Instructions:** "Summarize investigational product background and mechanism of action from the Investigator's Brochure and/or protocol background. Include product class, target/pathway, proposed mechanism, and rationale for use in this disease. Link scientific rationale to study objectives/endpoints. Include only key supporting evidence at a high level (nonclinical/early clinical signals) and defer detailed methods/results to referenced source documents."
+
+**Why this action for this section:** The Introduction pulls from long source documents like the Investigator's Brochure. Copying all of that verbatim would be way too much. The Summarize action condenses it down, and the details in the instructions keeps the AI focused on the right level of detail for this section.
+
+## Use Template Text
+
+**What it does:** Inserts predefined template text from the MS Word template directly into the section.
+
+**How it was configured:**
+
+- **Rule:** Use template text
+- **Instructions:** "Insert this standard ethics compliance statement for the study. Edit only if the protocol/CSR specifies additional/alternative governing ethics frameworks or jurisdictional requirements that must be named explicitly."
+- **Template Text:** "This study was conducted in compliance with the ethical principles originating in or derived from the Declaration of Helsinki and in compliance with all International Council for Harmonisation (ICH) Good Clinical Practice (GCP) Guidelines. In addition, all local regulatory requirements were followed, in particular, those affording greater protection to the safety of trial subjects."
+
+**Why this action for this section:** This is standard boilerplate, the same ethics language goes in every CSR. There's nothing to pull from sources or summarize. The action inserts the pre-approved text directly, and the instructions say to only edit it if the study has additional regulatory requirements that need to be named.
+
+## Use Template Table
+
+**What it does:** Populates a table whose structure is defined in the MS Word template. Searches sources as needed to complete the table.
+
+**How it was configured:**
+
+- **Rule:** Use template table
+- **Instructions:** "Populate this template table exactly as defined in the template document. Use study-specific data to fill every cell while preserving the table layout. Follow the template guidance provided for this table."
+
+**Why this action for this section:** The title page table is just an example here, but any table in the template that has a fixed layout can be inserted into the final document - only the content in each cell changes. This action keeps the table structure from the Word template and fills it in with study-specific data from sources. It's different from Fill in the Blank because the whole table needs to be built, not just a few placeholders in running text.
+
+## Create Intra-Document Summary
+
+**What it does:** Summarizes content from other sections within the same document being drafted. Different from Summarize from Source, this action pulls from within the document being written. Designed for introductions, conclusions, and executive summaries.
+
+**How it was configured:**
+
+- **Rule:** Create Intra-Document Summary
+- **Instructions:** "Draft the Discussion narrative by synthesizing the finalized CSR results sections (efficacy, safety, and study subjects/disposition) into a cohesive interpretation. Cover: (1) key efficacy findings vs objectives/endpoints, (2) key safety/tolerability findings in context of exposure, (3) benefit–risk and clinical relevance, and (4) consistency with/substantiation by supporting analyses; avoid reprinting full numeric tables and instead cite/point to the authoritative results sections."
+
+**Why this action for this section:** The Discussion doesn't pull from external sources, it synthesizes what's already written in different sections of the CSR. The instructions give the AI a four-part structure and tell it not to reprint data tables, just interpret the findings and point readers back to the results sections. That's the key difference between this and Summarize from Source: this one works within the document, not from outside it.
+
+## Create Intra-Document Table
+
+**What it does:** Creates a table based on data from other sections within the same document. Same concept as Create Intra-Document Summary, but outputs content in a tabular format.
+
+**How it was configured:**
+
+- **Rule:** Create Intra-Document Table
+- **Instructions:** "Include a table that summarizes the number of participants in each analysis set/population (e.g., ITT/FAS, PP, Safety, and any PK/PD/biomarker sets as defined) and show counts overall and by treatment group if applicable. Add a brief narrative confirming which analysis sets were used for efficacy and safety and reconcile to disposition where relevant."
+
+**Why this action for this section:** The analysis set counts come from subject disposition data already in a section in the CSR, not from an external source. This action builds a table from that internal data and adds a short narrative. The instructions also ask the AI to tie the numbers back to disposition, which reinforces that everything is coming from within the same report.
+
+## Fill in the Blank
+
+**What it does:** Identifies bracketed placeholders and fills them with appropriate information from sources.
+
+**How it was configured:**
+
+- **Rule:** Fill-in-the-blank
+- **Instructions:** "Fill in the CSR type (Final/Interim/Abbreviated/Amended) and the synopsis date exactly as per document control/title page metadata; do not add any additional synopsis content."
+- **Template Text:** "The synopsis to «Final or Interim or Abbreviated or Amended» Clinical Study Report, dated «DD Month YYYY» is provided as a separate document."
+
+**Why this action for this section:** The sentence is already written, the only job is replacing two placeholders with the right values from study metadata. The instructions also tell the AI not to add any extra content, keeping it tightly scoped to just filling in the blanks.
+
+## Summarize TFLs
+
+**What it does:** Inserts a table from exported table documents along with corresponding summary text. Use this when you need both a data table and narrative explanation. Must be used with a List of Tables context file.
+
+**How it was configured:**
+
+- **Rule:** Summarize TFLs
+- **Instructions:** "Insert the primary AE-incidence outputs (typically TEAE incidence by treatment group, presented by system organ class and preferred term with counts and percentages). Include the main incidence table(s) that are authoritative for this section; do not recreate calculations in text. Write a brief narrative interpreting the AE incidence tables: overall AE incidence per treatment group, most frequent SOC/PTs, and any notable imbalances. If available in the same outputs, also summarize breakdowns by severity/grade and by treatment-related and/or treatment-emergent status; avoid exhaustive PT-by-PT repetition."
+
+**Why this action for this section:** This section needs both the actual data tables and a narrative that explains them. The Summarize TFLs action does both in one step, it pulls the tables from the statistical output files and writes the summary text alongside them. The instructions tell the AI to insert the tables as-is (no recalculating numbers in prose) and to interpret the big picture without listing every single preferred term.
