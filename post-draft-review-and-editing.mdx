@@ -3,40 +3,52 @@ title: "Post-Draft Review and Editing"
 description: "Review, refine, and collaborate on generated documents using the Artos editor."
 ---
 
-Once document generation is complete, it becomes available for review and edits in your workspace. The document viewer sidebar has two tabs:
+# Sidebar Tabs
+
+Once document generation is complete, it becomes available for review and edits in your workspace. The document viewer sidebar has two tabs at the top:
 
 | Tab | What it's for |
 | --- | --- |
-| Details | Document Review: View information about the document (template used, source files, generation details) |
-| Edit | Document Editing: Make changes to selected content |
+| **Details** | **Document Review:** View information about the document (template used, source files, generation details) |
+| **Edit** | **Document Editing:** Make changes to selected content |
 
-## Document Review
+# Document Review
 
-### Section Selector
+## Section Selector
 
-At the top of the **Details** tab, a dropdown shows which section you're viewing. Selecting text in the document will automatically update the Details tab to show the decision trail for that section.
+At the top of the **Details** tab, you'll see a dropdown that shows which section you're viewing.
 
-### Decision Trail
+**How it works:**
 
-Highlighting any text while reviewing a generated document surfaces the template-configured actions that contributed to drafting that passage. Highlight a minimum of 5 words.
+- The dropdown shows the current section
+- Click the dropdown to navigate to a different section
+- Or, as the hint says: _"select text directly in the document to see sources"_
+
+**Tip:** Selecting text in the document will automatically update the Details tab to show decision trails for that section.
+
+## Decision Trail
+
+Highlighting any text while reviewing a generated document surfaces the template-configured actions that contributed to drafting that passage, ranked in order of relevance. We suggest highlighting a minimum of 5 words.
 
 ### Action Cards
 
-Each action card shows:
+Each **action card** has the following details:
 
-- **Indicators** for whether Expandable and Removable toggles are on
-- **Action Details panel:** User instructions configured for the action
-- **Decision Notes panel:** The rationale behind each decision:
-  - **Completed** — Instructions fully followed
-  - **Incomplete** — Instructions partially followed, with explanation
-  - **Missing** — Instructions could not be followed due to missing source data
-- **Source Selections panel:** Excerpts from source documents referenced when drafting the passage. Click an excerpt to open its source document.
-- **Discrepancies panel:** Instances where configured instructions conflict with source document content
-- **Style Guide panel:** Details on formatting instructions applied during generation
+- Indicators showing whether the **Expandable** and **Removable** toggles are on for that action. When enabled, Expandable allows the system to add additional instances of the action as needed during generation; Removable allows the system to skip the action if the content isn't applicable for the document.
+- **Action Details** panel: User instructions configured for the action, along with any template text it will insert directly into the document.
+- **Decision Notes** panel: The rationale behind each decision made during draft generation — covering why certain choices were made, why some instructions could not be fully followed, and what information was missing to do so.
+  - **Completed** — Instructions that were fully followed during draft generation. The source data contained all the information needed to carry out the instruction exactly as configured.
+  - **Incomplete** — Instructions that could only be partially followed, with an explanation of what was done and why the instruction could not be completely fulfilled.
+  - **Missing** — Instructions that could not be followed because the source data was missing required information, along with details of what was expected but not found.
+- **Source Selections** panel: A list of excerpts from the uploaded source documents that were referenced when drafting the passage. Clicking a referenced excerpt opens its source document and shows how it informed the generated content under **'Usage'.**
+- **Discrepancies** panel: Instances where the configured instructions conflict with the content found in the uploaded source documents.
+- **Style Guide** panel: Details on formatting instructions applied during generation — showing where instructions were successfully followed, and where they could not be applied and the reason why.
 
 ### Default Action Card Behaviour
 
-| Action Type | Panel Expanded by Default |
+By default, one panel is expanded per action, depending on the action type. The remaining panels are collapsed and can be opened by clicking on them.
+
+| **Action Type** | **Panel Expanded by default** |
 | --- | --- |
 | Use Template Text | Action Details |
 | Fill in the Blank | Source Selections |
@@ -48,48 +60,78 @@ Each action card shows:
 
 ### Best Practices
 
-- Use **Source Selections** to verify the right excerpts were referenced
-- Check **Decision Notes** when a passage doesn't read as expected
-- Review **Discrepancies** to identify where your instructions and source content conflict — use them as a signal to tighten instruction wording
-- Use **Style Guide** to confirm formatting instructions were applied correctly
+- Use the **Source Selections** panel to verify that the right excerpts were referenced. If an unexpected source was used, or a relevant one was missed, this is where you will spot it.
+- When a passage in the generated document doesn't read as expected, highlight it and check the **Decision Notes** panel to understand the rationale behind the choices made.
+- If the **Discrepancies** panel shows a count greater than zero, review each instance to understand where your instructions and source content are in conflict. Discrepancies often arise because the system reads instructions literally — nuance, implied meaning, or assumptions that feel obvious to a human can be lost in translation. For instructions to be followed reliably, they need to be logically sound, unambiguous, and workable given what is actually present in the source documents. Use the discrepancies identified here as a signal to revisit and tighten the wording of your instructions.
+- Use the **Style Guide** panel to confirm formatting instructions were applied correctly, and to identify any that could not be followed so you can address them before the next generation.
 
-## Document Editing
+## Open Template
 
-Make corrections and refine output in the **Edit** tab. Updates to one section will not affect the rest of the document.
+The sidebar has an **Open Template** button at the bottom that loads the source Word template alongside the generated document. Use it to verify that the generated content matches what the template specified for that section.
+
+# Document Editing
+
+After Artos generates your draft, you can make corrections and refine the output in the **Edit** tab, to get the document to final quality. Updates to one section will not affect the formatting or content of the rest of the document.
 
 The Edit tab has two sub-tabs:
 
 | Sub-tab | What it does |
 | --- | --- |
-| Content | Edit the text content (length, tense, custom changes) |
-| Source Document | Change which source document is used for the selected section |
+| **Content** | Edit the text content (length, tense, custom changes) |
+| **Source Document** | Change which source document is used for the selected section |
 
-### Select and Regenerate
+## Select and Regenerate
 
-Select any text in the **Content** sub-tab and ask Artos to rewrite it. Provide specific instructions under **Custom Instructions**, or choose from **Quick Actions** for length and tense changes.
+Select any text in the document, while inside the **Content sub-tab** and ask Artos to rewrite it. You can provide specific instructions about what you want changed under **'Custom Instructions'** — different emphasis, a different level of detail, a different structure, or a correction. You can also choose from among the **'Quick Actions'** if you need to make changes to length and/or the tense of the selected text.
 
-<Note>
-  If selecting a table, highlight the whole table. If selecting text, highlight more than 5 words.
-</Note>
+This is useful when the draft is close but not quite right. Rather than rewriting manually, you can tell Artos what to adjust and let it regenerate that portion.
 
-**Length:**
+- If selecting a table, highlight the whole table
+- If selecting text, highlight more than 5 words
+
+### Quick Actions
+
+1. **Length**: Adjust how long the selected content should be
 
 | Button | What it does |
 | --- | --- |
-| Longer | Regenerates with more detail and explanation |
-| Shorter | Regenerates to be more concise |
+| **"Longer"** | Regenerates the selected text with more detail and explanation |
+| **"Shorter"** | Regenerates the selected text to be more concise |
 
-**Tense:**
+**When to use:**
 
-| Button | When to use |
+- Use **LONGER** when a section needs more depth, context, or supporting detail
+- Use **SHORTER** when content is too verbose or needs to fit space constraints
+
+2. **Tense:** Change the verb tense of the selected content:
+
+| Button | What it does |
 | --- | --- |
-| Present | Protocol documents, ongoing studies |
-| Past | Clinical study reports, completed studies |
-| Future | Planned studies, protocol amendments |
+| **Present** | Converts text to present tense ("The study evaluates...") |
+| **Past** | Converts text to past tense ("The study evaluated...") |
+| **Future** | Converts text to future tense ("The study will evaluate...") |
 
-### Direct Editing
+**When to use:**
 
-You can make changes directly in the document — rewrite text, adjust formatting, add or remove content — just as you would in any word processor. Direct edits do not affect your template.
+- **Present** → Protocol documents, ongoing studies
+- **Past** → Clinical study reports, completed studies
+- **Future** → Planned studies, protocol amendments
+
+**Example:**
+
+| Original | After "Past" | After "Future" |
+| --- | --- | --- |
+| "The study evaluates safety and efficacy" | "The study evaluated safety and efficacy" | "The study will evaluate safety and efficacy" |
+
+### Custom Instructions
+
+Below Quick Actions, you'll find the **Custom Instructions** section. This is where you can write specific instructions for changes that aren't covered by Quick Actions.
+
+**Once you're done with your edits, click the "Regenerate Content" button at the bottom of the editor.**
+
+## Direct Editing
+
+The document editor is a collaborative editing environment. You can make changes directly in the document, rewrite text, adjust formatting, add or remove content, just as you would in any word processor. Direct edits are saved in the document and do not affect your template.
 
 ### When to Edit Directly vs. When to Regenerate
 
@@ -97,47 +139,97 @@ You can make changes directly in the document — rewrite text, adjust formattin
 | --- | --- |
 | A few words or sentences need tweaking | Edit directly |
 | A paragraph needs a different emphasis or structure | Highlight and regenerate with instructions |
-| A section used the wrong source or is missing key content | Regenerate the section |
+| A section used the wrong source or is missing key content | Regenerate the section (after adjusting sources if needed) |
+| The output is close but you want stylistic changes | Highlight and regenerate with style-specific instructions |
 | You need to add content that doesn't exist in any source | Edit directly |
-| A table has incorrect data | Regenerate, or edit the table directly if the fix is small |
+| A table has incorrect data | Regenerate the section, or edit the table directly if the fix is small |
+
+**Examples:**
+
+- "Make this more concise - limit to one paragraph"
+- "Include the confidence intervals for each endpoint"
+- "Rewrite this to emphasize the safety profile rather than efficacy"
+- "This section should focus on the intent-to-treat population, not per-protocol"
 
 ## Inserting Content
 
-You can insert tables and reports directly into the document.
+You can also directly insert tables and reports into the document.
+
+<Tip>
+  Source files are automatically classified as tables or nonclinical reports during ingestion. Only files classified into one of these types appear in the Add Content list.
+</Tip>
+
+**Steps:**
 
 1. Click your cursor into the document where you want to insert content
-2. Navigate to the **"Add Content"** button in the sidebar
+2. In the Artos sidebar, navigate to the "Add Content" button
 3. Select the table or non-clinical report you want to add
-4. Click **"Insert Table"** or **"Insert Report"**
+4. Click "Insert Table" or "Insert Report" to insert the content
 
-<Note>
-  Source files are automatically classified as tables or nonclinical reports during ingestion. Only files classified into one of these types appear in the Add Content list.
-</Note>
+| Button | What it does |
+| --- | --- |
+| **\+ Add Content** | Opens options to insert tables, reports, or other content at the cursor position |
 
 ## Collaborative Editing
 
-Artos supports real-time collaborative editing.
+Artos's document editor supports real-time collaborative editing, allowing multiple users to work on the same document simultaneously.
 
-| Mode | What it does |
-| --- | --- |
-| Fast mode | Changes are synced and visible to all collaborators instantly as you type |
-| Strict mode | Your changes are saved locally and only shared when you explicitly save. Competing edits prompt a review when you save. |
+**Seeing who's in the document**
 
-You can also turn on **tracked changes** to record every edit with the author's name and timestamp, and leave **inline comments** to flag things for specific collaborators.
+When another user is active in the document, you can see their cursor position and name in real time, so you always know where someone else is working.
+
+**Co-editing modes**
+
+You can choose between two modes depending on how you prefer to collaborate:
+
+- **Fast mode** — changes are synced and visible to all collaborators instantly as you type. Best for active, back-and-forth collaboration.
+- **Strict mode** — your changes are saved locally and only shared with other collaborators when you explicitly save. Best for when you want to work through a section without interruption before sharing your edits.
+
+**Conflict resolution**
+
+In strict mode, if two users have edited the same part of the document, you will be prompted to review the competing change when you save — you can choose to accept or reject it. In fast mode, the most recent edit takes precedence.
+
+**Tracked changes**
+
+You can turn on tracked changes to record every edit with the author's name and timestamp. Any collaborator with the appropriate permissions can then accept or reject individual changes during review.
+
+**Comments and mentions**
+
+You can leave inline comments on any part of the document. To flag something for a specific collaborator's attention, mention them by name in the comment and they will be notified.
 
 ## The Editing Mindset
 
-The system is designed to give you more content than you may need. The preferred workflow is to let Artos be comprehensive, then trim.
+The system is designed to give you more content than you may need. The preferred workflow is to let Artos be comprehensive, then trim. It's easier to cut a thorough draft down than to chase missing information.
 
 When reviewing your draft, focus on three questions:
 
-1. **Is the content correct?** Does the information match your sources?
-2. **Is the content complete?** Is anything missing? Did Artos pull from the right sources?
-3. **Is the content presented the way you want?** Is the structure, emphasis, and level of detail appropriate?
+1. **Is the content correct?** Does the information match your sources? Are the data points accurate?
+2. **Is the content complete?** Is anything missing that should be there? Did Artos pull from the right sources?
+3. **Is the content presented the way you want?** Is the structure, emphasis, and level of detail appropriate for this document?
 
-If the answer to #1 or #2 is no, regenerating is usually the fastest path. If the answer to #3 is no, highlight-and-regenerate or direct editing are your best options.
+If the answer to #1 or #2 is no, regenerating (possibly with different sources or instructions) is usually the fastest path. If the answer to #3 is no, highlight-and-regenerate or direct editing are your best options.
+
+## Reviewing Edits
+
+You can change the document editor to "Reviewing" mode to view your tracked changes.
+
+## Source Document Tab
+
+The **Source Document** sub-tab shows which source files were used to generate the document.
 
 ## Template-Level vs. Document-Level Changes
+
+As you edit, you'll encounter things you want to fix. The key question is whether the fix should apply to this document only or to all future documents.
+
+|  | Template-Level Changes | Document-Level Changes |
+| --- | --- | --- |
+| **What it is** | Changes to your Artos template configuration | Changes made to this specific document after the draft is created |
+| **What it affects** | Every document generated from that template going forward | Only this document |
+| **When to use it** | When you've identified something that should always be done a certain way: a structural improvement, a regulatory requirement, a consistent formatting standard | When something is unique to this document: a compound-specific concern, a reviewer's one-time request, data that's unusual for this study |
+
+**When something needs fixing, ask: "Will I want this same change in the next document?"**
+
+If yes, update the template. If no, fix it in the document.
 
 | Situation | Action |
 | --- | --- |
@@ -150,8 +242,18 @@ If the answer to #1 or #2 is no, regenerating is usually the fastest path. If th
 
 ## Replacing the Document with a Local Copy
 
-You can replace the current document with a locally edited copy (e.g., edited in Word) directly from the document viewer.
+You can replace the current document with a locally edited copy directly from the document viewer. This is useful when edits made outside the platform — for example, in Word — need to be brought back into Artos.
+
+**How it works:**
+
+- Uploading a local file replaces the current document with the uploaded copy. The new file **directly writes over the current document**.
+- The content in the sidebar (Decision Trail, Source Selections, etc.) continues to reference the **originally generated** document, not the uploaded version.
+- Once replaced, the document can be edited as usual from the **Edit** tab in the sidebar.
 
 <Warning>
   There is currently no way to undo a replacement from the UI. Confirm you have the right document open before uploading. If a replacement needs to be reverted, contact support.
 </Warning>
+
+<Note>
+  This functionality will be deprecated in a future release in favour of pushing edited versions back from the Word Add-In. See the Word Add-In User Guide for details on that workflow.
+</Note>
