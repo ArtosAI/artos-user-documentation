@@ -3,7 +3,7 @@ title: "Template Configuration"
 description: "Configure actions, parameters, and instructions to fine-tune how Artos drafts each section."
 ---
 
-### Why Configure Your Artos template?
+## Why Configure Your Artos template?
 
 When you upload a Word template and example files, Artos analyzes them and automatically generates an Artos template. The auto-generated template is designed to produce a strong first draft with minimal configuration needed. In most cases, the system reliably selects the right actions, writes sensible instructions, and structures each section based on your inputs.
 
@@ -168,20 +168,79 @@ Actions are automatically configured when the Artos template is generated, based
 
 ### Available Actions
 
-| **Action** | **What it does** | **Notes** |
-| --- | --- | --- |
-| **Copy from Source** | Extracts content from a source and places it in the section with no modification | Copies one "chunk" of text at a time. A chunk is text between two headings (ex. text under Section 4 but before Section 4.1). |
-| **Copy & Modify from Source** | Extracts content from a source with the specific modifications you want (ex. verb tense changes) | Same chunk behavior as Copy/Paste. |
-| **Summarize from Source** | Summarizes information from a source into a concise summary appropriate for the section | Summarizes one chunk of text. |
-| **Use Template Text** | Inserts predefined template text into the document | The text to be inserted is read from your Word file and can be modified in the configuration panel. |
-| **Use Template Table** | Populates a table whose structure is defined in the MS Word template | Uses the table structure from your template and fills it in. Searches sources as needed to complete the table. |
-| **Create Intra-Document Summary** | Summarizes content from other sections within the same document being drafted | Designed for introductions, conclusions, and executive summaries. |
-| **Create Intra-Document Table** | Creates a table based on data from other sections within the same document | Same as above, but outputs content in a tabular format. |
-| **Fill in the Blank** | Identifies bracketed placeholders and fills them with appropriate information from sources | Inserts content into placeholders in template text. |
-| **Summarize NCR** | Inserts a subsection containing a short description of a nonclinical report | Best if used with a Content Plan. Typically for IBs, NCOs, and documents generated from individual nonclinical reports. |
-| **Generate from Listings** | Inserts a patient narrative for an individual subject from a listings document | Typically for Patient Narratives. Automatically repeats for every unique subject ID. |
-| **Copy and Update** | Takes a prior version of a section as the base and updates it for the current reporting period, preserving wording and structure and rewriting only what the sources confirm has changed. | Typically for sections that evolve incrementally across reporting cycles, such as those in periodic safety reports. |
-| **Table and Summary Placeholder** | Inserts a table from a TFL (Tables, Figures, and Listings) source along with a narrative summary of that table, producing both the table and interpretive commentary in a single operation. | For sections that present TFL data alongside narrative — most commonly efficacy, safety, and PK results in CSRs. Requires a List of Tables context file to identify which tables go where. |
+<AccordionGroup>
+  <Accordion title="Copy from Source">
+    Extracts content from a source and places it in the section with no modification.
+
+    **Notes:** Copies one "chunk" of text at a time. A chunk is text between two headings (ex. text under Section 4 but before Section 4.1).
+  </Accordion>
+
+  <Accordion title="Copy & Modify from Source">
+    Extracts content from a source with the specific modifications you want (ex. verb tense changes).
+
+    **Notes:** Same chunk behavior as Copy/Paste.
+  </Accordion>
+
+  <Accordion title="Summarize from Source">
+    Summarizes information from a source into a concise summary appropriate for the section.
+
+    **Notes:** Summarizes one chunk of text.
+  </Accordion>
+
+  <Accordion title="Use Template Text">
+    Inserts predefined template text into the document.
+
+    **Notes:** The text to be inserted is read from your Word file and can be modified in the configuration panel.
+  </Accordion>
+
+  <Accordion title="Use Template Table">
+    Populates a table whose structure is defined in the MS Word template.
+
+    **Notes:** Uses the table structure from your template and fills it in. Searches sources as needed to complete the table.
+  </Accordion>
+
+  <Accordion title="Create Intra-Document Summary">
+    Summarizes content from other sections within the same document being drafted.
+
+    **Notes:** Designed for introductions, conclusions, and executive summaries.
+  </Accordion>
+
+  <Accordion title="Create Intra-Document Table">
+    Creates a table based on data from other sections within the same document.
+
+    **Notes:** Same as above, but outputs content in a tabular format.
+  </Accordion>
+
+  <Accordion title="Fill in the Blank">
+    Identifies bracketed placeholders and fills them with appropriate information from sources.
+
+    **Notes:** Inserts content into placeholders in template text.
+  </Accordion>
+
+  <Accordion title="Summarize NCR">
+    Inserts a subsection containing a short description of a nonclinical report.
+
+    **Notes:** Best if used with a Content Plan. Typically for IBs, NCOs, and documents generated from individual nonclinical reports.
+  </Accordion>
+
+  <Accordion title="Generate from Listings">
+    Inserts a patient narrative for an individual subject from a listings document.
+
+    **Notes:** Typically for Patient Narratives. Automatically repeats for every unique subject ID.
+  </Accordion>
+
+  <Accordion title="Copy and Update">
+    Takes a prior version of a section as the base and updates it for the current reporting period, preserving wording and structure and rewriting only what the sources confirm has changed.
+
+    **Notes:** Typically for sections that evolve incrementally across reporting cycles, such as those in periodic safety reports.
+  </Accordion>
+
+  <Accordion title="Table and Summary Placeholder">
+    Inserts a table from a TFL (Tables, Figures, and Listings) source along with a narrative summary of that table, producing both the table and interpretive commentary in a single operation.
+
+    **Notes:** For sections that present TFL data alongside narrative — most commonly efficacy, safety, and PK results in CSRs. Requires a List of Tables context file to identify which tables go where.
+  </Accordion>
+</AccordionGroup>
 
 ### Managing Actions
 
@@ -201,27 +260,23 @@ Actions are automatically configured when the Artos template is generated, based
 
 ### Action Parameters
 
-<Info>
-  **Removable (TOGGLE)**
+<AccordionGroup>
+  <Accordion title="Removable (Toggle)">
+    When an action is marked as removable, Artos can skip it during generation if the content isn't applicable for this particular document. This is especially useful for Fill in the Blank actions in sections with conditional content, where some placeholders may be relevant for one study but not another.
 
-  When an action is marked as removable, Artos can skip it during generation if the content isn't applicable for this particular document. This is especially useful for Fill in the Blank actions in sections with conditional content, where some placeholders may be relevant for one study but not another.
+    For example, if your template has three Fill in the Blank actions for optional protocol elements (ex. an adaptive design clause, a sentinel dosing clause, and a data monitoring committee clause), marking each as removable lets Artos omit the ones that don't apply based on the source data. Without the removable toggle, Artos would attempt to fill every placeholder even when the content doesn't exist in the sources.
+  </Accordion>
 
-  For example, if your template has three Fill in the Blank actions for optional protocol elements (ex.  an adaptive design clause, a sentinel dosing clause, and a data monitoring committee clause), marking each as removable lets Artos omit the ones that don't apply based on the source data. Without the removable toggle, Artos would attempt to fill every placeholder even when the content doesn't exist in the sources.
-</Info>
+  <Accordion title="Expandable (Toggle)">
+    When an action is marked as expandable, the system can add additional instances of that action type as needed during generation. This is useful when the number of content items isn't known in advance, for example, when a section might need one summary paragraph or five depending on the source data.
 
-<Info>
-  **Expandable (TOGGLE)**
+    The user can prompt the system to expand the action, and Artos will generate additional action executions to cover the content. This gives you a baseline configuration that can scale up when the sources demand it.
+  </Accordion>
 
-  When an action is marked as expandable, the system can add additional instances of that action type as needed during generation. This is useful when the number of content items isn't known in advance, for example, when a section might need one summary paragraph or five depending on the source data.
-
-  The user can prompt the system to expand the action, and Artos will generate additional action executions to cover the content. This gives you a baseline configuration that can scale up when the sources demand it.
-</Info>
-
-<Info>
-  **Action Styles**
-
-  Action Styles let you set style formatting overrides for the content generated by a specific action — including text style, text colour, and background colour.
-</Info>
+  <Accordion title="Action Styles">
+    Action Styles let you set style formatting overrides for the content generated by a specific action — including text style, text colour, and background colour.
+  </Accordion>
+</AccordionGroup>
 
 <Tip>
   **Expandable v/s Repeat Section**
@@ -320,93 +375,141 @@ If a table in your Word template wasn't picked up by Artos during template gener
 
 ### Step by Step
 
-1. **Open a section.** Click on any section in the left panel to open its configuration.
-2. **Check the Content toggle.** Should Artos generate content for this section? If it requires manual completion, toggle it off.
-3. **Review the assigned actions.** Are the actions appropriate for what this section needs?
+<Steps>
+  <Step title="Open a section">
+    Click on any section in the left panel to open its configuration.
+  </Step>
+  <Step title="Check the Content toggle">
+    Should Artos generate content for this section? If it requires manual completion, toggle it off.
+  </Step>
+  <Step title="Review the assigned actions">
+    Are the actions appropriate for what this section needs?
 
-| **If...** | **Then...** |
-| --- | --- |
-| Wrong action type | Change the action from the dropdown |
-| Missing action | Click "\+ New action" to add one |
-| Extra action not needed | Click delete (trash icon) to remove it |
-| Wrong order | Drag to reorder (actions execute top to bottom) |
-
-**4. Refine action instructions.** For each action, check: Is the instruction specific enough? Does it specify what content to look for? Does it describe how the output should be presented? Are there any constraints to add?
-
-**5. Configure Repeat Section (if needed).** Does this section need to generate multiple subsections based on your data? Enable it and write clear instructions on how to repeat.
-
-**6. Add Custom Instructions (if needed).** Is there section-level guidance that applies across all actions?
-
-**7. Test with real sources.** Generate a document using actual source files. Review the output to see if your configuration produces the results you want.
-
-**8. Iterate.** Based on the output, return to any section that needs adjustment. Configuration is an iterative process, generate → review → adjust → repeat.
+    | **If...** | **Then...** |
+    | --- | --- |
+    | Wrong action type | Change the action from the dropdown |
+    | Missing action | Click "\+ New action" to add one |
+    | Extra action not needed | Click delete (trash icon) to remove it |
+    | Wrong order | Drag to reorder (actions execute top to bottom) |
+  </Step>
+  <Step title="Refine action instructions">
+    For each action, check: Is the instruction specific enough? Does it specify what content to look for? Does it describe how the output should be presented? Are there any constraints to add?
+  </Step>
+  <Step title="Configure Repeat Section (if needed)">
+    Does this section need to generate multiple subsections based on your data? Enable it and write clear instructions on how to repeat.
+  </Step>
+  <Step title="Add Custom Instructions (if needed)">
+    Is there section-level guidance that applies across all actions?
+  </Step>
+  <Step title="Test with real sources">
+    Generate a document using actual source files. Review the output to see if your configuration produces the results you want.
+  </Step>
+  <Step title="Iterate">
+    Based on the output, return to any section that needs adjustment. Configuration is an iterative process, generate → review → adjust → repeat.
+  </Step>
+</Steps>
 
 ### Using Versions for Faster Template Configuration
 
-**Getting Started**
+<Steps>
+  <Step title="Get started">
+    Before you begin, have your source documents ready — these are the files Artos will use to generate a preview of each section as you set it up.
+  </Step>
+  <Step title="Set up your template">
+    Open your template and begin setting up each section as usual. All changes are saved automatically as you go.
 
-Before you begin, have your source documents ready — these are the files Artos will use to generate a preview of each section as you set it up.
+    When you are ready to see how a section looks, click **Generate Output**. This will generate a draft of that section only, and save your current settings as a new version. You will be asked to confirm a name for the output document and choose a workspace to save it to. The document name is pre-filled but you can edit it. Once done, click **Next** to proceed.
 
-**Setting up your template**
+    <Frame caption="When on the Current Version, click on Generate Output to generate a preview of the current section configurations.">
+      ![Image](/images/image-9.png)
+    </Frame>
 
-- Open your template and begin setting up each section as usual. All changes are saved automatically as you go.
-- When you are ready to see how a section looks, click **Generate Output**. This will generate a draft of that section only, and save your current settings as a new version. You will be asked to confirm a name for the output document and choose a workspace to save it to. The document name is pre-filled but you can edit it. Once done, click **Next** to proceed.
+    Source documents are required for generating previews with 'Faster Template Configuration'. Either choose from existing uploaded source documents or upload new documents as a next step.
 
-<Frame caption="When on the Current Version, click on Generate Output to generate a preview of the current section configurations.">
-  ![Image](/images/image-9.png)
-</Frame>
+    Once the draft has been generated, click on **View Output** to open the generated draft alongside your template so you can review both at the same time.
 
-- Source documents are required for generating previews with 'Faster Template Configuration'. Either choose from existing uploaded source documents or upload new documents as a next step.
-- Once the draft has been generated, click on **View Output** to open the generated draft alongside your template so you can review both at the same time.
+    <Frame>
+      ![Image](/images/image-10.png)
+    </Frame>
+  </Step>
+  <Step title="Review your output">
+    Your draft will go through a few stages before it is ready — you will see the status update automatically:
 
-<Frame>
-  ![Image](/images/image-10.png)
-</Frame>
+    - **Pending** — your request is in the queue
+    - **Ingesting** — your source documents are being processed _(this only happens once per document. Artos will remember them for future runs)_
+    - **Generating** — Artos is drafting the section
+    - **Ready** — your draft is ready to review
 
-**Reviewing your output**
+    Once ready, review the draft and decide whether to continue refining the section or move on. You can always go back to any previously saved version using the dropdown.
 
-- Your draft will go through a few stages before it is ready — you will see the status update automatically:
-  - **Pending** — your request is in the queue
-  - **Ingesting** — your source documents are being processed _(this only happens once per document. Artos will remember them for future runs)_
-  - **Generating** — Artos is drafting the section
-  - **Ready** — your draft is ready to review
-- Once ready, review the draft and decide whether to continue refining the section or move on. You can always go back to any previously saved version using the dropdown.
+    <Frame>
+      ![Image](/images/image-11.png)
+    </Frame>
 
-<Frame>
-  ![Image](/images/image-11.png)
-</Frame>
+    To understand how Artos constructed the draft — which sources were used and why — click the **View Decision Trail** button below the document. That would lead you to the Artos Document Review Page, where you can make reviews and edits on your document. From there, click the Back button at any time to return to the template configuration.
 
-- To understand how Artos constructed the draft — which sources were used and why — click the **View Decision Trail** button below the document. That would lead you to the Artos Document Review Page, where you can make reviews and edits on your document. From there, click the ← **Back** button at any time to return to the template configuration.
+    <Frame>
+      ![Image](/images/image-12.png)
+    </Frame>
+  </Step>
+  <Step title="Build your final template">
+    Work through each section at your own pace. Once you are happy with a version for each section, select your preferred version per section and save the template version.
 
-<Frame>
-  ![Image](/images/image-12.png)
-</Frame>
+    Use your saved template version to generate a full document as usual.
 
-**Building your final template**
+    <Frame caption="Click on Save a Template Version, on the header, when you wish to save a version for the entire template">
+      ![Image](/images/image-13.png)
+    </Frame>
 
-1. Work through each section at your own pace. Once you are happy with a version for each section, select your preferred version per section and save the template version.
-2. Use your saved template version to generate a full document as usual.
-
-<Frame caption="Click on Save a Template Version, on the header, when you wish to save a version for the entire template">
-  ![Image](/images/image-13.png)
-</Frame>
-
-<Frame caption="You can select between existing versions for each section before you save a version for the entire template.">
-  ![Image](/images/image-14.png)
-</Frame>
+    <Frame caption="You can select between existing versions for each section before you save a version for the entire template.">
+      ![Image](/images/image-14.png)
+    </Frame>
+  </Step>
+</Steps>
 
 ## Best Practices
 
-1. **Start with Artos's suggestions.** The auto-generated template configurations are designed to be close. Review before changing — it's often right.
-2. **Iterate in small steps.** Make few changes at a time and check the impact before stacking more — easier to see what's working, and easier to roll back if something regresses. See **Using Versions for Faster Template Configuration** for the version-based workflow that supports this.
-3. **Be specific in your instructions.** Vague instructions produce inconsistent results. Tell the system what content to look for, how to present it, and what constraints to follow.
-4. **Use Custom Instructions for section-wide requirements.** Don't repeat the same guidance in every action — put it in Custom Instructions once.
-5. **Test with real sources.** The only way to know if your configuration works is to generate a document and review the output.
-6. **Iterate with versions.** Generate → review → adjust → repeat. Configuration improves over time as you see what the system produces and refine accordingly.
-7. **Prefer comprehensive output over selective output.** It's easier to trim a draft that has too much than to chase down missing information. If you're unsure, instruct the system to be thorough and let the writer cut it down.
-8. **Configure for the general case.** This template will be used for every future document of this type. Make choices that work across studies, not just the one in front of you.
-9. **Document your customizations.** Keep notes on why you configured something a particular way. Your future self — and the next person to touch this template — will thank you.
-10. **Ask "will I want this in every document?"** When something needs fixing, this is the question that determines whether to update the template or fix it post-draft. If yes, change the template. If no, edit the individual document.
+<AccordionGroup>
+  <Accordion title="Start with Artos's suggestions">
+    The auto-generated template configurations are designed to be close. Review before changing — it's often right.
+  </Accordion>
+
+  <Accordion title="Iterate in small steps">
+    Make few changes at a time and check the impact before stacking more — easier to see what's working, and easier to roll back if something regresses. See **Using Versions for Faster Template Configuration** for the version-based workflow that supports this.
+  </Accordion>
+
+  <Accordion title="Be specific in your instructions">
+    Vague instructions produce inconsistent results. Tell the system what content to look for, how to present it, and what constraints to follow.
+  </Accordion>
+
+  <Accordion title="Use Custom Instructions for section-wide requirements">
+    Don't repeat the same guidance in every action — put it in Custom Instructions once.
+  </Accordion>
+
+  <Accordion title="Test with real sources">
+    The only way to know if your configuration works is to generate a document and review the output.
+  </Accordion>
+
+  <Accordion title="Iterate with versions">
+    Generate → review → adjust → repeat. Configuration improves over time as you see what the system produces and refine accordingly.
+  </Accordion>
+
+  <Accordion title="Prefer comprehensive output over selective output">
+    It's easier to trim a draft that has too much than to chase down missing information. If you're unsure, instruct the system to be thorough and let the writer cut it down.
+  </Accordion>
+
+  <Accordion title="Configure for the general case">
+    This template will be used for every future document of this type. Make choices that work across studies, not just the one in front of you.
+  </Accordion>
+
+  <Accordion title="Document your customizations">
+    Keep notes on why you configured something a particular way. Your future self — and the next person to touch this template — will thank you.
+  </Accordion>
+
+  <Accordion title="Ask whether you will want this in every document">
+    When something needs fixing, this is the question that determines whether to update the template or fix it post-draft. If yes, change the template. If no, edit the individual document.
+  </Accordion>
+</AccordionGroup>
 
 ## Continue Learning...
 
