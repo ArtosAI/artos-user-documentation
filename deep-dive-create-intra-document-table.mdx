@@ -1,0 +1,85 @@
+---
+title: "Create Intra-Document Table"
+description: "Creates a table based on data from other sections within the same document being drafted"
+---
+
+## What It Does
+
+Creates a table based on data from other sections within the same document being drafted. This is the tabular counterpart to Create Intra-Document Summary, instead of producing a narrative, it organizes content from elsewhere in the document into a structured table.
+
+## How It Works
+
+Like Create Intra-Document Summary, this action reads from the document Artos is currently building, not from your uploaded source files. It extracts relevant data points from other generated sections and organizes them into a table format.
+
+**Source is the document itself.** The action pulls data from sections that have already been generated within the same document.
+
+**Depends on other sections being generated first.** Artos handles the sequencing automatically, ensuring the sections this action references are generated before the table is built.
+
+**Output is a table.** The action produces structured tabular content. If you need a narrative summary of document content instead, use Create Intra-Document Summary.
+
+**Table structure:** Unlike Use Template Table (where the table structure comes from your Word template), this action can create a table structure based on your instructions. You can specify what columns to include, how to organize the rows, and what data to present.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Create a summary table" | "Create a table summarizing key efficacy results across all endpoints discussed in the Efficacy Results section. Include columns for: endpoint, analysis population, treatment group, result, p-value, and clinical significance." |
+| "Make a table of findings" | "Create a table of nonclinical findings from the sections above. Include columns for: study type, species, dose levels, duration, key findings, and NOAEL. Order by study type." |
+
+**What makes the strong instructions better:** They specify which sections to draw from, what columns the table should include, and how to organize the data. Since the action is creating a table structure (not filling a pre-existing one), your instruction needs to define the layout.
+
+## Configuration Pattern: Summary Table in Discussion Section
+
+A Discussion section might include a summary table that pulls together key results from earlier sections of the document.
+
+| Component | Configuration |
+| --- | --- |
+| **Action 1** | Create Intra-Document Summary |
+| **Action 1 Instructions** | "Synthesize the efficacy and safety findings into a discussion of the overall benefit-risk profile." |
+| **Action 2** | Create Intra-Document Table |
+| **Action 2 Instructions** | "Create a summary table of primary and secondary endpoint results. Include columns for: endpoint, result, 95% CI, p-value, and clinical interpretation. Pull data from the Efficacy Results section." |
+| **Custom Instructions** | "Present the narrative discussion first, followed by the summary table." |
+
+## Document-Specific Examples
+
+### Clinical Study Report (CSR)
+
+| Section | Instruction |
+| --- | --- |
+| Efficacy Summary Table | "Create a table summarizing all efficacy endpoints described in this document. Columns: Endpoint Name, Endpoint Type (primary/secondary/exploratory), Analysis Population, Statistical Test, Treatment Effect (point estimate, 95% CI), p-value. Order by endpoint type, then as presented in the document." |
+| Safety Summary Table | "Create a table summarizing the key safety findings from this document. Columns: Category (AEs, SAEs, Deaths, Labs, Vitals, ECG), Key Findings, Incidence (Active vs. Placebo), Clinical Significance. Include one row per category." |
+| Study Milestones Table | "Create a table of key study milestones from the information in this document. Columns: Milestone (first patient in, last patient in, last patient last visit, database lock, unblinding), Date." |
+
+### Investigator's Brochure (IB)
+
+| Section | Instruction |
+| --- | --- |
+| Summary of Clinical Studies | "Create a table summarizing all clinical studies described in this IB. Columns: Study Number, Phase, Design, Indication, N Enrolled, Dose Range, Status, Key Findings. Order by phase, then by study number." |
+| Key Safety Findings Summary | "Create a table consolidating key safety findings across all nonclinical and clinical studies in this document. Columns: Finding, Source (nonclinical/clinical), Study, Incidence/Severity, Clinical Relevance." |
+
+### Nonclinical Overview (NCO)
+
+| Section | Instruction |
+| --- | --- |
+| Integrated Nonclinical Summary Table | "Create a table summarizing all nonclinical studies discussed in this document. Columns: Study Type, Study Number, Species, Route, Duration, GLP Status, NOAEL, Key Findings. Order by study type." |
+| Safety Margins Table | "Create a safety margins table from the data in this document. Columns: Species, Study Type, NOAEL (mg/kg), HED (mg/kg), Proposed Clinical Dose (mg/kg), Safety Margin. Calculate margins based on body surface area." |
+
+## When to Use This Action
+
+**Use Create Intra-Document Table when:**
+
+- You need a table that summarizes or reorganizes data from other sections in the document
+- The table content should reflect what's already been generated, not raw source data
+- You need to create a new table structure (not fill an existing one from the Word template)
+
+**Use a different action when:**
+
+- You need to fill a table whose structure is defined in the Word template → use **Use Template Table**
+- You need a narrative summary of document content → use **Create Intra-Document Summary**
+- You need a table from TFL data with narrative → use **Summarize TFLs**
+
+## Tips
+
+- Be explicit about which columns you want. The action creates the table structure from your instructions, so vague instructions lead to unpredictable table layouts.
+- Specify which sections of the document to pull from. "From the Efficacy Results section" is better than "from the document" because it narrows the scope.
+- If you need both a narrative and a table from document content in the same section, use both Create Intra-Document Summary and Create Intra-Document Table, and use Custom Instructions to control the order.

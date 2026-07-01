@@ -31,7 +31,25 @@
         "pages": [
           "template-creation",
           "template-configuration",
-          "sample-template-configuration"
+          "sample-template-configuration",
+          {
+            "group": "Deep-Dive on Actions",
+            "pages": [
+              "deep-dive-on-actions",
+              "deep-dive-use-template-text",
+              "deep-dive-copy-and-update",
+              "deep-dive-fill-in-the-blank",
+              "deep-dive-copy-from-source",
+              "deep-dive-copy-and-modify-from-source",
+              "deep-dive-summarize-from-source",
+              "deep-dive-create-intra-document-summary",
+              "deep-dive-create-intra-document-table",
+              "deep-dive-use-template-table",
+              "deep-dive-table-and-summary-placeholder",
+              "deep-dive-summarize-from-nonclinical-report",
+              "deep-dive-generate-from-listings"
+            ]
+          }
         ]
       },
       {

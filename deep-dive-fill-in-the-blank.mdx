@@ -1,0 +1,62 @@
+---
+title: "Fill in the Blank"
+description: "Fills bracketed placeholders in your Word template with information from source files"
+---
+
+## What It Does
+
+Fills bracketed placeholders in your Word template with information extracted from your source files. The surrounding template text stays exactly as written — only the placeholders get replaced.
+
+## How It Works
+
+This action looks for placeholders in your Word template — typically formatted as `[compound name]`, `[study number]`, `[sponsor name]`, or similar bracketed text — and replaces them with the corresponding information from your source files.
+
+**Template structure is preserved.** The sentences, formatting, and non-placeholder text in your Word template remain unchanged. The action only touches the bracketed fields.
+
+**Source files provide the values.** The action searches your uploaded source files to find the information that should replace each placeholder. Your instruction tells the action what kind of information to look for and where.
+
+**Good for cover pages, headers, and fixed-format sections.** Any section where the structure is fixed but specific values (study number, dates, compound name, sponsor information) need to be populated is a good candidate for Fill in the Blank.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Fill in the blanks" | "Fill in all placeholders using information from the clinical study report. For \[compound name\], use the INN. For \[study number\], use the sponsor protocol number. For \[study dates\], use first patient first visit and last patient last visit dates." |
+| "Complete the cover page" | "Populate all bracketed fields on the cover page. Use the protocol for study title, investigational product name, and sponsor information. Use the CSR for study dates and subject numbers." |
+
+## Document-Specific Examples
+
+### Clinical Study Report (CSR)
+
+| Section | Instruction |
+| --- | --- |
+| Title Page | "Fill in all placeholders: \[study title\] from the protocol, \[compound name\] as the INN, \[study number\] as the sponsor protocol number, \[phase\], \[indication\], \[sponsor name and address\], \[study dates\] as first and last patient dates." |
+| Abbreviations | "Fill in \[compound name\] with the INN and \[study number\] with the sponsor protocol number as they appear throughout the abbreviations list." |
+
+### Investigator's Brochure (IB)
+
+| Section | Instruction |
+| --- | --- |
+| Cover Page | "Populate \[compound name\], \[development phase\], \[edition number\], \[date\], and \[sponsor name and address\] from the source documents." |
+
+### Informed Consent Form (ICF)
+
+| Section | Instruction |
+| --- | --- |
+| Header | "Fill in \[study title\], \[protocol number\], \[sponsor name\], \[version number\], and \[date\] from the protocol." |
+| Contact Information | "Fill in \[investigator name\], \[site address\], \[phone number\], and \[IRB/IEC contact information\] from the site documentation." |
+
+## When to Use This Action
+
+**Use Fill in the Blank when:**
+
+- The section has a fixed structure with specific fields that need to be populated
+- Placeholders are formatted as bracketed text in the Word template
+- The surrounding text should remain exactly as written in the template
+- You're populating cover pages, headers, or standardized sections with study-specific values
+
+**Use a different action when:**
+
+- The section needs to be written from scratch based on source data → use **Summarize from Source** or **Copy from Source**
+- The section should use the template text exactly as-is with no source data → use **Use Template Text**
+- The content is a full table that needs to be populated → use **Use Template Table**
