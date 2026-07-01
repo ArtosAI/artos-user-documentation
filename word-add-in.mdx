@@ -1,3 +1,262 @@
 ---
 title: "Word Add-In"
 ---
+
+## Overview
+
+The Artos Word Add-In brings AI-assisted document editing directly into Microsoft Word. Rather than switching between platforms, you can generate content, edit selected text, insert tables and summaries and chat with an AI assistant that has full context of the document you're working on, all without leaving Word.
+
+The add-in is best used for post-draft tasks: refining content, updating tables and making targeted edits to sections that need adjustment.
+
+## Getting Started
+
+### Installing the Add-In
+
+The Artos Word Add-In is available through Microsoft AppSource or via a direct installation link provided by your organization. Once installed, you'll find it in the Word ribbon under the **Home** or **Insert** tab, depending on your setup.
+
+### Logging In
+
+How you log in depends on how your organisation has set up the Artos Word Add-In.
+
+**Standard Process**
+
+1. Open the add-in panel in Word.
+2. You'll be prompted to generate an API key from your Artos account. Follow the on screen instructions to create a new API key, and copy it.
+3. Paste the API key into the add-in and confirm. You are now logged in and ready to use the add-in.
+
+**SSO (Single Sign-On)**
+
+If your organisation has SSO configured, you will see a **Sign In with SSO** option.
+
+1. Open the add-in panel in Word.
+2. Click **Sign In with SSO**.
+3. You will be redirected to your organisation's sign-in page. Once authenticated, you will be redirected back to the add-in.
+
+**Switching Accounts**
+
+If you ever need to switch accounts, click **Log Out** in the add-in panel and log back in with the new account.
+
+### Loading a Document
+
+After logging in, the first thing you need to do is load a document. This gives the add-in the context it needs to assist you.
+
+On the Artos add-in panel, you'll be prompted to choose between two modes:
+
+**Platform Documents** Browse and open a document that was generated on the Artos platform.
+
+<Tip>
+  Please note that a platform document can only be opened on top of a new Word document. If a document is already open in Word, you will be prompted to open a new document and try again.
+</Tip>
+
+**Use Current Document** Load the Word document you currently have open.
+
+Once your document loads, a new chat session begins and the add-in is ready to use.
+
+### Document Locks
+
+Platform Documents can only be edited in the word add-in if they are not being edited elsewhere. If a document is already open and being edited on the Artos platform or by another user in the word add-in, you will not be able to load it until they have finished and closed the document.
+
+If you attempt to open a locked document, the add-in will show you which user currently has it open and where. Wait for them to finish editing, then try again.
+
+### Choosing a Conversation Mode
+
+Once your document is loaded, you'll see the chat interface. Before sending a message, make sure you're in the right mode for your task. You can switch between modes using the button in the bottom left of the chat input.
+
+**Chat mode** (default) is for conversational interaction with your document — asking questions, requesting summaries, or exploring the content. Chat mode can still propose edits when asked, but it favors conversation and won't reach for an edit unless the request clearly calls for one.
+
+**Edit mode** is for making changes to your document, such as inserting or updating content and tables. Edit mode will always look to propose an edit, regardless of how the request is phrased.
+
+### Syncing Platform Document Changes to Artos
+
+When you're working on a **Platform Document** in the add-in, any edits you make in Word need to be synced back to Artos so your changes are reflected on the platform. The add-in provides a dedicated **Save** button for this.
+
+**Suggested Workflow:**
+
+1. Make your edits to the Platform Document in Word as usual.
+2. In the add-in panel, click the **Save** button at the top of the document view.
+3. Your changes will sync back to Artos and be reflected on the platform.
+
+If you click the **Back** button in the add-in to leave the document before saving, you'll be prompted with a **Save Changes?** dialog so you don't lose work. Choose **Save** to sync your edits back to Artos, or **Discard** to leave without saving.
+
+<Warning>
+  **Microsoft Word's native save and close flows are not hooked into the add-in's save.** The add-in cannot tie into Word's own Save action (Ctrl\+S / Cmd\+S, or the Save button on Word's ribbon) or Word's close-and-save flow. Saving or closing the document directly through Word — without first using the add-in's **Save** button or responding to the **Save Changes?** prompt — will NOT sync your changes back to Artos. This is a known limitation; see **Known Limitations** below.
+</Warning>
+
+This applies only to Platform Documents. Documents loaded via **Use Current Document** are not synced to Artos and are saved locally through Word as normal.
+
+### Chat History
+
+Chat history is only saved when working with **Platform Documents** — documents generated and stored on the Artos platform. If you loaded a document through **Use Current Document** (a file stored on your personal computer rather than on Artos), your chat history will not be saved after you close the document.
+
+To access your chat history, click the menu icon (☰) in the top right of the chat panel.
+
+## What You Can Do
+
+### Generate a List of Abbreviations
+
+The add-in can automatically generate a List of Abbreviations (LOA) table by scanning your document, identifying all abbreviations, and cross-referencing them against your organisation's master LOA.
+
+**Suggested Workflow:**
+
+1. Make sure you are in **Edit mode** and that a section heading exists for the LOA table.
+2. In the chat input, use the `/generate-loa` command to instruct the add-in to generate a List of Abbreviations table (or type your instruction in plain language).
+3. The add-in will begin processing — first reading the document structure, then generating the table.
+4. Once complete, click **Review suggestion** to inspect the table before inserting it.
+5. Click **Accept** to insert the table into your document or **Discard** to reject the changes.
+
+**A few things to know:**
+
+- Generating a List of Abbreviations requires the corresponding section heading to already exist in your document — if it is missing, the add-in will return an error.
+- The add-in cross-references your document against your organisation's master LOA automatically. If your organisation has multiple master LOA files, all of them will be applied.
+- If a single abbreviation maps to multiple full terms, both definitions will appear under that abbreviation, separated by a comma.
+
+### Update an Existing List of Abbreviations
+
+If you've made edits to your document after generating the LOA — for example, adding new sections that introduce new abbreviations — you can update the existing table without regenerating it from scratch.
+
+**Suggested Workflow:**
+
+1. Make sure you are in **Edit mode**.
+2. Make your edits to the document, adding any new content that contains new abbreviations.
+3. In the chat input, use the `/update-loa` command to instruct the add-in to update the List of Abbreviations table (or type your instruction in plain language).
+4. The add-in will re-scan the document, detect what has changed, and update the table accordingly.
+5. Click **Review suggestion** to inspect the changes — new abbreviations will appear added in alphabetical order within the existing table.
+6. Click **Accept** to apply the update or **Discard** to reject it.
+
+The add-in will only modify entries that are new or have changed; it will not regenerate the entire table.
+
+### Edit Selected Content
+
+You can select any portion of your document to load it into the add-in as focused context for your next action. This is useful when you want to work on a specific paragraph, table, or passage and not on the full document.
+
+**Suggested Workflow:**
+
+1. Make sure you are in **Edit mode**.
+2. Select the text or table you want to edit in your document.
+3. The add-in panel will confirm your selection.
+4. In the chat input, type your instruction — for example, "Translate this to Spanish", "Remove the Categories column from this table", or "Summarize this in two sentences."
+5. The add-in will generate a revised version of your selection.
+6. Click **Review Suggestion**, then **Accept** to apply the edit or **Discard** to reject it.
+
+You can select across multiple paragraphs within a section — all selected content will be updated in a single operation. For tables, the add-in understands the table structure and will preserve formatting when making modifications.
+
+<Tip>
+  **Selecting a table**
+
+  For the most reliable results, click the **table move handle** — the small ⊕ (plus-arrow) icon that appears at the top-left corner of the table when you hover over it. This selects the entire table cleanly and signals to the add-in that you intend to operate on the whole table. Highlighting the table with your cursor can pick up partial rows, extra whitespace, or miss cells, which may lead to incomplete or unexpected edits. If you do use cursor highlighting, make sure to highlight the **entire** table from the first cell to the last — not just a portion of it.
+</Tip>
+
+### Chat and Summarize
+
+You can use the add-in to ask questions, request summaries, or get general assistance with your document.
+
+**Suggested Workflow:**
+
+1. Make sure you are in **Chat mode**.
+2. Type your question or request in the chat input and send it.
+3. The add-in will respond based on the content and structure of your document.
+
+Some examples of what you can ask:
+
+- "Summarize the findings in Section 5."
+- "What adverse events are mentioned in this document?"
+- "Does this section contain any inconsistencies with the data in the tables?"
+
+You can also reference a section by name — for example, "Modify the introduction to make it shorter" — and the add-in will update all paragraphs within that section accordingly.
+
+### Upload Supporting Documents
+
+If your editing task requires reference to an external source — for example, an updated protocol, a new data file, or a reference document — you can upload it directly into the add-in. The uploaded file will be available as additional context for that chat. We recommend uploading no more than one document per chat instruction.
+
+**Suggested Workflow:**
+
+1. In the add-in panel, click the **Attach File** button.
+2. Select the file you want to upload from your computer.
+3. Once uploaded, the add-in can reference both your current document and the uploaded file when processing your requests.
+
+Some examples of what you can do:
+
+- "Update this section based on the new protocol I've uploaded."
+- "Check whether this document is consistent with the uploaded reference."
+- "Update the table with data from the uploaded file."
+
+### Insert Tables and Table Summaries
+
+The add-in can read a table from an attached file and insert it directly into your document at the cursor location. You can insert the table as-is, as a filtered subset, or as a summary — and you can populate placeholder fields at the same time.
+
+Supported file formats for table attachments: HTML, RTF, PDF, JPEG, and PNG.
+
+**Suggested Workflow:**
+
+1. Make sure you are in **Edit mode**.
+2. Place your cursor at the location in your document where you want the table inserted.
+3. In the chat input, type your instruction.
+4. Attach the file containing the table.
+5. Send the message. The add-in will process the attachment and insert the result at the cursor location.
+6. Click **Review Suggestion**, then **Accept** to apply the edit or **Discard** to reject it.
+
+**What you can ask the add-in to do:**
+
+- **Insert a table** — "Read the table from the attached file and insert it into the document." Note that table insertion is not currently supported for PDF attachments.
+- **Insert a summary of a table** — "Summarise the attached table and insert the summary into the document."
+- **Insert a filtered table** — "Filter the attached table for adverse events reported in more than 5% of the study group and insert it into the document."
+- **Insert a summary of a filtered table** — "Filter the attached table for adverse events reported in more than 10% of the study group and insert a summary into the document."
+- **Insert a new table with fields populated** — "Read the table from the attachment, populate the fields using the attached source file, and insert it." For best results, mark the fields to be updated with XX.
+
+### Update an Existing Table
+
+The add-in can update an existing table in your document using data from an attached file. This is useful when you have a draft table that needs to be refreshed against a newer data source — for example, when an updated study export comes in and your document's table needs to reflect the new numbers.
+
+Supported file formats are the same as for inserting tables: **HTML, RTF, PDF, JPEG, and PNG**.
+
+**Suggested Workflow:**
+
+1. Make sure you are in **Edit mode**.
+2. Select the table you want to update. For cleanest results, click the **table move handle** (⊕) at the top-left of the table — see the _Selecting a table_ callout under **Edit Selected Content**.
+3. In the chat input, use the `/update-table` command (or type your instruction in plain language).
+4. Attach the file containing the updated data.
+5. Send the message. The add-in will read the attachment and apply the updates to the selected table.
+6. Click **Review Suggestion**, then **Accept** to apply the update or **Discard** to reject it.
+
+**What you can ask the add-in to do:**
+
+- **Update fields marked with XX** — "Update the placeholder fields in this table using data from the attached file."
+- **Update an entire table** — "Update the values in this table using data from the attached file." The add-in will infer which cells to update based on row and column labels.
+
+<Tip>
+  **Marking the cells you want updated with XX leads to noticeably more reliable outputs** — the add-in gets an unambiguous signal of which cells should be touched and which should be preserved. Without placeholders, the add-in infers the update target from row and column labels, which works but can miss edge cases on densely-labeled tables.
+</Tip>
+
+## Slash Commands
+
+Slash commands let you trigger specific actions quickly without having to type out a full instruction. Type `/` in the add-in chat to see the available commands.
+
+**The following slash commands are currently available:**
+
+| Command | What it does |
+| --- | --- |
+| `/generate-loa` | Generates a List of Abbreviations table |
+| `/update-loa` | Updates the List of Abbreviations table |
+| `/update-table` | Updates a table in the document using an attached source file |
+
+To use a slash command against selected text, first select the content you want to act on, then type `/` in the chat input and choose a command from the list that appears.
+
+## Reconnecting After Inactivity
+
+If the add-in is left open and unused for an extended period, it will lose its connection to Artos. When this happens, a **Reconnect** button will appear in the panel. Click it to restore the connection and continue working.
+
+## Known Limitations
+
+**Chat history is only saved when working with Platform Documents.** If you loaded a document through Use Current Document (a file stored on your personal computer rather than on Artos), your chat history will not be saved after you close the document.
+
+**Semantic search is slower.** If you submit an instruction that involves semantic search, expect it to take longer than other operations. This is normal — the add-in is performing a more complex analysis of your document content.
+
+**Word's native save and close do not sync changes back to Artos.** Microsoft Word does not allow the add-in to participate in Word's own Save (Ctrl\+S / Cmd\+S, ribbon Save) or close-and-save flow. Saving or closing the document directly through Word — without first clicking the add-in's **Save** button or responding to the **Save Changes?** prompt when pressing **Back** — will not push your changes to the Artos platform. Always use the add-in's **Save** button to sync changes.
+
+## Troubleshooting
+
+**The add-in is not responding to instructions** Try logging out and logging back in. If the issue persists, close and relaunch Word.
+
+**A feature you expect to see is not appearing** Try logging out and logging back in. If the feature still does not appear, close and relaunch Word.
+
+**The add-in's responses seem inconsistent or incorrect.** Make sure your instruction corresponds to one of the supported workflows listed in the What You Can Do section of this guide. The add-in is optimised for those specific tasks — general open-ended chat is not fully supported and may produce inconsistent results.
