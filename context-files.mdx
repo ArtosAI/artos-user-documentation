@@ -18,6 +18,9 @@ There are two context files at the moment:
   </Card>
 </CardGroup>
 
+<CardGroup cols={2}>
+</CardGroup>
+
 <Warning>
   **Keep all required columns in place.** Removing any required column from either context file will break matching.
 </Warning>
@@ -59,10 +62,14 @@ There are two context files at the moment:
 
     The LoT is an Excel file, where each row uniquely represents one table from your TFL source documents.
 
+    ### What to include, and what to leave out
+
     Include only tables you intend to use during generation.
 
     - **A table that isn't on the LoT will not be picked up by Artos for insertion in any form**, even if it exists in a source file. The LoT is the only entry point.
     - **Each In-Text table must be unique.** A given In-Text table can only be inserted once per document.
+
+    ### Column headers
 
     The LoT must use these five columns. List them in the order shown below:
 
@@ -159,13 +166,19 @@ There are two context files at the moment:
 
     ### Building a Content Plan
 
+    #### File format
+
     The Content Plan is an Excel file, where each row represents one nonclinical study report mapped to one section of the generated document.
+
+    #### What to include, and what to leave out
 
     Include only studies you intend to summarize during generation.
 
     - **A study that isn't on the Content Plan will not be picked up by Artos**, even if its report exists as a source file. The Content Plan is the only entry point for the Summarize from Nonclinical Report action.
     - **The same study can appear on multiple rows.** Map a study to more than one section by listing it on multiple rows — one row per (study, section) pairing.
     - **Multiple studies can map to the same section.** This is the common pattern — for example, several single-dose tox studies all flowing into the same single-dose tox section.
+
+    #### Column headers
 
     The Content Plan must use these four columns. List them in the order shown below:
 
@@ -225,3 +238,5 @@ There are two context files at the moment:
     </Warning>
   </Tab>
 </Tabs>
+
+---
