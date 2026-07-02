@@ -35,8 +35,8 @@ When you open an Artos template, you'll see your document sections listed in the
 
 In the Artos template interface, you can configure **how each section is populated (actions, parameters, custom instructions)**.
 
-<Frame>
-  ![Image](/images/image.png)
+<Frame caption="Template Configuration">
+  ![Template Configuration](/images/Template-Configuration.png)
 </Frame>
 
 ## Sections
@@ -51,8 +51,8 @@ If sections need to be further modified:
 - Click on the edit button beside the Section name to rename the selected section
 - Click on the delete button beside the section name to delete the selected section
 
-<Frame>
-  ![Image](/images/image-1.png)
+<Frame caption="Template Sections">
+  ![Template Configuration 1](/images/Template-Configuration-1.png)
 </Frame>
 
 ## Section-level Configurations
@@ -60,8 +60,8 @@ If sections need to be further modified:
 - The content toggle controls whether content is to be generated for this section or if it is to be left empty.
 - Everything configured under Section Instructions applies to the entire section — including all actions within it.
 
-<Frame>
-  ![Image](/images/image-2.png)
+<Frame caption="Section-level Configurations">
+  ![Template Configuration 2](/images/Template-Configuration-2.png)
 </Frame>
 
 | **Component** | **What it does** | **Where to find it** |
@@ -99,12 +99,12 @@ Repeat section automatically generates additional subsections based on patterns 
 - Different animal species (rat, dog, primate) each with their own findings
 - Different patient populations or treatment arms
 
-<Frame caption="Repeat section toggled off">
-  ![Image](/images/image-3.png)
+<Frame caption="Repeat Section Toggled Off">
+  ![Repeat Section Off 1](/images/Repeat-Section---Off-1.png)
 </Frame>
 
-<Frame caption="Repeat section toggled on">
-  ![Image](/images/image-4.png)
+<Frame caption="Repeat Section Toggled On">
+  ![Repeat Section On](/images/Repeat-Section---On.png)
 </Frame>
 
 **How to configure Repeat Section:**
@@ -126,8 +126,8 @@ Repeat section automatically generates additional subsections based on patterns 
 
 Custom Instructions is a free-text field where you can add section-level guidance that applies across all actions in that section. Use this for requirements that don't belong to any single action: presentation standards, length constraints, terminology rules, or regulatory preferences.
 
-<Frame>
-  ![Image](/images/image-5.png)
+<Frame caption="Custom Instructions">
+  ![Frame 1 1](/images/Frame-1-1.png)
 </Frame>
 
 ### What to Put in Custom Instructions
@@ -162,8 +162,8 @@ Actions are the specific operations Artos performs to populate a section, execut
 
 Actions are automatically configured when the Artos template is generated, based on what Artos finds in your Word template and example files. From there, you can add, remove, and fine-tune actions directly from the 'Actions' part of the section configuration panel.
 
-<Frame>
-  ![Image](/images/image-6.png)
+<Frame caption="Actions">
+  ![Frame 2](/images/Frame-2.png)
 </Frame>
 
 ### Available Actions
@@ -246,8 +246,8 @@ Actions are automatically configured when the Artos template is generated, based
 
 **The order of actions matters** as Artos executes actions in sequence from top to bottom. You can add, reorder and delete actions from the section configuration panel.
 
-<Frame>
-  ![Image](/images/image-7.png)
+<Frame caption="Managing Actions">
+  ![Frame 4](/images/Frame-4.png)
 </Frame>
 
 | **To...** | **Do this...** |
@@ -298,8 +298,8 @@ The action itself captures the complex operations the system needs to perform an
 >
 > The action knows how to summarize; the instruction specifies what to emphasize.
 
-<Frame>
-  ![Image](/images/image-8.png)
+<Frame caption="Action Instructions Fields">
+  ![Frame 4 1](/images/Frame-4-1.png)
 </Frame>
 
 **In order to write strong Action Instructions, be sure to include:**
@@ -311,7 +311,7 @@ The action itself captures the complex operations the system needs to perform an
 
 **Examples of weak vs. strong instructions:**
 
-| **Action** | **✗ Weak instruction** |  |
+| **Action** | **❌ Weak instruction** | ✅ Strong instruction |
 | --- | --- | --- |
 | **Summarize** | "Summarize the safety data" | "Summarize safety data focusing on adverse events occurring in \>5% of patients. Present serious adverse events before common adverse events. Limit to 2 paragraphs." |
 | **Copy/Paste** | "Copy the study design" | "Copy the study design from the protocol, including randomization scheme, blinding procedures, and treatment duration." |
@@ -349,13 +349,13 @@ The MS Word (.docx) file serves as an input to the Artos template, but it also c
 
 Certain things can only be changed by editing your Word template and re-uploading it:
 
-| **Change needed** | **Where to make it** |  |
-| --- | --- | --- |
-| **Change table structure (columns, headers, formatting)** | **✓ Strong instruction** | Word template |
-| **Change page layout and margins** | Word template |  |
-| **Change header and footer content** | Word template |  |
-| **Change base typography and spacing** | Word template |  |
-| **Change document-level formatting and styles** | Word template |  |
+| **Change needed** | **Where to make it** |
+| --- | --- |
+| **Change table structure (columns, headers, formatting)** | Word template |
+| **Change page layout and margins** | Word template |
+| **Change header and footer content** | Word template |
+| **Change base typography and spacing** | Word template |
+| **Change document-level formatting and styles** | Word template |
 
 **Example: Changing a Template Table**
 
@@ -421,15 +421,15 @@ If a table in your Word template wasn't picked up by Artos during template gener
     When you are ready to see how a section looks, click **Generate Output**. This will generate a draft of that section only, and save your current settings as a new version. You will be asked to confirm a name for the output document and choose a workspace to save it to. The document name is pre-filled but you can edit it. Once done, click **Next** to proceed.
 
     <Frame caption="When on the Current Version, click on Generate Output to generate a preview of the current section configurations.">
-      ![Image](/images/image-9.png)
+      ![Image](/images/image-76.png)
     </Frame>
 
     Source documents are required for generating previews with 'Faster Template Configuration'. Either choose from existing uploaded source documents or upload new documents as a next step.
 
     Once the draft has been generated, click on **View Output** to open the generated draft alongside your template so you can review both at the same time.
 
-    <Frame>
-      ![Image](/images/image-10.png)
+    <Frame caption="View Generated Output">
+      ![Frame 6](/images/Frame-6.png)
     </Frame>
   </Step>
   <Step title="Review your output">
@@ -442,14 +442,14 @@ If a table in your Word template wasn't picked up by Artos during template gener
 
     Once ready, review the draft and decide whether to continue refining the section or move on. You can always go back to any previously saved version using the dropdown.
 
-    <Frame>
-      ![Image](/images/image-11.png)
+    <Frame caption="Section Versioning">
+      ![Frame 5 2](/images/Frame-5-2.png)
     </Frame>
 
     To understand how Artos constructed the draft — which sources were used and why — click the **View Decision Trail** button below the document. That would lead you to the Artos Document Review Page, where you can make reviews and edits on your document. From there, click the Back button at any time to return to the template configuration.
 
-    <Frame>
-      ![Image](/images/image-12.png)
+    <Frame caption="View Decision Trails">
+      ![Frame 8](/images/Frame-8.png)
     </Frame>
   </Step>
   <Step title="Build your final template">
