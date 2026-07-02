@@ -7,10 +7,15 @@ description: "Review, refine, and collaborate on generated documents using the A
 
 Once document generation is complete, it becomes available for review and edits in your workspace. The document viewer sidebar has two tabs at the top:
 
-| Tab | What it's for |
-| --- | --- |
-| **Details** | **Document Review:** View information about the document (template used, source files, generation details) |
-| **Edit** | **Document Editing:** Make changes to selected content |
+<CardGroup cols={2}>
+  <Card title="Details" icon="circle-info">
+    **Document Review:** View information about the document (template used, source files, generation details)
+  </Card>
+
+  <Card title="Edit" icon="pen">
+    **Document Editing:** Make changes to selected content
+  </Card>
+</CardGroup>
 
 ## Document Review
 
@@ -28,9 +33,9 @@ At the top of the **Details** tab, you'll see a dropdown that shows which sectio
 - Click the dropdown to navigate to a different section
 - Or, as the hint says: _"select text directly in the document to see sources"_
 
-<Card type="tip" horizontal>
+<Tip>
   Selecting text in the document will automatically update the Details tab to show decision trails for that section.
-</Card>
+</Tip>
 
 ### Decision Trail
 
@@ -44,37 +49,55 @@ Highlighting any text while reviewing a generated document surfaces the template
 
 Each **action card** has the following details:
 
-- Indicators showing whether the **Expandable** and **Removable** toggles are on for that action. When enabled, Expandable allows the system to add additional instances of the action as needed during generation; Removable allows the system to skip the action if the content isn't applicable for the document.Indicators showing whether the **Expandable** and **Removable** toggles are on for that action. When enabled, Expandable allows the system to add additional instances of the action as needed during generation; Removable allows the system to skip the action if the content isn't applicable for the document.
-- **Action Details** panel: User instructions configured for the action, along with any template text it will insert directly into the document.**Action Details** panel: User instructions configured for the action, along with any template text it will insert directly into the document.
+<AccordionGroup>
+  <Accordion title="Expandable & Removable Indicators">
+    Indicators showing whether the **Expandable** and **Removable** toggles are on for that action. When enabled, Expandable allows the system to add additional instances of the action as needed during generation; Removable allows the system to skip the action if the content isn't applicable for the document.
+  </Accordion>
 
-<Frame caption="Action details with User Instructions">
-  ![Image](/images/image-42.png)
-</Frame>
+  <Accordion title="Action Details">
+    User instructions configured for the action, along with any template text it will insert directly into the document.
 
-<Frame caption="Action details with User Instructions and Template Text">
-  ![Image](/images/image-43.png)
-</Frame>
+    <Frame caption="Action details with User Instructions">
+      ![Image](/images/image-42.png)
+    </Frame>
 
-- **Decision Notes** panel: The rationale behind each decision made during draft generation — covering why certain choices were made, why some instructions could not be fully followed, and what information was missing to do so.**Decision Notes** panel: The rationale behind each decision made during draft generation — covering why certain choices were made, why some instructions could not be fully followed, and what information was missing to do so.
-  - **Completed** — Instructions that were fully followed during draft generation. The source data contained all the information needed to carry out the instruction exactly as configured.
-  - **Incomplete** — Instructions that could only be partially followed, with an explanation of what was done and why the instruction could not be completely fulfilled.
-  - **Missing** — Instructions that could not be followed because the source data was missing required information, along with details of what was expected but not found.
+    <Frame caption="Action details with User Instructions and Template Text">
+      ![Image](/images/image-43.png)
+    </Frame>
+  </Accordion>
 
-<Frame>
-  ![Image](/images/image-44.png)
-</Frame>
+  <Accordion title="Decision Notes">
+    The rationale behind each decision made during draft generation — covering why certain choices were made, why some instructions could not be fully followed, and what information was missing to do so.
 
-- **Source Selections** panel: A list of excerpts from the uploaded source documents that were referenced when drafting the passage. Clicking a referenced excerpt opens its source document and shows how it informed the generated content under **'Usage'.Source Selections** panel: A list of excerpts from the uploaded source documents that were referenced when drafting the passage. Clicking a referenced excerpt opens its source document and shows how it informed the generated content under **'Usage'.**
-  <Frame>
-    ![Image](/images/image-45.png)
-  </Frame>
-- **Discrepancies** panel: Instances where the configured instructions conflict with the content found in the uploaded source documents.
+    - **Completed** — Instructions that were fully followed during draft generation. The source data contained all the information needed to carry out the instruction exactly as configured.
+    - **Incomplete** — Instructions that could only be partially followed, with an explanation of what was done and why the instruction could not be completely fulfilled.
+    - **Missing** — Instructions that could not be followed because the source data was missing required information, along with details of what was expected but not found.
 
-<Frame>
-  ![Image](/images/image-46.png)
-</Frame>
+    <Frame>
+      ![Image](/images/image-44.png)
+    </Frame>
+  </Accordion>
 
-- **Style Guide** panel: Details on formatting instructions applied during generation — showing where instructions were successfully followed, and where they could not be applied and the reason why.
+  <Accordion title="Source Selections">
+    A list of excerpts from the uploaded source documents that were referenced when drafting the passage. Clicking a referenced excerpt opens its source document and shows how it informed the generated content under **'Usage'.**
+
+    <Frame>
+      ![Image](/images/image-45.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Discrepancies">
+    Instances where the configured instructions conflict with the content found in the uploaded source documents.
+
+    <Frame>
+      ![Image](/images/image-46.png)
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Style Guide">
+    Details on formatting instructions applied during generation — showing where instructions were successfully followed, and where they could not be applied and the reason why.
+  </Accordion>
+</AccordionGroup>
 
 #### Default Action Card Behaviour
 
@@ -92,10 +115,23 @@ By default, one panel is expanded per action, depending on the action type. The 
 
 #### Best Practices
 
-- Use the **Source Selections** panel to verify that the right excerpts were referenced. If an unexpected source was used, or a relevant one was missed, this is where you will spot it.
-- When a passage in the generated document doesn't read as expected, highlight it and check the **Decision Notes** panel to understand the rationale behind the choices made.
-- If the **Discrepancies** panel shows a count greater than zero, review each instance to understand where your instructions and source content are in conflict. Discrepancies often arise because the system reads instructions literally — nuance, implied meaning, or assumptions that feel obvious to a human can be lost in translation. For instructions to be followed reliably, they need to be logically sound, unambiguous, and workable given what is actually present in the source documents. Use the discrepancies identified here as a signal to revisit and tighten the wording of your instructions.
-- Use the **Style Guide** panel to confirm formatting instructions were applied correctly, and to identify any that could not be followed so you can address them before the next generation.
+<AccordionGroup>
+  <Accordion title="Source Selections">
+    Use the **Source Selections** panel to verify that the right excerpts were referenced. If an unexpected source was used, or a relevant one was missed, this is where you will spot it.
+  </Accordion>
+
+  <Accordion title="Decision Notes">
+    When a passage in the generated document doesn't read as expected, highlight it and check the **Decision Notes** panel to understand the rationale behind the choices made.
+  </Accordion>
+
+  <Accordion title="Discrepancies">
+    If the **Discrepancies** panel shows a count greater than zero, review each instance to understand where your instructions and source content are in conflict. Discrepancies often arise because the system reads instructions literally — nuance, implied meaning, or assumptions that feel obvious to a human can be lost in translation. For instructions to be followed reliably, they need to be logically sound, unambiguous, and workable given what is actually present in the source documents. Use the discrepancies identified here as a signal to revisit and tighten the wording of your instructions.
+  </Accordion>
+
+  <Accordion title="Style Guide">
+    Use the **Style Guide** panel to confirm formatting instructions were applied correctly, and to identify any that could not be followed so you can address them before the next generation.
+  </Accordion>
+</AccordionGroup>
 
 ### Open Template
 
@@ -122,7 +158,7 @@ The Edit tab has two sub-tabs
 
 ### Select and Regenerate
 
-Select any text in the document, while inside the **Content sub-tab** and ask Artos to rewrite it. You can provide specific instructions about what you want changed under **'Custom Instructions'** — different emphasis, a different level of detail, a different structure, or a correction. You can also choose from among the **'Quick Actions'** if you need to make changes to length and/or the tense of the selected text. 
+Select any text in the document, while inside the **Content sub-tab** and ask Artos to rewrite it. You can provide specific instructions about what you want changed under **'Custom Instructions'** — different emphasis, a different level of detail, a different structure, or a correction. You can also choose from among the **'Quick Actions'** if you need to make changes to length and/or the tense of the selected text.
 
 This is useful when the draft is close but not quite right. Rather than rewriting manually, you can tell Artos what to adjust and let it regenerate that portion.
 
@@ -135,41 +171,46 @@ This is useful when the draft is close but not quite right. Rather than rewritin
 
 #### Quick Actions
 
-1. **Length**: Adjust how long the selected content should be
+<Tabs>
+  <Tab title="Length">
+    Adjust how long the selected content should be.
 
-| Button | What it does |
-| --- | --- |
-| **"Longer"** | Regenerates the selected text with more detail and explanation |
-| **"Shorter"** | Regenerates the selected text to be more concise |
+    | Button | What it does |
+    | --- | --- |
+    | **"Longer"** | Regenerates the selected text with more detail and explanation |
+    | **"Shorter"** | Regenerates the selected text to be more concise |
 
-**When to use:**
+    **When to use:**
 
-- Use **LONGER** when a section needs more depth, context, or supporting detail
-- Use **SHORTER** when content is too verbose or needs to fit space constraints
+    - Use **LONGER** when a section needs more depth, context, or supporting detail
+    - Use **SHORTER** when content is too verbose or needs to fit space constraints
+  </Tab>
+  <Tab title="Tense">
+    Change the verb tense of the selected content:
 
-2. **Tense:** Change the verb tense of the selected content:
+    | Button | What it does |
+    | --- | --- |
+    | **Present** | Converts text to present tense ("The study evaluates...") |
+    | **Past** | Converts text to past tense ("The study evaluated...") |
+    | **Future** | Converts text to future tense ("The study will evaluate...") |
 
-| Button | What it does |
-| --- | --- |
-| **Present** | Converts text to present tense ("The study evaluates...")onverts text to present tense ("The study evaluates...") |
-| **Past** | Converts text to past tense ("The study evaluated...")Converts text to past tense ("The study evaluated...") |
-| **Future** | Converts text to future tense ("The study will evaluate...") |
+    **When to use:**
 
-**When to use:**
+    - **Present** → Protocol documents, ongoing studies
+    - **Past** → Clinical study reports, completed studies
+    - **Future** → Planned studies, protocol amendments
 
-- **Present** → Protocol documents, ongoing studies
-- **Past** → Clinical study reports, completed studies
-- **Future** → Planned studies, protocol amendments
+    **Example:**
 
-**Example:**
-
-| Original | After "Past" | After "Future" |
-| --- | --- | --- |
-| "The study evaluates safety and efficacy" | "The study evaluated safety and efficacy" | "The study will evaluate safety and efficacy" |
+    | Original | After "Past" | After "Future" |
+    | --- | --- | --- |
+    | "The study evaluates safety and efficacy" | "The study evaluated safety and efficacy" | "The study will evaluate safety and efficacy" |
+  </Tab>
+</Tabs>
 
 #### Custom Instructions
 
-Below Quick Actions, you'll find the **Custom Instructions** section. This is where you can write specific instructions for changes that aren't covered by Quick AcBelow Quick Actions, you'll find the **Custom Instructions** section. This is where you can write specific instructions for changes that aren't covered by Quick Actions.
+Below Quick Actions, you'll find the **Custom Instructions** section. This is where you can write specific instructions for changes that aren't covered by Quick Actions.
 
 **Once you're done with your edits, click the "Regenerate Content" button at the bottom of the editor.**
 
@@ -222,28 +263,30 @@ You can also directly insert tables and reports into the document.
 
 Artos's document editor supports real-time collaborative editing, allowing multiple users to work on the same document simultaneously.
 
-**Seeing who's in the document**
+<AccordionGroup>
+  <Accordion title="Seeing who's in the document">
+    When another user is active in the document, you can see their cursor position and name in real time, so you always know where someone else is working.
+  </Accordion>
 
-When another user is active in the document, you can see their cursor position and name in real time, so you always know where someone else is working.
+  <Accordion title="Co-editing modes">
+    You can choose between two modes depending on how you prefer to collaborate:
 
-**Co-editing modes**
+    - **Fast mode** — changes are synced and visible to all collaborators instantly as you type. Best for active, back-and-forth collaboration.
+    - **Strict mode** — your changes are saved locally and only shared with other collaborators when you explicitly save. Best for when you want to work through a section without interruption before sharing your edits.
+  </Accordion>
 
-You can choose between two modes depending on how you prefer to collaborate:
+  <Accordion title="Conflict resolution">
+    In strict mode, if two users have edited the same part of the document, you will be prompted to review the competing change when you save — you can choose to accept or reject it. In fast mode, the most recent edit takes precedence.
+  </Accordion>
 
-- **Fast mode** — changes are synced and visible to all collaborators instantly as you type. Best for active, back-and-forth collaboration.
-- **Strict mode** — your changes are saved locally and only shared with other collaborators when you explicitly save. Best for when you want to work through a section without interruption before sharing your edits.
+  <Accordion title="Tracked changes">
+    You can turn on tracked changes to record every edit with the author's name and timestamp. Any collaborator with the appropriate permissions can then accept or reject individual changes during review.
+  </Accordion>
 
-**Conflict resolution**
-
-In strict mode, if two users have edited the same part of the document, you will be prompted to review the competing change when you save — you can choose to accept or reject it. In fast mode, the most recent edit takes precedence.
-
-**Tracked changes**
-
-You can turn on tracked changes to record every edit with the author's name and timestamp. Any collaborator with the appropriate permissions can then accept or reject individual changes during review.
-
-**Comments and mentions**
-
-You can leave inline comments on any part of the document. To flag something for a specific collaborator's attention, mention them by name in the comment and they will be notified.
+  <Accordion title="Comments and mentions">
+    You can leave inline comments on any part of the document. To flag something for a specific collaborator's attention, mention them by name in the comment and they will be notified.
+  </Accordion>
+</AccordionGroup>
 
 ### The Editing Mindset
 
@@ -287,14 +330,19 @@ As you edit, you'll encounter things you want to fix. The key question is whethe
 
 If yes, update the template. If no, fix it in the document.
 
-| Situation | Action |
-| --- | --- |
-| This compound has unique concerns | Post-draft editing |
-| Reviewer asked for changes to this document | Post-draft editing |
-| Source data for this study is unusual | Post-draft editing |
-| All documents should follow this approach | Template change |
-| Regulatory requirement affects all documents | Template change |
-| Organization-wide style change | Template change |
+<CardGroup cols={2}>
+  <Card title="Post-draft editing" icon="pen">
+    - This compound has unique concerns
+    - Reviewer asked for changes to this document
+    - Source data for this study is unusual
+  </Card>
+
+  <Card title="Template change" icon="sliders">
+    - All documents should follow this approach
+    - Regulatory requirement affects all documents
+    - Organization-wide style change
+  </Card>
+</CardGroup>
 
 ### Replacing the Document with a Local Copy
 
