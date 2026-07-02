@@ -17,15 +17,14 @@ Once document generation is complete, it becomes available for review and edits 
   </Card>
 </CardGroup>
 
+<CardGroup cols={2}>
+</CardGroup>
+
 ## Document Review
 
 ### Section Selector
 
 At the top of the **Details** tab, you'll see a dropdown that shows which section you're viewing.
-
-<Frame>
-  ![Image](/images/image-40.png)
-</Frame>
 
 **How it works:**
 
@@ -57,12 +56,8 @@ Each **action card** has the following details:
   <Accordion title="Action Details">
     User instructions configured for the action, along with any template text it will insert directly into the document.
 
-    <Frame caption="Action details with User Instructions">
-      ![Image](/images/image-42.png)
-    </Frame>
-
     <Frame caption="Action details with User Instructions and Template Text">
-      ![Image](/images/image-43.png)
+      ![Frame 55](/images/Frame-55.png)
     </Frame>
   </Accordion>
 
@@ -74,7 +69,7 @@ Each **action card** has the following details:
     - **Missing** — Instructions that could not be followed because the source data was missing required information, along with details of what was expected but not found.
 
     <Frame>
-      ![Image](/images/image-44.png)
+      ![Frame 57](/images/Frame-57.png)
     </Frame>
   </Accordion>
 
@@ -138,7 +133,7 @@ By default, one panel is expanded per action, depending on the action type. The 
 The sidebar has an **Open Template** button at the bottom that loads the source Word template alongside the generated document. Use it to verify that the generated content matches what the template specified for that section.
 
 <Frame>
-  ![Image](/images/image-47.png)
+  ![Frame 9 1](/images/Frame-9-1.png)
 </Frame>
 
 ## Document Editing
@@ -146,79 +141,18 @@ The sidebar has an **Open Template** button at the bottom that loads the source 
 After Artos generates your draft, you can make corrections and refine the output in the **Edit** tab, to get the document to final quality. Updates to one section will not affect the formatting or content of the rest of the document.
 
 <Frame>
-  ![Image](/images/image-51.png)
+  ![Frame 58 1](/images/Frame-58-1.png)
 </Frame>
 
-The Edit tab has two sub-tabs
+### Custom Instructions
 
-| Sub-tab | What it does |
-| --- | --- |
-| **Content** | Edit the text content (length, tense, custom changes) |
-| **Source Document** | Change which source document is used for the selected section |
-
-### Select and Regenerate
-
-Select any text in the document, while inside the **Content sub-tab** and ask Artos to rewrite it. You can provide specific instructions about what you want changed under **'Custom Instructions'** — different emphasis, a different level of detail, a different structure, or a correction. You can also choose from among the **'Quick Actions'** if you need to make changes to length and/or the tense of the selected text.
-
-This is useful when the draft is close but not quite right. Rather than rewriting manually, you can tell Artos what to adjust and let it regenerate that portion.
-
-- If selecting a table, highlight the whole table
-- If selecting text, highlight more than 5 words
-
-<Frame>
-  ![Image](/images/image-52.png)
-</Frame>
-
-#### Quick Actions
-
-<Tabs>
-  <Tab title="Length">
-    Adjust how long the selected content should be.
-
-    | Button | What it does |
-    | --- | --- |
-    | **"Longer"** | Regenerates the selected text with more detail and explanation |
-    | **"Shorter"** | Regenerates the selected text to be more concise |
-
-    **When to use:**
-
-    - Use **LONGER** when a section needs more depth, context, or supporting detail
-    - Use **SHORTER** when content is too verbose or needs to fit space constraints
-  </Tab>
-  <Tab title="Tense">
-    Change the verb tense of the selected content:
-
-    | Button | What it does |
-    | --- | --- |
-    | **Present** | Converts text to present tense ("The study evaluates...") |
-    | **Past** | Converts text to past tense ("The study evaluated...") |
-    | **Future** | Converts text to future tense ("The study will evaluate...") |
-
-    **When to use:**
-
-    - **Present** → Protocol documents, ongoing studies
-    - **Past** → Clinical study reports, completed studies
-    - **Future** → Planned studies, protocol amendments
-
-    **Example:**
-
-    | Original | After "Past" | After "Future" |
-    | --- | --- | --- |
-    | "The study evaluates safety and efficacy" | "The study evaluated safety and efficacy" | "The study will evaluate safety and efficacy" |
-  </Tab>
-</Tabs>
-
-#### Custom Instructions
-
-Below Quick Actions, you'll find the **Custom Instructions** section. This is where you can write specific instructions for changes that aren't covered by Quick Actions.
-
-**Once you're done with your edits, click the "Regenerate Content" button at the bottom of the editor.**
+This is where you can write specific instructions for changes in the document.**Once you're done with your edits, click the "Apply Changes" button at the bottom of the editor.**
 
 ### Direct Editing
 
 The document editor is a collaborative editing environment. You can make changes directly in the document, rewrite text, adjust formatting, add or remove content, just as you would in any word processor. Direct edits are saved in the document and do not affect your template.
 
-### When to Edit Directly vs. When to Regenerate
+#### When to Edit Directly vs. When to Regenerate
 
 | Scenario | Recommended approach |
 | --- | --- |
@@ -236,32 +170,9 @@ The document editor is a collaborative editing environment. You can make changes
 - "Rewrite this to emphasize the safety profile rather than efficacy"
 - "This section should focus on the intent-to-treat population, not per-protocol"
 
-### Inserting Content
-
-You can also directly insert tables and reports into the document.
-
-<Tip>
-  Source files are automatically classified as tables or nonclinical reports during ingestion. Only files classified into one of these types appear in the Add Content list.
-</Tip>
-
-**Steps:**
-
-1. Click your cursor into the document where you want to insert content
-2. In the Artos sidebar, navigate to the "Add Content" button
-3. Select the table or non-clinical report you want to add
-4. Click "Insert Table" or "Insert Report" to insert the content
-
-| Button | What it does |
-| --- | --- |
-| **\+ Add Content** | Opens options to insert tables, reports, or other content at the cursor position |
-
-<Frame>
-  ![Image](/images/image-53.png)
-</Frame>
-
 ### Collaborative Editing
 
-Artos's document editor supports real-time collaborative editing, allowing multiple users to work on the same document simultaneously.
+Artos's document editor supports real-time collaborative editing, allowing multiple users to work on the same document simultaneouslyArtos's document editor supports real-time collaborative editing, allowing multiple users to work on the same document simultaneously.
 
 <AccordionGroup>
   <Accordion title="Seeing who's in the document">
@@ -290,7 +201,7 @@ Artos's document editor supports real-time collaborative editing, allowing multi
 
 ### The Editing Mindset
 
-The system is designed to give you more content than you may need. The preferred workflow is to let Artos be comprehensive, then trim. It's easier to cut a thorough draft down than to chase missing information.
+The system is designed to give you more content than you may need. The preferred workflow is to let Artos be comprehensive, then trim. It's easier to cut a thorough draft down than to chase missing informationsystem is designed to give you more content than you may need. The preferred workflow is to let Artos be comprehensive, then trim. It's easier to cut a thorough draft down than to chase missing information.
 
 When reviewing your draft, focus on three questions:
 
@@ -310,10 +221,10 @@ You can change the document editor to "Reviewing" mode to view your tracked chan
 
 ### Source Document Tab
 
-The **Source Document** sub-tab shows which source files were used to generate the document.
+The **Source Document** sub-tab shows which source files were used to generate the document.The **Source Document** sub-tab shows which source files were used to generate the document.
 
 <Frame>
-  ![Image](/images/image-55.png)
+  ![Frame 59](/images/Frame-59.png)
 </Frame>
 
 ### Template-Level vs. Document-Level Changes
@@ -349,7 +260,7 @@ If yes, update the template. If no, fix it in the document.
 You can replace the current document with a locally edited copy directly from the document viewer. This is useful when edits made outside the platform — for example, in Word — need to be brought back into Artos.
 
 <Frame>
-  ![Image](/images/image-56.png)
+  ![Frame 59 1](/images/Frame-59-1.png)
 </Frame>
 
 **How it works:**
