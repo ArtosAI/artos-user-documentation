@@ -281,9 +281,9 @@ Actions are automatically configured when the Artos template is generated, based
 <Tip>
   **Expandable v/s Repeat Section**
 
-  Toggle on Expandable if you want only that action to be repeated based on source content.
+  Toggle on Expandable if you want only that action to be repeated based on source contentToggle on Expandable if you want only that action to be repeated based on source content.
 
-  Toggle on Repeat Section when the whole section is to be repeated, including all actions within that section.
+  Toggle on Repeat Section when the whole section is to be repeated, including all actions within that sectionoggle on Repeat Section when the whole section is to be repeated, including all actions within that section.
 </Tip>
 
 ### Action Instructions
@@ -309,7 +309,7 @@ The action itself captures the complex operations the system needs to perform an
 - How to structure or present the output
 - Any constraints (length, format, exclusions)
 
-**Examples of weak vs. strong instructions:**
+**Examples of weak vs. strong instructionsExamples of weak vs. strong instructions:**
 
 | **Action** | **❌ Weak instruction** | ✅ Strong instruction |
 | --- | --- | --- |
@@ -320,12 +320,12 @@ The action itself captures the complex operations the system needs to perform an
 
 ### Custom Instructions vs. Action Instructions
 
-| **Put it in Custom Instructions when...** | **Put it in Action Instructions when...** |
-| --- | --- |
-| It applies to the entire section | It applies to one specific action |
-| It's about presentation, length, or style | It's about what content to extract |
-| It's a constraint or requirement | It's guidance on how to perform an operation |
-| Multiple actions should follow this guidance | Only this action needs this guidance |
+| **Action** | **✗ Weak instruction** |  |
+| --- | --- | --- |
+| **Summarize** | "Summarize the safety data" | "Summarize safety data focusing on adverse events occurring in \>5% of patients. Present serious adverse events before common adverse events. Limit to 2 paragraphs." |
+| **Copy/Paste** | "Copy the study design" | "Copy the study design from the protocol, including randomization scheme, blinding procedures, and treatment duration." |
+| **Template Table** | "Fill in the table" | "Populate with all Phase 1 studies. Include study number, design, population, dose levels, and key PK parameters. Order by study number." |
+| **Summarize** | "Summarize the nonclinical findings" | "Summarize key nonclinical findings including: species tested, dose levels, duration, major findings, and NOAELs. Organize by study type (single-dose, repeat-dose, genotoxicity)." |
 
 **Example: Safety Summary Section**
 
@@ -341,13 +341,13 @@ The Custom Instructions set the overall parameters (length, ordering, terminolog
 
 ## Template Components from the .docx File
 
-The MS Word (.docx) file serves as an input to the Artos template, but it also contains structural elements that Artos preserves directly.
+The MS Word (.docx) file serves as an input to the Artos template, but it also contains structural elements that Artos preserves directlyMS Word (.docx) file serves as an input to the Artos template, but it also contains structural elements that Artos preserves directly.
 
 **Key principle:** The .docx file defines **structure**, not just content.
 
 ### When to Edit the .docx File
 
-Certain things can only be changed by editing your Word template and re-uploading it:
+Certain things can only be changed by editing your Word template and re-uploading it:Certain things can only be changed by editing your Word template and re-uploading it:
 
 | **Change needed** | **Where to make it** |
 | --- | --- |
@@ -357,7 +357,7 @@ Certain things can only be changed by editing your Word template and re-uploadin
 | **Change base typography and spacing** | Word template |
 | **Change document-level formatting and styles** | Word template |
 
-**Example: Changing a Template Table**
+**Example: Changing a Template TableExample: Changing a Template Table**
 
 If you want to change the columns, headers, or formatting of a template table that Artos will populate:
 
@@ -409,7 +409,7 @@ If a table in your Word template wasn't picked up by Artos during template gener
   </Step>
 </Steps>
 
-### Using Versions for Faster Template Configuration
+### Using Versions for Faster Template ConfigurationUsing Versions for Faster Template Configuration
 
 <Steps>
   <Step title="Get started">
