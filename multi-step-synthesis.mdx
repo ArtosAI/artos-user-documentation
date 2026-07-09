@@ -41,7 +41,7 @@ Multi-Step Synthesis treats the supplied sources as a single body of evidence to
 
 **Use a different action when:**
 
-- The content should be copied verbatim from a single source → use **Copy from Source**
+- The content should be copied verbatim from a single source → use **Copy from Source** or **Copy and Modify**
 - A prior version of the section exists and should be preserved with only changed elements updated → use **Copy and Update**
 - The section is static boilerplate with no source-derived content → use **Use Template Text**
 - A single source already contains the full answer and only needs to be summarized → use **Summarize from Source**
@@ -51,7 +51,6 @@ Multi-Step Synthesis treats the supplied sources as a single body of evidence to
 - Scope the sources to the section. The action reasons across everything it is given, so broad or off-topic sources dilute the output.
 - Direct the tool through a process using specific steps. The more clearly you can direct the tool on how to find and utilize source documents, the more confidently it can execute the task.
 - State the output shape in the instruction. Asking for "a table with columns X, Y, Z" is more reliable than asking for "a table."
-- When conflicts across sources matter, tell the action to flag them. Disagreements between sources are surfaced for review and are most useful when the instruction names them as something to watch for.
-- Specify how to handle missing information. "Leave the cell empty if the value is not present" or "omit the bullet if the source does not mention it" prevents the action from filling gaps with guesses.
+- Specify how to handle missing information. For example, saying "If the relevant data is not available, output a statement saying 'No sources supporting this section were found.' or don't output anything at all" prevents the action from filling gaps with guesses.
 - Specify potential outcomes that are not ideal, so the tool avoids them.
 - Experiment with instructions and outcomes using the 'Generate Output' button in the top right of the action card panel.
