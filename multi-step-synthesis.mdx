@@ -1,0 +1,57 @@
+---
+title: "Multi-Step Synthesis"
+hidden: true
+---
+
+## What It Does
+
+Multi-Step Synthesis combines information from several source documents into a single section. Rather than copying or summarizing one source, this action reasons across a curated set of sources, integrates what they say, and produces a section-ready output: text, a table, or a mix of both. It is designed for sections where the answer doesn't live in one place and the author needs the action to weigh evidence from across multiple inputs.
+
+## How It Works
+
+Multi-Step Synthesis treats the supplied sources as a single body of evidence to be reconciled. The tool will either search across all supplied documents to find the ones it regards as the best fit, or it can be directed towards documents/sections, as required. It reads across all of the collected sources, drafts an output, reviews that draft against the evidence, and revises before producing the final version. This draft-and-review pass is what makes it well-suited to sections that need to be assembled from many places rather than lifted from one.
+
+**Evidence-grounded.** The action works only from the sources it is given. It does not invent values, fill in gaps from general knowledge, or extrapolate beyond what the sources support. If a piece of information is missing from the evidence, the action will leave it out rather than guess.
+
+**Cross-source analysis.** When directed to in the instructions, the action can analyze information across sources, such as evaluating whether statistical significance was met or whether datapoints fall outside the acceptability criteria listed in a protocol document. It can also evaluate differences between sources: tell it what to look at and what to compare it against, and it will describe the differences it finds. Where it cannot reconcile them, it can be configured to say so. This works best when the analysis is requested explicitly in the instructions rather than left for the action to perform on its own.
+
+**Flexible output shape.** The action can produce free-flowing text, or insert an existing table from a CSR to a 2.7.3. The output shape is driven by the authoring instructions: ask for a paragraph and you get a paragraph, ask for a table with specific columns and you get that table. If the instructions don't specify a shape, the action chooses one that fits the content.
+
+## Example Instructions
+
+| Weak instruction | Strong instruction |
+| --- | --- |
+| "Assess the data" | "First, find the data source for the primary endpoint. Look for Column X. Then using the statistics analysis document and the Population Segmentation from Document Y, write a paragraph that synthesizes the statistical significance for that endpoint within the specified population." |
+| "Compare the studies" | "Using the various \<document type\> documents in the source files, create a bulleted list of small paragraphs that compares the following information across studies, using lean authoring principles: Study Population, Study Design, Outcomes. Each paragraph should first list the specific information from the respective study, then synthesize an endpoint-based comparison of effectiveness." |
+| "Summarize the adverse events" | "First, check the List of Tables for this section: if an in-text table is already mapped to 11.3.1 Common Adverse Events, output nothing. Otherwise, locate the treatment-emergent adverse event table by preferred term and the by-participant AE listing, then write a 2-3 sentence, past-tense narrative naming the most frequent events with their rates as reported in the source. Do not editorialize, restate findings from earlier sections, or explain missing data; if the data are not available, output nothing at all. Cite the source tables in parenthetical format, e.g. (Table X.X.X); never output an uncited summary." |
+
+**What makes the strong instructions better:** They state the shape of the output (paragraph, table, structured summary), name the fields or sections to include, and make the no-fabrication rule explicit. The action needs to know both what to produce and what to do when the sources are silent or in conflict.
+
+**A useful pattern:** Give instructions the same way that IKEA does. First, outline what sources/sections are required for the tool to execute the task, the same way all of the tools and parts are laid out before the build. Then, give step-by-step instructions on how to move through, digest, and present information. The models work best when they can execute a clear process.
+
+## When to Use This Action
+
+**Use Multi-Step Synthesis when:**
+
+- The section needs to integrate information from several sources rather than a single document
+- You have a series of documents that need to be considered in a step-wise manner
+- The sources cover overlapping ground and may contain conflicts worth surfacing
+- The output is structured: a table built from heterogeneous inputs, a summary that pulls from many places, a narrative that weaves several findings together
+- You want a draft-and-review pass over the evidence rather than a single-shot generation
+
+**Use a different action when:**
+
+- The content should be copied verbatim from a single source → use **Copy from Source**
+- A prior version of the section exists and should be preserved with only changed elements updated → use **Copy and Update**
+- The section is static boilerplate with no source-derived content → use **Use Template Text**
+- A single source already contains the full answer and only needs to be summarized → use **Summarize from Source**
+
+## Tips
+
+- Scope the sources to the section. The action reasons across everything it is given, so broad or off-topic sources dilute the output.
+- Direct the tool through a process using specific steps. The more clearly you can direct the tool on how to find and utilize source documents, the more confidently it can execute the task.
+- State the output shape in the instruction. Asking for "a table with columns X, Y, Z" is more reliable than asking for "a table."
+- When conflicts across sources matter, tell the action to flag them. Disagreements between sources are surfaced for review and are most useful when the instruction names them as something to watch for.
+- Specify how to handle missing information. "Leave the cell empty if the value is not present" or "omit the bullet if the source does not mention it" prevents the action from filling gaps with guesses.
+- Specify potential outcomes that are not ideal, so the tool avoids them.
+- Experiment with instructions and outcomes using the 'Generate Output' button in the top right of the action card panel.

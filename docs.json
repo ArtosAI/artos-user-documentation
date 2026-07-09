@@ -47,7 +47,8 @@
           "deep-dive-use-template-table",
           "deep-dive-table-and-summary-placeholder",
           "deep-dive-summarize-from-nonclinical-report",
-          "deep-dive-generate-from-listings"
+          "deep-dive-generate-from-listings",
+          "multi-step-synthesis"
         ]
       },
       {
