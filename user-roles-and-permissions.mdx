@@ -14,7 +14,7 @@ When a user is invited to a workspace or template, or when a source file is shar
 
 There are 5 user roles - Member, Admin, Author, Owner, and Internal. Internal is a restricted role reserved for Artos staff; its permissions match Owner (see the note below the role tables for assignment rules).
 
-<CardGroup cols={4}>
+<CardGroup cols={3}>
   <Card title="Member" icon="user">
     Standard access. Can view and edit shared resources but cannot create templates or workspaces.
   </Card>
@@ -122,6 +122,10 @@ Share lists only show users whose access is actually being controlled. Owners an
 ## Change of Role
 
 Owners can change a user's role at any time. Role management lives in **Settings \> Users & Permissions** — open that page, find the user, and select the desired role from the dropdown next to their name. Owners can move users between **Member**, **Author**, **Admin**, and **Owner** only — the **Internal** role cannot be assigned by Owners through the UI (see the note in the Roles section above). Admins, Authors, and Members cannot change anyone's role.
+
+<Note>
+  **Moving to or from the Author role.** When a user is changed to Author (from Owner or Admin), they lose all template create, edit, delete, and rename privileges — including for templates they created or previously edited — and gain view access to all templates and their source files. Their documents, workspaces, and source files are otherwise unaffected. When an Author is changed to Member, they only see the templates that have been explicitly shared with them.
+</Note>
 
 <Warning>
   A role change requires a page refresh to take effect on the platform.
